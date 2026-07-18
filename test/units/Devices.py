@@ -1,5 +1,4 @@
 import os
-import time
 
 from airvpn import AirVPN
 
