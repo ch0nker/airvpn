@@ -19,7 +19,7 @@ Generates a VPN configuration file for one or more servers.
 | `protocol_type` | `ProtocolType` | `UDP` | Transport protocol. |
 | `port` | `int` | `1637` | Port number to connect on. |
 | `entry_ip` | `int` | `3` | IP version/entry point selector. |
-| `download` | `str` | `"auto"` | Download mode for generated files. |
+| `download` | `str` | `"auto"` |  Param can be the filename, the index (0..x) or zip,7z,tar,tar.gz,tar.bz2,tar.xz |
 | `files_binary` | `str` | `""` | Optional binary/executable to bundle with the config. |
 | `files_prefix` | `str` | `""` | Optional filename prefix for generated files. |
 | `openvpn_directives` | `str` | `""` | Additional custom directives for OpenVPN. |
