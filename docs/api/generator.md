@@ -40,7 +40,7 @@ Generates a VPN configuration file for one or more servers.
 
 ```py
 config = api.generator.create_config(
-    server="xamidimura",
+    server="earth",
     device="Default",
     vpn_type=VpnType.WIREGUARD,
     protocol_type=ProtocolType.UDP,
