@@ -5,6 +5,7 @@ from airvpn.generator import Generator
 from airvpn.status import Status, Server
 from airvpn.userinfo import UserInfo
 from airvpn.whatismyip import WhatIsMyIp
+from airvpn.exceptions import APIKeyRequired
 
 from airvpn.disconnect import disconnect
 from airvpn.notification import send_notification
@@ -69,7 +70,7 @@ class AirVPN:
 
         service = service_class(self.session)
         if service_class.KEY_NEEDED and not self.api_key:
-            raise Exception(f"API key is required to use \"{service}\"")
+            raise APIKeyRequired(f"API key is required to use \"{service}\"")
 
         assert service, "Failed to create service"
 
