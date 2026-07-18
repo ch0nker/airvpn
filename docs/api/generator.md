@@ -25,7 +25,7 @@ Generates a VPN configuration file for one or more servers.
 | `openvpn_directives` | `str` | `""` | Additional custom directives for OpenVPN. |
 | `openvpn_data_ciphers` | `str` | `""` | Custom data cipher list for OpenVPN. |
 | `resolve` | `bool` | `False` | Resolve server hostnames instead of using raw IPs. |
-| `openvpn_allserver` | `bool` | `False` | Include all servers in a single OpenVPN config. |
+| `openvpn_allservers` | `bool` | `False` | Include all servers in a single OpenVPN config. |
 | `proxy_mode` | `str` | `"none"` | Proxy mode for the generated config. |
 | `proxy_host` | `str` | `"127.0.0.1"` | Proxy host, if `proxy_mode` is enabled. |
 | `proxy_port` | `str` | `"8080"` | Proxy port, if `proxy_mode` is enabled. |
@@ -54,7 +54,4 @@ config = api.generator.create_config(
 |---|---|---|
 | `openvpn_version` | `str` | OpenVPN version to target. |
 | `openvpn_noembedkeys` | `bool` | Omit embedding keys directly in the OpenVPN config. |
-| `openvpn_allservers` | `bool` | ⚠️ Separate key from `openvpn_allserver` above — does **not** override it. |
 | `proxy_auth` | `str` | Proxy authentication method/type. |
-
-> **Known issue:** `openvpn_allserver` (named parameter, singular) and `openvpn_allservers` (kwargs key, plural) are two distinct keys. Passing `openvpn_allservers` via kwargs will not override the named parameter — both end up as separate keys in the request. Verify which spelling the API actually expects before relying on this option.

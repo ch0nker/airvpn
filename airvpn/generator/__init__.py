@@ -37,7 +37,7 @@ class Generator:
                   openvpn_directives: str = "",
                   openvpn_data_ciphers: str = "",
                   resolve: bool = False,
-                  openvpn_allserver: bool = False,
+                  openvpn_allservers: bool = False,
                   proxy_mode: str = "none",
                   proxy_host: str = "127.0.0.1",
                   proxy_port: str = "8080",
@@ -71,7 +71,7 @@ class Generator:
             openvpn_data_ciphers: Custom data cipher list for OpenVPN.
             resolve: Whether to resolve server hostnames instead of using
                 raw IPs in the config.
-            openvpn_allserver: Whether to include all servers in a single
+            openvpn_allservers: Whether to include all servers in a single
                 OpenVPN config.
             proxy_mode: Proxy mode to configure in the generated config
                 ("none" or a specific proxy type).
@@ -95,10 +95,6 @@ class Generator:
                 openvpn_version: OpenVPN version to target.
                 openvpn_noembedkeys: Whether to omit embedding keys directly
                     in the OpenVPN config (reference external key files instead).
-                openvpn_allservers: Whether to include all servers in a single
-                    OpenVPN config. Note: this is a separate key from the
-                    openvpn_allserver named parameter above and does not
-                    override it.
 
                 See OptionsDict for the full list of supported keys.
 
