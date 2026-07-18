@@ -25,13 +25,13 @@ See `.env.example` for the expected format.
 Run every unit:
 
 ```bash
-python test.py
+python test
 ```
 
 Run a single unit by name (matches the filename without `.py`):
 
 ```bash
-python test.py userinfo
+python test userinfo
 ```
 
 Exit code is `0` if everything passed, `1` if any test raised an exception or returned a string.
