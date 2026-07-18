@@ -23,7 +23,7 @@ class Generator:
     def __init__(self, session: AirSession):
         self.session = session
 
-    def create_config(self,
+def create_config(self,
                   server: str,
                   device: str,
                   system: SystemType = SystemType.WINDOWS,
@@ -49,6 +49,7 @@ class Generator:
                   wireguard_persistent_keepalive: int = 15,
                   iplayer_entry: str = "ipv4",
                   iplayer_exit: str = "both",
+                  **kwargs: dict
                 ):
         """Generate a VPN configuration file for one or more servers.
 
@@ -90,6 +91,12 @@ class Generator:
             openvpn_version: OpenVPN version to target.
             openvpn_noembedkeys: Whether to omit embedding keys directly
                 in the OpenVPN config (reference external key files instead).
+            **kwargs: Additional API parameters passed through as-is.
+                Used primarily for per-server download selection: pass
+                `server_SERVERNAME="on"` for each server you want included
+                in the downloaded config/bundle (e.g.
+                `server_earth="on", server_america="on"`). Any other
+                undocumented API parameters can also be passed this way.
 
         Returns:
             The raw text response from the generator endpoint (typically
@@ -105,8 +112,7 @@ class Generator:
         options["protocols"] = protocol
         options["servers"] = server
 
-        options = options
-
+        options = options | kwargs
 
         response = self.session.get("generator", params=options)
         return response.text
