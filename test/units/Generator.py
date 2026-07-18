@@ -31,7 +31,6 @@ def generate():
     try:
         data = json.loads(config)
         message = data.get("error")
-        print(data)
         assert message, "Failed to receive error, most likely a multi-config generation."
         raise Exception(message)
     except json.JSONDecodeError:
