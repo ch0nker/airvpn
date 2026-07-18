@@ -99,7 +99,6 @@ class Generator:
 
         options.pop("self")
         options.pop("server")
-        options.pop("kwargs")
 
         protocol = f"{vpn_type}_{entry_ip}_{protocol_type}_{port}"
 
