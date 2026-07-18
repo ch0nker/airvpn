@@ -33,7 +33,7 @@ device_id = api.devices.add()
 
 ### `delete(id: str) -> str | None`
 
-Deletes a device by ID. Returns the deleted device's ID, or `None` if not returned.
+Deletes a device by ID. Returns if it was successful or not.
 
 ```py
 api.devices.delete(id="abc123")
@@ -43,7 +43,7 @@ api.devices.delete(id="abc123")
 
 ### `renew(id: str) -> str | None`
 
-Renews a device by ID. Returns the renewed device's ID, or `None` if not returned.
+Renews a device by ID.  Returns if it was successful or not.
 
 ```py
 api.devices.renew(id="abc123")
@@ -54,6 +54,8 @@ api.devices.renew(id="abc123")
 ### `modify(id: str, name: str = None, description: str = None) -> str | None`
 
 Modifies a device's name and/or description. At least one of `name` or `description` must be provided.
+
+Returns if it was successful or not.
 
 ```py
 api.devices.modify(id="abc123", name="New Name")
