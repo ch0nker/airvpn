@@ -2,7 +2,7 @@
 
 Fetches available DNS filtering lists.
 
-**Access type:** User-specific, API key required.
+**Access type:** Public, no API KEY required
 
 ```py
 lists = api.dns_lists.lists

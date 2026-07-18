@@ -25,7 +25,7 @@ Each property lazily creates and caches its corresponding service on first acces
 | Property | Returns | API Key Required |
 |---|---|---|
 | `devices` | [`Devices`](devices.md) | Yes |
-| `dns_lists` | [`DnsLists`](dns_lists.md) | Unclear |
+| `dns_lists` | [`DnsLists`](dns_lists.md) | No |
 | `generator` | [`Generator`](generator.md) | Yes |
 | `status` | [`Status`](status.md) | No |
 | `userinfo` | [`UserInfo`](userinfo.md) | Yes |
