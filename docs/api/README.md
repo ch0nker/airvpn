@@ -8,7 +8,7 @@ Reference documentation for every service exposed by the `AirVPN` client.
 |---|---|---|
 | [AirVPN](airvpn.md) | Main entry point, lazily exposes all services below | Depends on service used |
 | [Devices](devices.md) | List, add, delete, renew, and modify registered devices | Yes |
-| [DnsLists](dns_lists.md) | Fetch available DNS filtering lists | Unclear (see notes) |
+| [DnsLists](dns_lists.md) | Fetch available DNS filtering lists | No |
 | [Generator](generator.md) | Generate OpenVPN/WireGuard configuration files | Yes |
 | [Status](status.md) | Network status: servers, routing, countries, continents, planets | No |
 | [UserInfo](userinfo.md) | Account and connection details for the authenticated user | Yes |
