@@ -3,7 +3,7 @@
 # https://airvpn.org/api/generator/?protocols=openvpn_3_udp_443%2Copenvpn_3_tcp_443%2Cwireguard_3_udp_1637%2Copenvpn_4_udp_443&servers=grus%2Casellus&device=Default
 # https://airvpn.org/api/generator/?protocols=openvpn_3_udp_443%2Copenvpn_3_tcp_443%2Cwireguard_3_udp_1637%2Copenvpn_4_udp_443&servers=america%2Casia%2Cearth%2Cbr%2Cca%2Cgrus%2Casellus%2Cvulpecula%2Cxamidimura&system=linux&device=Default
 
-from typing import Unpack
+from typing import Unpack, Literal
 from airvpn.network import AirSession
 from airvpn.generator.models import SystemType, ProtocolType, VpnType, OptionsDict
 
@@ -32,10 +32,11 @@ class Generator:
                   port: int = 1637,
                   entry_ip: int = 3,
                   download: str = "auto",
-                  files_binary: str = "",
+                  files_binary: Literal["x64", "x32"] = "",
                   files_prefix: str = "",
                   openvpn_directives: str = "",
-                  openvpn_data_ciphers: str = "",
+                  openvpn_data_ciphers: Literal["desktop", "mobile"] = "",
+                  openvpn_noembedkeys: bool = None,
                   resolve: bool = False,
                   openvpn_allservers: bool = False,
                   proxy_mode: str = "none",
@@ -48,7 +49,6 @@ class Generator:
                   wireguard_persistent_keepalive: int = 15,
                   iplayer_entry: str = "ipv4",
                   iplayer_exit: str = "both",
-                  **kwargs: Unpack[OptionsDict]
                 ):
         """Generate a VPN configuration file for one or more servers.
 
@@ -62,8 +62,7 @@ class Generator:
             protocol_type: Transport protocol (UDP or TCP).
             port: Port number to connect on.
             entry_ip: IP version/entry point selector for the connection.
-            download: Download mode for the generated files ("auto" or
-                a specific format).
+            download: Param can be the filename, the index (0..x) or zip,7z,tar,tar.gz,tar.bz2,tar.xz
             files_binary: Optional binary/executable to bundle with the config.
             files_prefix: Optional filename prefix for generated files.
             openvpn_directives: Additional custom directives to inject into
@@ -88,15 +87,9 @@ class Generator:
                 ("ipv4", "ipv6", or "both").
             iplayer_exit: IP layer to use for the exit connection
                 ("ipv4", "ipv6", or "both").
-            **kwargs: Additional generator options not covered by the named
-                parameters above. These override any matching keys built
-                from the named parameters. Supported keys include:
-
-                openvpn_version: OpenVPN version to target.
-                openvpn_noembedkeys: Whether to omit embedding keys directly
-                    in the OpenVPN config (reference external key files instead).
-
-                See OptionsDict for the full list of supported keys.
+            openvpn_version: OpenVPN version to target.
+            openvpn_noembedkeys: Whether to omit embedding keys directly
+                in the OpenVPN config (reference external key files instead).
 
         Returns:
             The raw text response from the generator endpoint (typically
@@ -113,8 +106,8 @@ class Generator:
         options["protocols"] = protocol
         options["servers"] = server
 
-        options = options | kwargs
+        options = options
+
 
         response = self.session.get("generator", params=options)
-
         return response.text
