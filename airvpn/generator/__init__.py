@@ -116,3 +116,95 @@ class Generator:
 
             response = self.session.get("generator", params=options)
             return response.text
+    
+    def write_config(self,
+                fp: str,
+                server: str,
+                device: str,
+                system: SystemType = SystemType.WINDOWS,
+                vpn_type: VpnType = VpnType.WIREGUARD,
+                protocol_type: ProtocolType = ProtocolType.UDP,
+                port: int = 1637,
+                entry_ip: int = 3,
+                download: str = "auto",
+                files_binary: Literal["x64", "x32"] = "",
+                files_prefix: str = "",
+                openvpn_directives: str = "",
+                openvpn_data_ciphers: Literal["desktop", "mobile"] = "",
+                openvpn_noembedkeys: bool = None,
+                resolve: bool = False,
+                openvpn_allservers: bool = False,
+                proxy_mode: str = "none",
+                proxy_host: str = "127.0.0.1",
+                proxy_port: str = "8080",
+                proxy_login: str = "",
+                proxy_password: str = "",
+                proxy_auth: str = "none",
+                wireguard_mtu: int = 1320,
+                wireguard_persistent_keepalive: int = 15,
+                iplayer_entry: str = "ipv4",
+                iplayer_exit: str = "both",
+                **kwargs: dict
+                ):
+        """Generate a VPN configuration file for one or more servers.
+
+        Args:
+            fp: The filepath you want to write to.
+            server: Server name(s) to generate the config for. Multiple
+                servers, countries, continents, or "earth" can be combined
+                with commas (e.g. "america,asia,earth,br,ca").
+            device: The device profile name to associate with this config.
+            system: Target operating system for the generated config.
+            vpn_type: VPN protocol family (e.g. WireGuard, OpenVPN).
+            protocol_type: Transport protocol (UDP or TCP).
+            port: Port number to connect on.
+            entry_ip: IP version/entry point selector for the connection.
+            download: Param can be the filename, the index (0..x) or zip,7z,tar,tar.gz,tar.bz2,tar.xz
+            files_binary: Optional binary/executable to bundle with the config.
+            files_prefix: Optional filename prefix for generated files.
+            openvpn_directives: Additional custom directives to inject into
+                an OpenVPN config.
+            openvpn_data_ciphers: Custom data cipher list for OpenVPN.
+            resolve: Whether to resolve server hostnames instead of using
+                raw IPs in the config.
+            openvpn_allservers: Whether to include all servers in a single
+                OpenVPN config.
+            proxy_mode: Proxy mode to configure in the generated config
+                ("none" or a specific proxy type).
+            proxy_auth: Proxy authentication method/type, if proxy_mode
+                    is enabled.
+            proxy_host: Proxy host address, if proxy_mode is enabled.
+            proxy_port: Proxy port, if proxy_mode is enabled.
+            proxy_login: Proxy authentication username, if required.
+            proxy_password: Proxy authentication password, if required.
+            wireguard_mtu: MTU value for WireGuard configs.
+            wireguard_persistent_keepalive: Persistent keepalive interval,
+                in seconds, for WireGuard configs.
+            iplayer_entry: IP layer to use for the entry connection
+                ("ipv4", "ipv6", or "both").
+            iplayer_exit: IP layer to use for the exit connection
+                ("ipv4", "ipv6", or "both").
+            openvpn_version: OpenVPN version to target.
+            openvpn_noembedkeys: Whether to omit embedding keys directly
+                in the OpenVPN config (reference external key files instead).
+            **kwargs: Additional API parameters passed through as-is.
+                Used primarily for per-server download selection: pass
+                `server_SERVERNAME="on"` for each server you want included
+                in the downloaded config/bundle (e.g.
+                `server_earth="on", server_america="on"`). Any other
+                undocumented API parameters can also be passed this way.
+        """
+        cfg = self.create_config(server, device, 
+                                 system, vpn_type, 
+                                 protocol_type, port, 
+                                 entry_ip, download, 
+                                 files_binary, files_prefix, 
+                                 openvpn_directives, openvpn_data_ciphers, 
+                                 openvpn_noembedkeys, resolve, 
+                                 openvpn_allservers, proxy_mode,
+                                 proxy_host, proxy_port, 
+                                 proxy_login, proxy_password, 
+                                 proxy_auth, wireguard_mtu, 
+                                 wireguard_persistent_keepalive)
+        with open(fp, "w") as f:
+             f.write(cfg.replace("\r\n", "\n"))
