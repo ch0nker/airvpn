@@ -8,16 +8,40 @@ api.devices.list()
 
 **Access type:** User-specific, API key required.
 
+## Properties
+
+### `devices -> list[Device]`
+
+A cached list of devices registered to the account. On first access it fetches devices from the API; subsequent accesses return the cached list unless a mutating call (`add`, `delete`, `renew`, `modify`) has happened in between, in which case it's refreshed automatically.
+
+```py
+for device in api.devices.devices:
+    print(device.name, device.status)
+```
+
 ## Methods
 
 ### `list() -> list[Device]`
 
-Lists all devices registered to the account.
+Lists all devices registered to the account. Always makes a fresh request to the API — use the `devices` property instead if you want caching.
 
 ```py
 for device in api.devices.list():
     print(device.name, device.status)
 ```
+
+---
+
+### `get(name: str, create: bool = False) -> Device | None`
+
+Finds a device by name from the device list. If no device with that name exists and `create` is `True`, a new device is registered and renamed to `name`.
+
+```py
+device = api.devices.get("My Laptop", create=True)
+```
+
+**Raises:**
+- `AssertionError` — if `create=True` and creating or renaming the new device fails.
 
 ---
 
@@ -31,9 +55,9 @@ device_id = api.devices.add()
 
 ---
 
-### `delete(id: str) -> str | None`
+### `delete(id: str) -> bool`
 
-Deletes a device by ID. Returns if it was successful or not.
+Deletes a device by ID. Returns `True` if successful.
 
 ```py
 api.devices.delete(id="abc123")
@@ -41,9 +65,9 @@ api.devices.delete(id="abc123")
 
 ---
 
-### `renew(id: str) -> str | None`
+### `renew(id: str) -> bool`
 
-Renews a device by ID.  Returns if it was successful or not.
+Renews a device by ID. Returns `True` if successful.
 
 ```py
 api.devices.renew(id="abc123")
@@ -51,11 +75,11 @@ api.devices.renew(id="abc123")
 
 ---
 
-### `modify(id: str, name: str = None, description: str = None) -> str | None`
+### `modify(id: str, name: str | None = None, description: str | None = None) -> bool`
 
 Modifies a device's name and/or description. At least one of `name` or `description` must be provided.
 
-Returns if it was successful or not.
+Returns `True` if successful.
 
 ```py
 api.devices.modify(id="abc123", name="New Name")
@@ -69,6 +93,9 @@ api.devices.modify(id="abc123", name="New Name")
 ### `action(action: DeviceAction, id=None, name=None, description=None) -> dict`
 
 Low-level method used internally by the methods above to send a raw devices action request. Exposed publicly if you need direct access to the raw response.
+
+**Raises:**
+- `AssertionError` — if the API response contains an `error` field.
 
 ## Model — `Device`
 
