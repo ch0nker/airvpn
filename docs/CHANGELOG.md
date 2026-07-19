@@ -1,7 +1,7 @@
 # 0.1.3
 - Add `write_config` to the generator service.
 - Add caching to devices service along with a new way to list devices via `Devices.devices`.
--- Add docstring to exception
+- Add docstring to exception
 
 # 0.1.2
 - Remove unused packages
