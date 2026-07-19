@@ -1,2 +1,2 @@
 class APIKeyRequired(Exception):
-    pass
+    """Raised when a service needs an API key."""
