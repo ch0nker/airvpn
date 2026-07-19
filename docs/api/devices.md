@@ -2,10 +2,6 @@
 
 Manages registered devices/keys associated with the account.
 
-```py
-api.devices.list()
-```
-
 **Access type:** User-specific, API key required.
 
 ## Properties
