@@ -48,6 +48,50 @@ config = api.generator.create_config(
 )
 ```
 
+### `write_config(fp, server, device, **options) -> str`
+
+Generates and writes a VPN configuration file.
+
+| Parameter | Type | Default | Description |
+|---|---|---|---|
+| `fp` | `str` | - | Filepath to write the configuration to. |
+| `server` | `str` | — | Server name(s) to generate the config for. Multiple servers, countries, continents, or "earth" can be combined with commas. |
+| `device` | `str` | — | The device profile name to associate with this config. |
+| `system` | `SystemType` | `WINDOWS` | Target operating system. |
+| `vpn_type` | `VpnType` | `WIREGUARD` | VPN protocol family. |
+| `protocol_type` | `ProtocolType` | `UDP` | Transport protocol. |
+| `port` | `int` | `1637` | Port number to connect on. |
+| `entry_ip` | `int` | `3` | IP version/entry point selector. |
+| `download` | `str` | `"auto"` |  Param can be the filename, the index (0..x) or zip,7z,tar,tar.gz,tar.bz2,tar.xz |
+| `files_binary` | `str` | `""` | Optional binary/executable to bundle with the config. |
+| `files_prefix` | `str` | `""` | Optional filename prefix for generated files. |
+| `openvpn_directives` | `str` | `""` | Additional custom directives for OpenVPN. |
+| `openvpn_data_ciphers` | `str` | `""` | Custom data cipher list for OpenVPN. |
+| `resolve` | `bool` | `False` | Resolve server hostnames instead of using raw IPs. |
+| `openvpn_allservers` | `bool` | `False` | Include all servers in a single OpenVPN config. |
+| `proxy_mode` | `str` | `"none"` | Proxy mode for the generated config. |
+| `proxy_host` | `str` | `"127.0.0.1"` | Proxy host, if `proxy_mode` is enabled. |
+| `proxy_port` | `str` | `"8080"` | Proxy port, if `proxy_mode` is enabled. |
+| `proxy_login` / `proxy_password` | `str` | `""` | Proxy credentials, if required. |
+| `wireguard_mtu` | `int` | `1320` | MTU value for WireGuard configs. |
+| `wireguard_persistent_keepalive` | `int` | `15` | Persistent keepalive interval, in seconds. |
+| `iplayer_entry` | `str` | `"ipv4"` | IP layer for the entry connection. |
+| `iplayer_exit` | `str` | `"both"` | IP layer for the exit connection. |
+| `**kwargs` | `OptionsDict` | — | Additional options not listed above (see below). Overrides matching named parameters. |
+
+**Returns:** The raw text response from the generator endpoint (the generated config file contents).
+
+```py
+config = api.generator.create_config(
+    server="earth",
+    device="Default",
+    vpn_type=VpnType.WIREGUARD,
+    protocol_type=ProtocolType.UDP,
+    port=1637,
+)
+```
+
+
 ## Additional `**kwargs` options
 
 | Key | Type | Description |
