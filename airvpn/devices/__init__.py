@@ -15,6 +15,9 @@ class Devices:
     """
     Manages registered devices/keys associated with the account.
     
+    Attributes:
+        devices: A list of devices
+
     Access type:
         User-specific, API KEY required
     """
@@ -23,6 +26,9 @@ class Devices:
 
     def __init__(self, session: AirSession):
         self.session = session
+        self._diff = False
+        self._devices: list[Device] = []
+        self._device_map: dict[str, Device] = {}
     
     def action(self,
                action: DeviceAction,
@@ -53,14 +59,66 @@ class Devices:
         assert not error, error
 
         return result
+    
+    def _cache_devices(self):
+        self._devices = []
+        self._device_map = {}
 
+        self._devices = self.list()
+        for device in self._devices:
+            self._device_map[device.name] = device
+
+    
+    def _update_diff(self):
+        if self._diff or not self._devices:
+            self._cache_devices()
+            self._diff = False
+
+    def get(self, name: str, create: bool = False):
+        """Get/create a device using a name
+        
+        Args:
+            name: Name to search for.
+            create: If it cannot find the device it will create it.
+
+        Returns:
+            The Device object or None
+        """
+        # TODO: Possibly create devices locally since this is an amount of requests I'd rather not have.
+    
+        self._update_diff()
+        result = self._device_map.get(name)
+
+        if not result and create:
+            device_id = self.add()
+
+            assert device_id, "Failed to create device"
+            assert self.modify(device_id, name), "Failed to modify device's name"
+
+            self._update_diff()
+            result = self._device_map.get(name)
+
+        return result
+
+    @property
+    def devices(self):
+        """A list of Devices."""
+
+        if self._devices:
+            self._update_diff()
+
+            return self._devices
+
+        self._cache_devices()
+
+        return self._devices
+    
     def list(self):
         """List all devices registered to the account.
 
         Returns:
             A list of Device objects.
         """
-
         response = self.action(DeviceAction.LIST)
 
         return [Device(**device) for device in response.get("devices", [])]
@@ -73,6 +131,8 @@ class Devices:
         """
 
         response = self.action(DeviceAction.ADD)
+
+        self._diff = True
 
         return response.get("id", None)
     
@@ -88,6 +148,8 @@ class Devices:
 
         response = self.action(DeviceAction.DELETE, id=id)
 
+        self._diff = True
+
         return response.get("result", "error") == "ok"
     
     def renew(self, id: str):
@@ -101,6 +163,8 @@ class Devices:
         """
 
         response = self.action(DeviceAction.RENEW, id=id)
+
+        self._diff = True
 
         return response.get("result", "error") == "ok"
 
@@ -121,5 +185,7 @@ class Devices:
         assert name is not None or description is not None, "You either need to modify name or description."
 
         response = self.action(DeviceAction.MODIFY, id=id, name=name, description=description)
+
+        self._diff = True
         
         return response.get("result", "error") == "ok"
