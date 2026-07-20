@@ -12,4 +12,6 @@ def check_service():
 def check_fetch():
     info = whatismyip.fetch()
 
-    print(info.ip, info.geo_additional.continent_name, info.geo_additional.country_name, info.geo_additional.region_name)
+    assert info.ip, "Failed to get ip"
+    assert info.geo, "Failed to get geo object"
+    assert info.geo_additional, "Failed to get geo_additional object"
