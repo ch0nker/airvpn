@@ -34,7 +34,7 @@ class TestFunc:
         for func in self.test_functions:
             try:
                 result = func()
-                if type(result) is str:
+                if isinstance(result, str):
                     test_errors.append((func.__name__, result))
                     continue
                 
