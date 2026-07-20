@@ -69,6 +69,9 @@ class Server:
         self.health = Status(kwargs.get("health"))
         self.warning = kwargs.get("warning")
 
+    def __str__(self):
+        return self.public_name
+
 class RoutingDict(TypedDict, total=False):
     public_name: str
     country_name: str
