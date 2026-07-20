@@ -1,14 +1,11 @@
-from airvpn.network import AirSession
 from airvpn.devices import Devices, Device
 from airvpn.dns_lists import DnsLists
 from airvpn.generator import Generator
 from airvpn.status import Status, Server
 from airvpn.userinfo import UserInfo
 from airvpn.whatismyip import WhatIsMyIp
-from airvpn.exceptions import APIKeyRequired
 
-from airvpn.disconnect import disconnect
-from airvpn.notification import send_notification
+from airvpn.exceptions import APIKeyRequired
 
 class AirVPN:
     """Main entry point for interacting with the AirVPN API.
@@ -41,6 +38,8 @@ class AirVPN:
     }
 
     def __init__(self, API_KEY: str = None):
+        from airvpn.network import AirSession
+
         self.api_key = API_KEY
         self.session = AirSession(API_KEY)
 
@@ -65,11 +64,12 @@ class AirVPN:
             AssertionError: If the service name is invalid.
             Exception: If the service requires an API key and none was provided.
         """
+
         service_class = AirVPN.__service_classes__.get(service.lower())
         assert service_class, f"Invalid service name: {service}"
 
         service = service_class(self.session)
-        if service_class.KEY_NEEDED and not self.api_key:
+        if service_class.__KEY_NEEDED__ and self.api_key is None:
             raise APIKeyRequired(f"API key is required to use \"{service}\"")
 
         assert service, "Failed to create service"
@@ -78,43 +78,43 @@ class AirVPN:
     
     @property
     def devices(self) -> Devices:
-        """The devices service, created and cached on first access."""
-        if not self._devices:
+        """The devices service"""
+        if self._devices is None:
             self._devices = self.get_service("devices")
         return self._devices
 
     @property
     def dns_lists(self) -> DnsLists:
-        """The DNS lists service, created and cached on first access."""
-        if not self._dns_lists:
+        """The DNS lists service"""
+        if self._dns_lists is None:
             self._dns_lists = self.get_service("dns_lists")
         return self._dns_lists
     
     @property
     def generator(self) -> Generator:
-        """The config generator service, created and cached on first access."""
-        if not self._generator:
+        """The config generator service"""
+        if self._generator is None:
             self._generator = self.get_service("generator")
         return self._generator
 
     @property
     def status(self) -> Status:
-        """The network status service, created and cached on first access."""
-        if not self._status:
+        """The network status service"""
+        if self._status is None:
             self._status = self.get_service("status")
         return self._status
 
     @property
     def userinfo(self) -> UserInfo:
-        """The user info service, created and cached on first access."""
-        if not self._userinfo:
+        """The user info service"""
+        if self._userinfo is None:
             self._userinfo = self.get_service("userinfo")
         return self._userinfo
     
     @property
     def whatismyip(self) -> WhatIsMyIp:
-        """The IP lookup service, created and cached on first access."""
-        if not self._whatismyip:
+        """The IP lookup service"""
+        if self._whatismyip is None:
             self._whatismyip = self.get_service("whatismyip")
         return self._whatismyip
     
@@ -131,6 +131,8 @@ class AirVPN:
         Access type:
             User-specific, API KEY required.
         """
+        from airvpn.notification import send_notification
+
         assert self.api_key, "API key is required"
 
         return send_notification(self.session, subject, body)
@@ -158,6 +160,8 @@ class AirVPN:
         Access type:
             User-specific, API KEY required.
         """
+        from airvpn.disconnect import disconnect
+
         assert self.api_key, "API key is required"
 
         disconnect(self.session, 
