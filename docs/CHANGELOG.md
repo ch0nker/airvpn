@@ -1,3 +1,6 @@
+# 0.1.5
+- Add compatibility for python 3.11
+
 # 0.1.4
 - `create_config` now supports multiple files with the `ConfigList` class.
 - `write_config` now requests a zip file then extracts all files to the `output_dir` directory.
