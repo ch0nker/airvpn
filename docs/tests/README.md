@@ -2,6 +2,23 @@
 
 The project's test runner is a small custom framework (`test/__main__.py`) that dynamically loads each file under `test/units/` as a "unit," runs every function registered with `@test.unit`, and reports pass/fail results with colored output.
 
+### Don't print secrets or config contents
+
+Test output (including `print`/`warn` calls) may end up in CI logs, which are visible to anyone if the repository is public. Never print:
+
+- The raw `API_KEY` value, or any partial/sliced/encoded version of it
+- Generated VPN config contents (e.g. a `Config`'s `buffer` or `read()` output), since these can contain embedded keys or credentials that are just as sensitive as the API key itself
+- Full request/response objects that might carry the key in a URL or header (e.g. `response.url`, `response.request.headers`)
+
+If you need debug output to diagnose a failing test, prefer non-sensitive signals instead — status codes, presence/absence of a field, or lengths (e.g. `len(config)`):
+
+```py
+print(f"Got {len(configs)} configs")   # fine
+print(configs[0].read())               # don't — may contain embedded secrets
+```
+
+CI automatically masks any log output that exactly matches a configured secret's value, but this isn't a substitute for care — masking won't catch a transformed, partial, or re-encoded copy of the secret.
+
 ## Setup
 
 Install the test-specific dependencies before running anything:
