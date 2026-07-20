@@ -22,7 +22,7 @@ class Devices:
         User-specific, API KEY required
     """
 
-    KEY_NEEDED = True
+    __KEY_NEEDED__ = True
 
     def __init__(self, session: AirSession):
         self.session = session
@@ -67,7 +67,6 @@ class Devices:
         self._devices = self.list()
         for device in self._devices:
             self._device_map[device.name] = device
-
     
     def _update_diff(self):
         if self._diff or not self._devices:
@@ -129,7 +128,6 @@ class Devices:
         Returns:
             The ID of the newly created device, or None if not returned.
         """
-
         response = self.action(DeviceAction.ADD)
 
         self._diff = True
@@ -145,7 +143,6 @@ class Devices:
         Returns:
             True if successful in deleting the device.
         """
-
         response = self.action(DeviceAction.DELETE, id=id)
 
         self._diff = True
@@ -161,7 +158,6 @@ class Devices:
         Returns:
             True if successful in renewing the device.
         """
-
         response = self.action(DeviceAction.RENEW, id=id)
 
         self._diff = True

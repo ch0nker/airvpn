@@ -8,7 +8,7 @@ class WhatIsMyIp:
         Public, no API KEY required.
     """
 
-    KEY_NEEDED = False
+    __KEY_NEEDED__ = False
 
     def __init__(self, session: AirSession):
         self.session = session

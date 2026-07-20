@@ -14,7 +14,7 @@ class UserInfo:
         User-specific, API KEY required.
     """
 
-    KEY_NEEDED = True
+    __KEY_NEEDED__ = True
 
     def __init__(self, session: AirSession):
         response = session.get("userinfo")
