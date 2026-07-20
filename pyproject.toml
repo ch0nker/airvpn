@@ -19,7 +19,6 @@ classifiers = [
 
 [project.urls]
 Homepage = "https://github.com/ch0nker/airvpn"
-Repository = "https://github.com/ch0nker/airvpn"
 Changelog = "https://github.com/ch0nker/airvpn/tree/main/docs/CHANGELOG.md"
 Documentation = "https://github.com/ch0nker/airvpn/tree/main/docs/api/README.md"
 
