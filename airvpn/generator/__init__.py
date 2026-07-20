@@ -161,7 +161,7 @@ class Generator:
                     wireguard_persistent_keepalive: int = 15,
                     iplayer_entry: str = "ipv4",
                     iplayer_exit: str = "both",
-                    **kwargs: dict) -> ConfigList | str:
+                    **kwargs: dict) -> 'ConfigList' | str:
             """Generate VPN configuration file(s) for one or more servers.
  
             Requests the configuration generator with `download="auto"` and returns the
