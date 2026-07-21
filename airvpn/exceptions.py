@@ -86,7 +86,7 @@ class GeneratorResponseError(GeneratorException):
     expected shape.
 
     For example, a JSON response that's missing the `options` field
-    `create_config` relies on to build a `ConfigList`. This indicates
+    `create` relies on to build a `ConfigList`. This indicates
     an unexpected/malformed response rather than an error the API
     deliberately reported, and may signal an API change worth
     investigating.

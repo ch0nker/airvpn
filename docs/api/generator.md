@@ -6,7 +6,7 @@ Generates VPN configuration files via the AirVPN config generator API. Wraps the
 
 ## Methods
 
-### `create_config(servers, device, **options) -> ConfigList | str`
+### `create(servers, device, **options) -> ConfigList | str`
 
 Requests the configuration generator with `download="auto"` and returns the generated configuration file(s). When the generator returns a single file directly, its contents are returned as a `str`. When the generator instead reports a set of files (some configuration options produce multiple files, even for a single server), a `ConfigList` is returned — a lazily-fetched, sliceable, iterable collection covering those files. Individual files aren't downloaded until you access them (by index, slice, or iteration), and each fetched file is cached afterward.
 
@@ -39,7 +39,7 @@ Requests the configuration generator with `download="auto"` and returns the gene
 **Returns:** A `str` with the config file's contents (Windows-style line endings normalized to `"\n"`) when exactly one file is generated; otherwise a `ConfigList` covering all generated files. See [`ConfigList`](#configlist) below.
 
 ```py
-config = api.generator.create_config(
+config = api.generator.create(
     servers="earth",
     device="Default",
     vpn_type=VpnType.WIREGUARD,
@@ -48,7 +48,7 @@ config = api.generator.create_config(
 )
 ```
 
-### `write_config(output_dir, servers, device, **options) -> None`
+### `download(output_dir, servers, device, **options) -> None`
 
 Generates VPN configuration file(s) for one or more servers and writes them to disk. Always requests a zip bundle from the generator endpoint (`download` is forced to `"zip"` internally) and extracts its contents directly into `output_dir`, creating the directory if it doesn't already exist.
 
@@ -80,7 +80,7 @@ Generates VPN configuration file(s) for one or more servers and writes them to d
 | `**kwargs` | `OptionsDict` | — | Additional options not listed above (see below). Used primarily for per-server download selection, e.g. `server_earth="on"`. |
 
 ```py
-api.generator.write_config(
+api.generator.download(
     output_dir="./configs",
     servers="earth",
     device="Default",
@@ -99,10 +99,10 @@ api.generator.write_config(
 
 ## `ConfigList`
 
-Returned by [`create_config`](#create_configservers-device-options---configlist--str) whenever more than one file is generated. A `ConfigList` behaves like a read-only sequence of `Config` objects, but fetches each file lazily — nothing is downloaded until you actually access it, and each downloaded file is cached for reuse.
+Returned by [`create`](#createservers-device-options---configlist--str) whenever more than one file is generated. A `ConfigList` behaves like a read-only sequence of `Config` objects, but fetches each file lazily — nothing is downloaded until you actually access it, and each downloaded file is cached for reuse.
 
 ```py
-configs = api.generator.create_config(
+configs = api.generator.create(
     servers="earth",
     device="Default",
 )

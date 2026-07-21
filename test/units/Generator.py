@@ -28,7 +28,7 @@ def generate():
 
     device = device_list[0]
     device_name = device.name
-    config = generator.create_config("ross", device_name)
+    config = generator.create("ross", device_name)
 
     assert config, "Failed to receive config"
     assert len(config) > 0, "Config length is 0"
@@ -38,7 +38,7 @@ def write():
     assert device_name, "No device name"
 
     servers = ["earth", "caelum", "castula", "alrai"]
-    generator.write_config("config", servers, device_name)
+    generator.download("config", servers, device_name)
 
     assert os.path.exists("config") or os.listdir("config") == len(servers), "Failed to write configs"
     rmtree("config")
@@ -48,7 +48,7 @@ def batch_generate():
     assert device_name, "No device name"
 
     servers = ["earth", "caelum", "castula", "alrai"]
-    configs = generator.create_config(servers, device_name)
+    configs = generator.create(servers, device_name)
     for config in configs:
         config.write("config")
 

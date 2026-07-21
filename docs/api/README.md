@@ -41,7 +41,7 @@ load_dotenv()
 api = AirVPN(os.getenv("API_KEY"))
 device = api.devices.get("test", create=True)
 
-api.generator.write_config("AirVPN-Earth.conf", "earth", device.id)
+api.generator.download("AirVPN-Earth.conf", "earth", device.id)
 ```
 
 See each service's page for full details on available methods, parameters, and return types.

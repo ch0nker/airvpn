@@ -57,7 +57,7 @@ class Generator:
                     **kwargs: dict):
             """Build and send a raw config-generator request, returning the raw response body.
 
-            Internal helper shared by `create_config` and `write_config`. Assembles
+            Internal helper shared by `create` and `download`. Assembles
             the request's query parameters from its arguments (deriving `protocols`
             from `vpn_type`/`entry_ip`/`protocol_type`/`port` and joining `servers`
             into a comma-separated string, unless overridden via `kwargs`), sends
@@ -140,7 +140,7 @@ class Generator:
 
             return content
 
-    def create_config(self,
+    def create(self,
                     servers: str | list[str],
                     device: str,
                     system: SystemType = SystemType.WINDOWS,
@@ -263,7 +263,7 @@ class Generator:
 
             return ConfigList(self, option, files)
     
-    def write_config(self,
+    def download(self,
                 output_dir: str,
                 servers: str | list[str],
                 device: str,
@@ -372,7 +372,7 @@ class Generator:
 class ConfigList:
     """A lazily-fetched, sliceable, iterable collection of generated `Config` files.
 
-    Represents the set of files produced by a single `Generator.create_config`
+    Represents the set of files produced by a single `Generator.create`
     call. Individual files are not fetched until accessed (via indexing or
     iteration), and are cached after their first fetch. Slicing returns a
     new, independent `ConfigList` scoped to the sliced subset of files.

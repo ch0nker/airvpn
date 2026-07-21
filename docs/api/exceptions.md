@@ -75,13 +75,13 @@ Base exception for all errors raised by the config [Generator](generator.md). Su
 | Exception | Raised when |
 |---|---|
 | `GeneratorAPIError` | The AirVPN generator API explicitly reports an error in its JSON response (e.g. an invalid server name, an invalid device, or a permissions issue) — the request reached the API and was rejected. |
-| `GeneratorResponseError` | The generator API's response doesn't match the expected shape — e.g. a JSON response missing the `options` field that `create_config` relies on. Indicates an unexpected/malformed response rather than an API-reported error, and may signal an API change worth investigating. |
+| `GeneratorResponseError` | The generator API's response doesn't match the expected shape — e.g. a JSON response missing the `options` field that `create` relies on. Indicates an unexpected/malformed response rather than an API-reported error, and may signal an API change worth investigating. |
 
 ```py
 from airvpn.exceptions import GeneratorAPIError, GeneratorResponseError
 
 try:
-    config = api.generator.create_config("Achernar", device="my-device")
+    config = api.generator.create("Achernar", device="my-device")
 except GeneratorAPIError as e:
     print(f"Generator rejected the request: {e}")
 except GeneratorResponseError as e:
