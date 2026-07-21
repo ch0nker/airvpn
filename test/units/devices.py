@@ -1,4 +1,5 @@
 import os
+import time
 
 from airvpn import AirVPN
 
@@ -16,6 +17,7 @@ def add_device():
     global device_id
     device_id = devices.add()
     assert device_id, "Failed to create device"
+    print(f"Testing with device id: {device_id}")
 
 @test.unit
 def modify_device():
@@ -32,4 +34,5 @@ def list_devices():
 
 @test.unit
 def delete_device():
+    time.sleep(1)
     assert devices.delete(device_id), "Failed to delete device"
