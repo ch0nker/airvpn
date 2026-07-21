@@ -1,8 +1,9 @@
 from airvpn.network import AirSession
 from airvpn.exceptions import DeviceAPIError, DeviceValidationError
 from airvpn.devices.models import Device
-
 from enum import StrEnum
+
+import time
 
 class DeviceAction(StrEnum):
     """Actions available for managing devices via the devices endpoint."""
@@ -25,12 +26,14 @@ class Devices:
 
     __KEY_NEEDED__ = True
 
-    def __init__(self, session: AirSession):
+    def __init__(self, session: AirSession, delete_rate_limit: float = 0.5):
         self.session = session
         self._diff = False
         self._devices: list[Device] = []
         self._device_map: dict[str, Device] = {}
-    
+        self._delete_rate_limit = delete_rate_limit
+        self._last_delete_time: float | None = None
+
     def action(self,
                action: DeviceAction,
                id: str | None = None,
@@ -136,7 +139,8 @@ class Devices:
         self._diff = True
 
         return response.get("id", None)
-    
+
+
     def delete(self, id: str):
         """Delete a device.
 
@@ -145,13 +149,27 @@ class Devices:
 
         Returns:
             True if successful in deleting the device.
+
+        Note:
+            Rate limited. If this is called within `_delete_rate_limit`
+            seconds of the previous `delete()` call, this call blocks
+            until that interval has elapsed before sending the request.
         """
+        if self._last_delete_time is not None:
+            elapsed = time.monotonic() - self._last_delete_time
+            remaining = self._delete_rate_limit - elapsed
+
+            if remaining > 0:
+                time.sleep(remaining)
+
+        self._last_delete_time = time.monotonic()
+
         response = self.action(DeviceAction.DELETE, id=id)
 
         self._diff = True
 
         return response.get("result", "error") == "ok"
-    
+        
     def renew(self, id: str):
         """Renew a device.
 
