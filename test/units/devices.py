@@ -34,5 +34,4 @@ def list_devices():
 
 @test.unit
 def delete_device():
-    time.sleep(1)
     assert devices.delete(device_id), "Failed to delete device"
