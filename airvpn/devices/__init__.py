@@ -181,7 +181,7 @@ class Devices:
         Raises:
             DeviceException: If neither name nor description is provided.
         """
-        if name is not None and description is not None:
+        if name is None and description is None:
             raise DeviceValidationError("You either need to modify name or description.")
 
         response = self.action(DeviceAction.MODIFY, id=id, name=name, description=description)
