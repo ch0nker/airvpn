@@ -53,6 +53,32 @@ python test userinfo
 
 Exit code is `0` if everything passed, `1` if any test raised an exception or returned a string.
 
+## Running tests in CI (GitHub Actions)
+
+The `Run Tests` workflow runs the same suite as `python test`, but it can't read your local `.env` file — it needs its own copy of the API key stored as a GitHub Actions secret named `AIRVPN_API_KEY`, which the workflow passes into the run as the `API_KEY` environment variable:
+
+```yaml
+- name: Run tests
+  env:
+    API_KEY: ${{ secrets.AIRVPN_API_KEY }}
+  run: python test
+```
+
+### Setting the secret
+
+1. Go to the repository on GitHub.
+2. Open **Settings** (repo settings, not your account settings).
+3. In the sidebar, go to **Secrets and variables → Actions**.
+4. Under the **Secrets** tab, click **New repository secret**.
+5. Set:
+   - **Name:** `AIRVPN_API_KEY`
+   - **Secret:** your AirVPN API key
+6. Click **Add secret**.
+
+Only users with admin access to the repository can view or edit this page — the secret's value is never shown again after saving, and it's masked automatically in any workflow log output.
+
+If you're testing from a fork, note that GitHub does not pass repository secrets to workflows triggered from forks by default, for security reasons. Maintainers running the workflow from the base repository (or via `workflow_dispatch`) will have access as normal.
+
 ## Writing a unit
 
 Each file under `test/units/` is one unit. A unit registers one or more test functions with the `@test.unit` decorator. `test` is injected automatically by the runner — you don't need to import it.
