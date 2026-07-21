@@ -1,3 +1,7 @@
+# 0.1.7
+- Fixed `Devices.modify` always raising an error.
+- Add rate limiting to `Devices.delete`.
+
 # 0.1.6
 - Rename `create_config` to `create` and `write_config` to `download`.
 - Replace assertions with the exceptions `AirVPNException`, `InvalidService`, `DeviceException`, `DeviceAPIError`, `DeviceOperationError`, `DeviceValidationError`, `GeneratorException`, `GeneratorAPIError`, and `GeneratorResponseError`.
