@@ -1,5 +1,10 @@
 # Python AirVPN Wrapper
 
+[![Python versions](https://img.shields.io/pypi/pyversions/airvpn)](https://pypi.org/project/airvpn/)
+[![PyPI version](https://img.shields.io/pypi/v/airvpn)](https://pypi.org/project/airvpn/)
+[![License](https://img.shields.io/pypi/l/airvpn)](https://github.com/ch0nker/airvpn/blob/main/LICENSE)
+[![Tests](https://github.com/ch0nker/airvpn/actions/workflows/python-tests.yml/badge.svg)](https://github.com/ch0nker/airvpn/actions/workflows/python-tests.yml)
+
 > **Note:** The docstrings and most of the documentation was generated with AI. If you spot any errors I haven't caught yet, please open a PR or an issue.
 
 A Python wrapper for AirVPN's [API](https://airvpn.org/apisettings/).
