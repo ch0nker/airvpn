@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "airvpn"
-version = "0.1.6"
+version = "0.1.7"
 description= "A Python wrapper for the AirVPN API"
 license = { text = "MIT" }
 requires-python = ">= 3.11"
