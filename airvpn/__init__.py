@@ -37,11 +37,11 @@ class AirVPN:
         "whatismyip": WhatIsMyIp
     }
 
-    def __init__(self, API_KEY: str = None):
+    def __init__(self, api_key: str = None):
         from airvpn.network import AirSession
 
-        self.api_key = API_KEY
-        self.session = AirSession(API_KEY)
+        self.api_key = api_key
+        self.session = AirSession(api_key)
 
         self._devices = None
         self._dns_lists = None
