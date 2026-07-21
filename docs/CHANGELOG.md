@@ -1,3 +1,7 @@
+# 0.1.6
+- Rename `create_config` to `create` and `write_config` to `download`.
+- Replace assertions with the exceptions `AirVPNException`, `InvalidService`, `DeviceException`, `DeviceAPIError`, `DeviceOperationError`, `DeviceValidationError`, `GeneratorException`, `GeneratorAPIError`, and `GeneratorResponseError`.
+
 # 0.1.5
 - Add compatibility for python 3.11
 
