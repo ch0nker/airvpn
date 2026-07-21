@@ -5,7 +5,7 @@ from airvpn.status import Status, Server
 from airvpn.userinfo import UserInfo
 from airvpn.whatismyip import WhatIsMyIp
 
-from airvpn.exceptions import APIKeyRequired
+from airvpn.exceptions import APIKeyRequired, InvalidService
 
 class AirVPN:
     """Main entry point for interacting with the AirVPN API.
@@ -61,18 +61,20 @@ class AirVPN:
             An instance of the requested service class.
 
         Raises:
-            AssertionError: If the service name is invalid.
-            Exception: If the service requires an API key and none was provided.
+            InvalidService: If the service name is invalid.
+            APIKeyRequired: If the service requires an API key and none was provided.
         """
 
         service_class = AirVPN.__service_classes__.get(service.lower())
-        assert service_class, f"Invalid service name: {service}"
+        if service_class is None:
+            raise InvalidService(f"Service \"{service}\" doesn't exist")
 
         service = service_class(self.session)
         if service_class.__KEY_NEEDED__ and self.api_key is None:
             raise APIKeyRequired(f"API key is required to use \"{service}\"")
 
-        assert service, "Failed to create service"
+        if service is None:
+            raise InvalidService("Failed to create service")
 
         return service
     
@@ -133,7 +135,8 @@ class AirVPN:
         """
         from airvpn.notification import send_notification
 
-        assert self.api_key, "API key is required"
+        if self.api_key is None:
+            raise APIKeyRequired("API key is required")
 
         return send_notification(self.session, subject, body)
 
@@ -162,7 +165,8 @@ class AirVPN:
         """
         from airvpn.disconnect import disconnect
 
-        assert self.api_key, "API key is required"
+        if self.api_key is None:
+            raise APIKeyRequired("API key is required")
 
         disconnect(self.session, 
                    server_name=server.name if server else server_name,

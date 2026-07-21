@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from airvpn.exceptions import GeneratorAPIError, GeneratorResponseError
 from airvpn.generator.models import *
 from airvpn.network import AirSession
 from zipfile import ZipFile
@@ -103,7 +104,7 @@ class Generator:
                     and `servers`).
 
             Raises:
-                AssertionError: If the API response is JSON and reports an
+                GeneratorAPIError: If the API response is JSON and reports an
                     `error` field.
 
             Returns:
@@ -134,7 +135,8 @@ class Generator:
             if content[:1] == b'{':
                   data = json.loads(content)
                   error = data.get("error")
-                  assert not error, error
+                  if error is not None:
+                      raise GeneratorAPIError(error)
 
             return content
 
@@ -252,7 +254,8 @@ class Generator:
             files = data.get("files", [])
 
             option_data = data.get("options")
-            assert option_data, "Failed to find options"
+            if option_data is None:
+                raise GeneratorResponseError("Failed to find options")
 
             option = Options(**option_data)
             if openvpn_noembedkeys is None:

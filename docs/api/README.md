@@ -15,6 +15,7 @@ Reference documentation for every service exposed by the `AirVPN` client.
 | [WhatIsMyIp](whatismyip.md) | Detected IP address and geolocation info | No |
 | [disconnect](disconnect.md) | Force-disconnect one or more active sessions | Yes |
 | [send_notification](notification.md) | Send yourself a notification via the AirVPN website/email | Yes |
+| [Exceptions](exceptions.md) | Exception hierarchy raised across all services | N/A |
 
 ## Quick Start
 

@@ -1,4 +1,5 @@
-from airvpn.network import AirSession, Status
+from airvpn.network import AirSession
+from airvpn.exceptions import DeviceAPIError, DeviceValidationError
 from airvpn.devices.models import Device
 
 from enum import StrEnum
@@ -47,8 +48,7 @@ class Devices:
             The parsed JSON response from the devices endpoint.
 
         Raises:
-            AssertionError: If the response contains an error.
-
+            DeviceException: If the response contains an error.
         """
 
         result = self.session.get("devices", params={
@@ -56,7 +56,8 @@ class Devices:
         }).json()
 
         error = result.get("error", None)
-        assert not error, error
+        if error is not None:
+            raise DeviceAPIError(error)
 
         return result
     
@@ -91,8 +92,10 @@ class Devices:
         if not result and create:
             device_id = self.add()
 
-            assert device_id, "Failed to create device"
-            assert self.modify(device_id, name), "Failed to modify device's name"
+            if device_id is None:
+                raise DeviceValidationError("Failed to create device")
+            if not self.modify(device_id, name):
+                raise DeviceValidationError("Failed to modify device's name")
 
             self._update_diff()
             result = self._device_map.get(name)
@@ -176,9 +179,10 @@ class Devices:
             True if successful in modifying the device.
 
         Raises:
-            AssertionError: If neither name nor description is provided.
+            DeviceException: If neither name nor description is provided.
         """
-        assert name is not None or description is not None, "You either need to modify name or description."
+        if name is not None and description is not None:
+            raise DeviceValidationError("You either need to modify name or description.")
 
         response = self.action(DeviceAction.MODIFY, id=id, name=name, description=description)
 
