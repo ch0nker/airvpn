@@ -2,7 +2,6 @@ import os
 
 from shutil import rmtree
 from airvpn import AirVPN
-from airvpn.generator import ProtocolType, VpnType
 
 airvpn = AirVPN(os.getenv("API_KEY"))
 generator = None
