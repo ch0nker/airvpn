@@ -1,3 +1,11 @@
+# 0.1.8
+- Replace lists in the status service with `StatusList`.
+- Removed the `status` attribute from services.
+- Replace `AirSession.get` and `AirSession.post` with `AirSession.service_request`.
+- Implement rate limiting into `network.AirSession`.
+- Renamed `network.Status` to `network.AirStatus`.
+- Changed `AirVPN(API_KEY)` to `AirVPN(api_key)` to stick with the naming convention.
+
 # 0.1.7
 - Fixed `Devices.modify` always raising an error.
 - Add rate limiting to `Devices.delete`.

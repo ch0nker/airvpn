@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/pypi/l/airvpn)](https://github.com/ch0nker/airvpn/blob/main/LICENSE)
 [![Tests](https://github.com/ch0nker/airvpn/actions/workflows/python-tests.yml/badge.svg)](https://github.com/ch0nker/airvpn/actions/workflows/python-tests.yml)
 
-> **Note:** The docstrings and most of the documentation was generated with AI. If you spot any errors I haven't caught yet, please open a PR or an issue.
+> **Note:** The docstrings and documentation was generated with AI. If you spot any errors I haven't caught yet, please open a PR or an issue.
 
 A Python wrapper for AirVPN's [API](https://airvpn.org/apisettings/).
 
@@ -17,8 +17,16 @@ A Python wrapper for AirVPN's [API](https://airvpn.org/apisettings/).
 - [Test Documentation](docs/tests/README.md)
 
 ## Installation
+
+PyPI:
 ```bash
 pip install airvpn
+```
+
+Locally:
+```bash
+git clone https://github.com/ch0nker/airvpn.git
+pip install -e airvpn
 ```
 
 ## Example
@@ -40,7 +48,7 @@ from airvpn import AirVPN
 from dotenv import load_dotenv
 
 load_dotenv()
-
+# Get your API key from https://airvpn.org/apisettings/
 api = AirVPN(os.getenv("API_KEY"))
 device = api.devices.get("test", create=True)
 

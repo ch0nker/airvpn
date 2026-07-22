@@ -1,14 +1,13 @@
 from __future__ import annotations
 
-from airvpn.exceptions import GeneratorAPIError, GeneratorResponseError
+from airvpn.exceptions import GeneratorResponseError
 from airvpn.generator.models import *
 from airvpn.network import AirSession
+from typing import Literal, Iterator
 from zipfile import ZipFile
-from typing import Literal
 from io import BytesIO
 
 import os
-import json
 
 class Generator:
     """Generates VPN configuration files via the AirVPN config generator API.
@@ -104,8 +103,7 @@ class Generator:
                     and `servers`).
 
             Raises:
-                GeneratorAPIError: If the API response is JSON and reports an
-                    `error` field.
+                APIError: If the API response is JSON and reports an `error` field.
 
             Returns:
                 The raw response body (`bytes`) — either a config file, an
@@ -123,22 +121,13 @@ class Generator:
             if kwargs.get("protocols") is None:
                 protocol = f"{vpn_type}_{entry_ip}_{protocol_type}_{port}"
                 options["protocols"] = protocol
+
             if kwargs.get("servers") is None:
                 options["servers"] = ",".join(servers) if isinstance(servers, list) else servers
 
             options = options | kwargs
 
-            response = self.session.get("generator", params=options)
-
-            content = response.content
-
-            if content[:1] == b'{':
-                  data = json.loads(content)
-                  error = data.get("error")
-                  if error is not None:
-                      raise GeneratorAPIError(error)
-
-            return content
+            return self.session.service_request("get", "generator", data=options)
 
     def create(self,
                     servers: str | list[str],
@@ -165,7 +154,7 @@ class Generator:
                     wireguard_persistent_keepalive: int = 15,
                     iplayer_entry: str = "ipv4",
                     iplayer_exit: str = "both",
-                    **kwargs: dict) -> "ConfigList | str":
+                    **kwargs: dict) -> ConfigList | str:
             """Generate VPN configuration file(s) for one or more servers.
  
             Requests the configuration generator with `download="auto"` and returns the
@@ -247,13 +236,12 @@ class Generator:
                                 wireguard_persistent_keepalive, iplayer_entry,
                                 iplayer_exit, **kwargs)
             
-            if config[:1] != b"{":
-                 return config.decode().replace("\r\n", "\n")
+            if isinstance(config, bytes):
+                return config.decode().replace("\r\n", "\n")
             
-            data = json.loads(config)
-            files = data.get("files", [])
+            files = config.get("files", [])
 
-            option_data = data.get("options")
+            option_data = config.get("options")
             if option_data is None:
                 raise GeneratorResponseError("Failed to find options")
 
@@ -377,29 +365,17 @@ class ConfigList:
     iteration), and are cached after their first fetch. Slicing returns a
     new, independent `ConfigList` scoped to the sliced subset of files.
 
-    Attributes:
-        _index: Cursor used by `__next__` for manual iteration via `next()`.
-        _size: Number of files/configs in this list.
-        _files: Filenames corresponding to each config, as reported by the
-            generator API.
-        _generator: The `Generator` instance used to fetch individual files.
-        _options: The `Options` used to request each file; `download` is
-            mutated per-request to select which file index to fetch.
-        _cached_configs: Fetched `Config` objects, indexed in parallel with
-            `_files`; unfetched slots are `None`.
+    Args:
+        generator: The `Generator` instance used to fetch individual
+            config files on demand.
+        options: The `Options` describing the request that produced
+            this file set; used as a template for per-file requests.
+        files: The filenames of each config in this list, as reported
+            by the generator API. The list's length determines the
+            size of this `ConfigList`.
+
     """
     def __init__(self, generator: Generator, options: Options, files: list[str]):
-        """Initialize a `ConfigList`.
-
-        Args:
-            generator: The `Generator` instance used to fetch individual
-                config files on demand.
-            options: The `Options` describing the request that produced
-                this file set; used as a template for per-file requests.
-            files: The filenames of each config in this list, as reported
-                by the generator API. The list's length determines the
-                size of this `ConfigList`.
-        """
         self._index = 0
         self._size = len(files)
         self._files = files
@@ -474,8 +450,8 @@ class ConfigList:
             return result
 
         return self.__get_config__(index)
-    
-    def __iter__(self):
+
+    def __iter__(self) -> Iterator[Config]:
         """Return a generator yielding each `Config` in this list, in order.
 
         Each call returns an independent generator with its own position,

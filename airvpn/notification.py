@@ -8,12 +8,11 @@ def send_notification(session: AirSession, subject: str, body: str):
         subject: The notification's subject line.
         body: The notification's message content.
 
-    Returns:
-        True if the notification was sent successfully, False otherwise.
+    Raises:
+        APIError: If it fails to send the message.
+        RateLimited: If too many requests go through.
 
     Access type:
         User-specific, API KEY required.
     """
-    response = session.get("notification", params={"subject": subject, "body": body})
-
-    return response.json().get("result") == "ok"
+    session.service_request("post", "notification", data={"subject": subject, "body": body})

@@ -1,4 +1,3 @@
-from airvpn.network import Status
 from typing import Unpack, TypedDict
 
 class GeoDict(TypedDict, total=False):
@@ -34,7 +33,6 @@ class IpInfoDict(TypedDict, total=False):
     airvpn: bool
     geo: GeoDict
     geo_additional: GeoAdditionalDict
-    result: Status
 
 class Geo:
     """Represents basic geolocation info for an IP address.
@@ -107,7 +105,6 @@ class IpInfo:
         airvpn: Whether the detected IP belongs to AirVPN's network.
         geo: Basic geolocation info for the IP.
         geo_additional: Detailed geolocation and network info for the IP.
-        result: A status message from network.Status.
     """
     def __init__(self, **kwargs: Unpack[IpInfoDict]):
         self.ip = kwargs.get("ip")
@@ -116,4 +113,3 @@ class IpInfo:
         self.airvpn = kwargs.get("airvpn")
         self.geo = Geo(**kwargs.get("geo", {}))
         self.geo_additional = GeoAdditional(**kwargs.get("geo_additional", {}))
-        self.result = Status(kwargs.get("result"))
