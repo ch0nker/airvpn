@@ -21,6 +21,8 @@ class ServiceType(StrEnum):
     STATUS = "status"
     USERINFO = "userinfo"
     WHATISMYIP = "whatismyip"
+    DISCONNECT = "disconnect"
+    NOTIFICATIONS = "notifications"
 
 class AirSession(Session):
     """A `requests.Session` subclass for the AirVPN API with built-in rate limiting.
