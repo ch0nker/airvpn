@@ -1,5 +1,5 @@
 from typing import Unpack, TypedDict
-from airvpn.network import Status
+from airvpn.network import AirStatus
 
 class ServerDict(TypedDict, total=False):
     public_name: str
@@ -66,7 +66,7 @@ class Server:
         self.ip_v6_in2 = kwargs.get("ip_v6_in2")
         self.ip_v6_in3 = kwargs.get("ip_v6_in3")
         self.ip_v6_in4 = kwargs.get("ip_v6_in4")
-        self.health = Status(kwargs.get("health"))
+        self.health = AirStatus(kwargs.get("health"))
         self.warning = kwargs.get("warning")
 
     def __str__(self):
@@ -110,7 +110,7 @@ class Routing:
         self.bw = kwargs.get("bw")
         self.bw_max = kwargs.get("bw_max")
         self.currentload = kwargs.get("currentload")
-        self.health = Status(kwargs.get("health"))
+        self.health = AirStatus(kwargs.get("health"))
         self.warning = kwargs.get("warning")
 
 class CountryDict(TypedDict, total=False):
@@ -175,7 +175,7 @@ class Country:
         self.ip_v6_in2 = kwargs.get("ip_v6_in2")
         self.ip_v6_in3 = kwargs.get("ip_v6_in3")
         self.ip_v6_in4 = kwargs.get("ip_v6_in4")
-        self.health = Status(kwargs.get("health"))
+        self.health = AirStatus(kwargs.get("health"))
         self.warning = kwargs.get("warning")
 
 class ContinentDict(TypedDict, total=False):
@@ -237,7 +237,7 @@ class Continent:
         self.ip_v6_in2 = kwargs.get("ip_v6_in2")
         self.ip_v6_in3 = kwargs.get("ip_v6_in3")
         self.ip_v6_in4 = kwargs.get("ip_v6_in4")
-        self.health = Status(kwargs.get("health"))
+        self.health = AirStatus(kwargs.get("health"))
         self.warning = kwargs.get("warning")
 
 class PlanetDict(TypedDict, total=False):
@@ -300,5 +300,5 @@ class Planet:
         self.ip_v6_in2 = kwargs.get("ip_v6_in2")
         self.ip_v6_in3 = kwargs.get("ip_v6_in3")
         self.ip_v6_in4 = kwargs.get("ip_v6_in4")
-        self.health = Status(kwargs.get("health"))
+        self.health = AirStatus(kwargs.get("health"))
         self.warning = kwargs.get("warning")
