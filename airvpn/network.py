@@ -22,7 +22,7 @@ class ServiceType(StrEnum):
     USERINFO = "userinfo"
     WHATISMYIP = "whatismyip"
     DISCONNECT = "disconnect"
-    NOTIFICATIONS = "notifications"
+    NOTIFICATION = "notification"
 
 class AirSession(Session):
     """A `requests.Session` subclass for the AirVPN API with built-in rate limiting.
@@ -135,7 +135,7 @@ class AirSession(Session):
             raise InvalidMethod("AirVPN only supports POST and GET requests.")
 
         url = f"{AirSession.BASE_URL}{service}/"
-        data.setdefault("format", "json")
+        data.setdefault("format", format)
 
         self._handle_rate_limit()
 
