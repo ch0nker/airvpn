@@ -18,7 +18,6 @@ print(info.connection.server_name)
 | `user` | `User` | Info about the account that generated the API key. |
 | `sessions` | `list[Connection]` | A list of connections ordered oldest to youngest. |
 | `connection` | `Connection` | Info about the oldest connection. |
-| `result` | `Status` (network status enum) | A status message from network.Status. |
 
 ## Model — `User`
 

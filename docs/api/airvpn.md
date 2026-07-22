@@ -32,7 +32,7 @@ Each property lazily creates and caches its corresponding service on first acces
 | `whatismyip` | [`WhatIsMyIp`](whatismyip.md) | No |
 
 ```py
-api.status.servers        # list[Server]
+api.status.servers        # StatusList[Server]
 api.userinfo.login
 api.whatismyip.ip
 ```
@@ -48,8 +48,9 @@ Instantiates a named service class, enforcing its API key requirement. Mostly us
 | `service` | `str` | The service name (e.g. `"devices"`, `"status"`), matched case-insensitively. |
 
 **Raises:**
-- `AssertionError` — if the service name is invalid.
-- `Exception` — if the service requires an API key and none was provided.
+- `InvalidService` — If the service name is invalid.
+- `APIKeyRequired` — if the service requires an API key and none was provided.
+- `APIError` — If the service response results in an error.
 
 ---
 

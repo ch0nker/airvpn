@@ -37,7 +37,7 @@ device = api.devices.get("My Laptop", create=True)
 ```
 
 **Raises:**
-- `AssertionError` — if `create=True` and creating or renaming the new device fails.
+- `DeviceValidationError` — if `create=True` and creating or renaming the new device fails.
 
 ---
 
@@ -82,7 +82,7 @@ api.devices.modify(id="abc123", name="New Name")
 ```
 
 **Raises:**
-- `AssertionError` — if neither `name` nor `description` is provided.
+- `DeviceValidationError` — if neither `name` nor `description` is provided.
 
 ---
 
@@ -91,7 +91,7 @@ api.devices.modify(id="abc123", name="New Name")
 Low-level method used internally by the methods above to send a raw devices action request. Exposed publicly if you need direct access to the raw response.
 
 **Raises:**
-- `AssertionError` — if the API response contains an `error` field.
+- `APIError` — if the API response contains an `error` field.
 
 ## Model — `Device`
 

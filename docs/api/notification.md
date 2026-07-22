@@ -20,4 +20,8 @@ api.send_notification(
 | `subject` | `str` | The notification's subject line. |
 | `body` | `str` | The notification's message content. |
 
+**Raises:**:
+- `APIError` — If the request results in an error.
+- `RateLimited` — If too many requests go through.
+
 **Returns:** `bool` — `True` if the notification was sent successfully, `False` otherwise.

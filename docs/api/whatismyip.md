@@ -26,7 +26,6 @@ Fetches the current IP address and geolocation info.
 | `airvpn` | `bool` | Whether the detected IP belongs to AirVPN's network. |
 | `geo` | `Geo` | Basic geolocation info for the IP. |
 | `geo_additional` | `GeoAdditional` | Detailed geolocation and network info. |
-| `result` | `Status` (network status enum) | A status message from network.Status. |
 
 ## Model — `Geo`
 

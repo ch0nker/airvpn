@@ -15,13 +15,40 @@ for server in status.servers:
 
 | Attribute | Type | Description |
 |---|---|---|
-| `servers` | `list[Server]` | Individual VPN servers and their current status. |
-| `routing` | `list[Routing]` | Routing nodes and their current status. |
-| `countries` | `list[Country]` | Aggregate VPN status per country. |
-| `continents` | `list[Continent]` | Aggregate VPN status per continent. |
-| `planets` | `list[Planet]` | Aggregate VPN status globally (typically a single entry). |
+| `servers` | `StatusList[Server]` | Individual VPN servers and their current status. |
+| `routing` | `StatusList[Routing]` | Routing nodes and their current status. |
+| `countries` | `StatusList[Country]` | Aggregate VPN status per country. |
+| `continents` | `StatusList[Continent]` | Aggregate VPN status per continent. |
+| `planets` | `StatusList[Planet]` | Aggregate VPN status globally (typically a single entry). |
 | `deprecated_warning` | `str \| None` | A warning about deprecated fields in the response, if present. |
-| `result` | `Status` (network status enum) | Whether the overall request succeeded. |
+
+## `StatusList`
+
+Returned by most status endpoints (such as servers, countries, and other status collections). A `StatusList` behaves like a read-only sequence of model instances, but constructs each object lazily — raw API data is stored internally and converted into the appropriate model only when you actually access it. Constructed objects are cached, so repeated access to the same item doesn't rebuild it.
+
+```py
+servers = api.servers.list()
+
+len(servers)       # number of servers
+servers[0]         # returns the first Server
+servers[-1]        # supports negative indexing
+servers[1:3]       # returns a new StatusList containing the slice
+
+for server in servers:
+    print(server.name)
+```
+
+**Indexing (`statuses[i]`)** — Returns the model instance at index `i` (0-based; negative indices count from the end). The object is constructed on first access and then cached for future use.
+
+**Slicing (`statuses[start:stop:step]`)** — Returns a new `StatusList` containing only the sliced items. The new list is independent of the original and maintains its own cache.
+
+**Iteration (`for item in statuses`)** — Yields each model instance in order, constructing and caching items as needed. Multiple simultaneous loops over the same `StatusList` don't interfere with each other.
+
+**Lazy construction** — Objects are not created when the `StatusList` is returned from the API. Raw response data is retained internally and converted into model instances only when accessed.
+
+**Caching** — Once an item has been constructed, it is stored internally and reused for all future accesses to that index.
+
+**Equality/hashing** — `StatusList` does not define custom equality or hashing behavior. Two instances compare by object identity, like normal Python objects.
 
 ## Model — `Server`
 
