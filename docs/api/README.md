@@ -13,8 +13,8 @@ Reference documentation for every service exposed by the `AirVPN` client.
 | [Status](status.md) | Network status: servers, routing, countries, continents, planets | No |
 | [UserInfo](userinfo.md) | Account and connection details for the authenticated user | Yes |
 | [WhatIsMyIp](whatismyip.md) | Detected IP address and geolocation info | No |
-| [disconnect](disconnect.md) | Force-disconnect one or more active sessions | Yes |
-| [notification](notification.md) | Send yourself a notification via the AirVPN website/email | Yes |
+| [Disconnect](disconnect.md) | Force-disconnect one or more active sessions | Yes |
+| [Notification](notification.md) | Send yourself a notification via the AirVPN website/email | Yes |
 | [Exceptions](exceptions.md) | Exception hierarchy raised across all services | N/A |
 
 ## Quick Start
