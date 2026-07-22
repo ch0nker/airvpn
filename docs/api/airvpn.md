@@ -11,12 +11,12 @@ api = AirVPN(API_KEY)
 ## Constructor
 
 ```py
-AirVPN(API_KEY: str = None)
+AirVPN(api_key: str = None)
 ```
 
 | Parameter | Type | Description |
 |---|---|---|
-| `API_KEY` | `str \| None` | Your AirVPN API key. Required for user-specific services (devices, DNS lists, generator, user info, notifications, disconnect). Not required for public services (`whatismyip`, `status`). |
+| `api_key` | `str \| None` | Your AirVPN API key. Required for user-specific services (devices, DNS lists, generator, user info, notifications, disconnect). Not required for public services (`whatismyip`, `status`). |
 
 ## Properties
 
