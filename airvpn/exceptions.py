@@ -26,6 +26,20 @@ class InvalidService(AirVPNException):
     to any of AirVPN's known API services/endpoints.
     """
 
+class APIError(AirVPNException):
+    """Raised when the service request reports an error"""
+
+class InvalidMethod(AirVPNException):
+    """Raised when an invalid method type is requested."""
+
+class RateLimited(AirVPNException):
+    """Raised when the rate limit of `rate_window_minutes * AirSession.REQUESTS_PER_MIN` is hit.
+
+    This is based off of the documentation in the FAQ (https://airvpn.org/faq/api/),
+    which states you can only make 600 requests every 10 minutes
+    or you will be IP banned.
+    """
+
 class DeviceException(AirVPNException):
     """Base exception for all errors raised by the Devices manager.
 
@@ -91,3 +105,4 @@ class GeneratorResponseError(GeneratorException):
     deliberately reported, and may signal an API change worth
     investigating.
     """
+
