@@ -1,4 +1,4 @@
-from airvpn.network import AirSession, AirStatus
+from airvpn.network import AirSession
 from airvpn.userinfo.models import Connection, User
 
 class UserInfo:
