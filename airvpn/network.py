@@ -135,14 +135,13 @@ class AirSession(Session):
             raise InvalidMethod("AirVPN only supports POST and GET requests.")
 
         url = f"{AirSession.BASE_URL}{service}/"
-        params = {"format": format}
+        data.setdefault("format", "json")
 
         self._handle_rate_limit()
 
         response = None
         if method == "get":
-            params.update(data)
-            response = super().get(url, params=params, **kwargs)
+            response = super().get(url, params=data, **kwargs)
         else:
             response = super().post(url, json=data, **kwargs)
 
