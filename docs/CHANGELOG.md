@@ -1,3 +1,7 @@
+# 0.1.9
+- Fix incorrect service name for `send_notification`.
+- Add `notification` test
+
 # 0.1.8
 - Replace lists in the status service with `StatusList`.
 - Removed the `status` attribute from services.
