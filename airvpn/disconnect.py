@@ -24,7 +24,10 @@ def disconnect(session: AirSession,
         User-specific, API KEY required.
     """
 
-    json = session.service_request("post", "disconnect", data={
+    # This doesn't seem to disconnect, even when I do it through the api page??
+    # or at least the sessions page doesn't update.
+
+    json = session.service_request("get", "disconnect", data={
         "server": server_name,
         "device": device_id
     })
