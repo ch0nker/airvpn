@@ -20,8 +20,7 @@ class DnsLists:
     __KEY_NEEDED__ = False
 
     def __init__(self, session: AirSession):
-        response = session.get("dns_lists")
-        json = response.json()
+        json = session.service_request("get", "dns_lists")
 
         self.lists: dict[str, Dns] = {}
 

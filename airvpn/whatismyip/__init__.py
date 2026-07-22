@@ -19,7 +19,11 @@ class WhatIsMyIp:
         Returns:
             An IpInfo object containing the detected IP, IP version flags,
             AirVPN status, and geolocation details.
-        """
-        response = self.session.get("whatismyip")
 
-        return IpInfo(**response.json())
+        Raises:
+            RateLimited: If too many requests go through.
+            APIError: If the request results in an error.
+        """
+        json = self.session.service_request("get", "whatismyip")
+
+        return IpInfo(**json)

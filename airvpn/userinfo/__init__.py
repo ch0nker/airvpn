@@ -1,4 +1,4 @@
-from airvpn.network import AirSession, Status
+from airvpn.network import AirSession, AirStatus
 from airvpn.userinfo.models import Connection, User
 
 class UserInfo:
@@ -8,7 +8,6 @@ class UserInfo:
         user: Info about the account that generated the API key.
         sessions: A list of connections ordered oldest to newest.
         connection: Info about the oldest connection.
-        result: A status message from network.Status.
 
     Access type:
         User-specific, API KEY required.
@@ -17,11 +16,8 @@ class UserInfo:
     __KEY_NEEDED__ = True
 
     def __init__(self, session: AirSession):
-        response = session.get("userinfo")
-        response_json = response.json()
+        json = session.service_request("get", "userinfo")
         
-        self.user = User(**response_json.get("user", {}))
-        self.sessions = [Connection(**s) for s in response_json.get("sessions", [])]
-        self.connection = Connection(**response_json.get("connection", {}))
-
-        self.result = Status(response_json.get("result", "warning"))
+        self.user = User(**json.get("user", {}))
+        self.sessions = [Connection(**s) for s in json.get("sessions", [])]
+        self.connection = Connection(**json.get("connection", {}))

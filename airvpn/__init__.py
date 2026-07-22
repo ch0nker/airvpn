@@ -61,6 +61,8 @@ class AirVPN:
             An instance of the requested service class.
 
         Raises:
+            RateLimited: If too many requests go through.
+            APIError: If the service request results in an error.
             InvalidService: If the service name is invalid.
             APIKeyRequired: If the service requires an API key and none was provided.
         """
@@ -123,45 +125,50 @@ class AirVPN:
     def send_notification(self, subject: str, body: str):
         """Send a message to yourself.
 
+        Access type:
+            User-specific, API KEY required.
+
         Args:
             subject: The notification's subject line.
             body: The notification's message content.
 
-        Returns:
-            True if the notification was sent successfully, False otherwise.
+        Raises:
+            APIKeyRequired: If you don't set your api_key.
+            APIError: If the API fails.
+            RateLimited: If too many requests go through.
 
-        Access type:
-            User-specific, API KEY required.
         """
         from airvpn.notification import send_notification
 
         if self.api_key is None:
             raise APIKeyRequired("API key is required")
 
-        return send_notification(self.session, subject, body)
+        send_notification(self.session, subject, body)
 
     def disconnect(self,
-                    server: Server = None,
+                    server: Server | str = None,
                     device: Device = None,
-                    server_name: str = None,
                     device_id: str = None):
         """Requests a disconnection. If none of the filter parameters is specified, disconnect all sessions of the user.
 
+        Access type:
+            User-specific, API KEY required.
+
         Args:
-            server: A Server object to disconnect from; its public_name is
-                used if server_name is not explicitly provided.
+            server: A Server object or a server's public name to disconnect from
             device: A Device object to disconnect; its id is used if
                 device_id is not explicitly provided.
-            server_name: Name of the server to disconnect from. Ignored if
-                server is provided.
             device_id: ID of the device to disconnect. Ignored if device
                 is provided.
 
         Returns:
             The number of sessions that were disconnected.
 
-        Access type:
-            User-specific, API KEY required.
+        Raises:
+            APIKeyRequired: If you don't set your api_key.
+            APIError: If the API fails.
+            RateLimited: If too many requests go through.
+
         """
         from airvpn.disconnect import disconnect
 
@@ -169,5 +176,5 @@ class AirVPN:
             raise APIKeyRequired("API key is required")
 
         disconnect(self.session, 
-                   server_name=server.name if server else server_name,
+                   server_name=str(server),
                    device_id=device.id if device else device_id)

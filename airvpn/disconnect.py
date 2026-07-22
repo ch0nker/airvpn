@@ -15,16 +15,18 @@ def disconnect(session: AirSession,
 
     Returns:
         The number of sessions that were disconnected.
+    
+    Raises:
+        APIError: If it fails to disconnect.
+        RateLimited: If too many requests go through.
 
     Access type:
         User-specific, API KEY required.
     """
 
-    response = session.get("disconnect", params={
+    json = session.service_request("post", "disconnect", data={
         "server": server_name,
         "device": device_id
     })
-    
-    json = response.json()
 
     return json.get("sessions_disconnected", 0)

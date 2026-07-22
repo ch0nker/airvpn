@@ -54,9 +54,9 @@ class Devices:
             DeviceException: If the response contains an error.
         """
 
-        result = self.session.get("devices", params={
+        result = self.session.service_request("post", "devices", data={
             "action": action, "id": id, "name": name, "description": description
-        }).json()
+        })
 
         error = result.get("error", None)
         if error is not None:
