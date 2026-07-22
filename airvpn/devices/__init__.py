@@ -51,16 +51,13 @@ class Devices:
             The parsed JSON response from the devices endpoint.
 
         Raises:
-            DeviceException: If the response contains an error.
+            RateLimited: If the response gets rate limited.
+            APIError: If the response contains an error.
         """
 
         result = self.session.service_request("post", "devices", data={
             "action": action, "id": id, "name": name, "description": description
         })
-
-        error = result.get("error", None)
-        if error is not None:
-            raise DeviceAPIError(error)
 
         return result
     
@@ -197,7 +194,7 @@ class Devices:
             True if successful in modifying the device.
 
         Raises:
-            DeviceException: If neither name nor description is provided.
+            DeviceValidationError: If neither name nor description is provided.
         """
         if name is None and description is None:
             raise DeviceValidationError("You either need to modify name or description.")
