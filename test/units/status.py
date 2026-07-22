@@ -5,6 +5,7 @@ status = None
 
 @test.unit
 def check_service():
+    print("Caching service.")
     global status
     status = api.status
 

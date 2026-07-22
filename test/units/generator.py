@@ -10,6 +10,7 @@ device_name = None
 
 @test.unit
 def check_request():
+    print("Caching services.")
     global generator, devices
 
     generator = airvpn.generator
@@ -17,9 +18,11 @@ def check_request():
     
     assert generator, "Failed to get generator service"
     assert devices, "Failed to get devices service"
+    print("Finished.")
 
 @test.unit
 def generate():
+    print("Generating a single config.")
     global device_name
     device_list = devices.list()
 
@@ -31,9 +34,11 @@ def generate():
 
     assert config, "Failed to receive config"
     assert len(config) > 0, "Config length is 0"
+    print("Finished.")
 
 @test.unit
 def write():
+    print("Writing configs to disk.")
     assert device_name, "No device name"
 
     servers = ["earth", "caelum", "castula", "alrai"]
@@ -42,14 +47,19 @@ def write():
     assert os.path.exists("config") or os.listdir("config") == len(servers), "Failed to write configs"
     rmtree("config")
 
+    print("Finished.")
+
 @test.unit
 def batch_generate():
+    print("Creating multiple configs")
     assert device_name, "No device name"
 
     servers = ["earth", "caelum", "castula", "alrai"]
     configs = generator.create(servers, device_name)
+    print("Writing configs to disk.")
     for config in configs:
         config.write("config")
 
     assert os.path.exists("config") or os.listdir("config") == len(configs), "Failed to write configs"
     rmtree("config")
+    print("Finished.")
