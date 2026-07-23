@@ -1,17 +1,8 @@
 from airvpn.exceptions import DeviceValidationError
 from airvpn.network import AirSession
-from airvpn.devices.models import Device
-from enum import StrEnum
+from airvpn.devices.models import *
 
 import time
-
-class DeviceAction(StrEnum):
-    """Actions available for managing devices via the devices endpoint."""
-    LIST = "list"
-    ADD = "add"
-    DELETE = "delete"
-    MODIFY = "modify"
-    RENEW = "renew"
 
 class Devices:
     """

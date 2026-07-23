@@ -1,4 +1,14 @@
 from typing import Unpack, TypedDict
+from enum import StrEnum
+
+class DeviceAction(StrEnum):
+    """Actions available for managing devices via the devices endpoint."""
+    LIST = "list"
+    ADD = "add"
+    DELETE = "delete"
+    MODIFY = "modify"
+    RENEW = "renew"
+
 
 class DeviceDict(TypedDict):
     id: str
