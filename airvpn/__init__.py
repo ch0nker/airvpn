@@ -1,9 +1,12 @@
+from __future__ import annotations
+
 from airvpn.devices import Devices, Device
 from airvpn.dns_lists import DnsLists
 from airvpn.generator import Generator
 from airvpn.status import Status, Server
 from airvpn.userinfo import UserInfo
 from airvpn.whatismyip import WhatIsMyIp
+from airvpn.notification import Notification
 
 from airvpn.exceptions import APIKeyRequired, InvalidService
 
@@ -34,7 +37,8 @@ class AirVPN:
         "generator": Generator,
         "status": Status,
         "userinfo": UserInfo,
-        "whatismyip": WhatIsMyIp
+        "whatismyip": WhatIsMyIp,
+        "notification": Notification
     }
 
     def __init__(self, api_key: str = None):
@@ -49,6 +53,7 @@ class AirVPN:
         self._status = None
         self._userinfo = None
         self._whatismyip = None
+        self._notification = None
 
     def get_service(self, service: str):
         """Instantiate a named service class, enforcing its API key requirement.
@@ -79,6 +84,13 @@ class AirVPN:
             raise InvalidService("Failed to create service")
 
         return service
+
+    @property
+    def notification(self) -> Notification:
+        """The devices service"""
+        if self._notification is None:
+            self._notification = self.get_service("notification")
+        return self._notification
     
     @property
     def devices(self) -> Devices:
