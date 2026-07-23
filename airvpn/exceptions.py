@@ -50,15 +50,6 @@ class DeviceException(AirVPNException):
     by the library as a whole.
     """
 
-class DeviceAPIError(DeviceException):
-    """Raised when the AirVPN devices API explicitly reports an error.
-
-    This wraps the `error` message returned in the API's own JSON
-    response (e.g. an invalid device ID or invalid action parameters) —
-    the request reached the API and was rejected, as opposed to a
-    client-side validation or orchestration failure.
-    """
-
 class DeviceOperationError(DeviceException):
     """Raised when a multi-step device operation doesn't complete as expected.
 
@@ -86,15 +77,6 @@ class GeneratorException(AirVPNException):
     by the library as a whole.
     """
 
-class GeneratorAPIError(GeneratorException):
-    """Raised when the AirVPN generator API explicitly reports an error.
-
-    This wraps the `error` message returned in the API's own JSON
-    response (e.g. an invalid server name, an invalid device, or a
-    permissions issue) — the request reached the API and was rejected,
-    as opposed to a client-side parsing or connectivity failure.
-    """
-
 class GeneratorResponseError(GeneratorException):
     """Raised when the generator API's response doesn't match the
     expected shape.
@@ -106,3 +88,24 @@ class GeneratorResponseError(GeneratorException):
     investigating.
     """
 
+class ClientException(AirVPNException):
+    """Base exception for all errors raised by the client.
+
+    Subclasses `AirVPNException`. Catch this to handle any
+    client-related failure without distinguishing the cause; prefer
+    the more specific subclasses below when you need to branch on what
+    went wrong, or catch `AirVPNException` to handle any error raised
+    by the library as a whole.
+    """
+
+class RCParseError(ClientException):
+    """Raised when an error with rc parsing happens."""
+
+class RSAError(ClientException):
+    """Raised when RSA fails to encrypt key and iv."""
+
+class AESEncryptionError(ClientException):
+    """Raised when AES encryption fails."""
+
+class AESDecryptionError(ClientException):
+    """Raised when AES decryption fails."""

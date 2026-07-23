@@ -1,10 +1,8 @@
 name: Run Tests
-
 on:
   workflow_dispatch:
   schedule:
     - cron: "0 6 * * *"
-
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -13,19 +11,15 @@ jobs:
       max-parallel: 1
       matrix:
         python-version: ["3.11", "3.12", "3.13", "3.14"]
-
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r test-requirements.txt
-
       - name: Run tests
         env:
           API_KEY: ${{ secrets.AIRVPN_API_KEY }}

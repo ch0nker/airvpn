@@ -1,13 +1,17 @@
-# send_notification
+# Notification
 
-Send a message to yourself. Useful for scripts or automated processes to notify you of an event that needs attention.
+Send a message to yourself.
 
 Whether the notification appears on the website and/or is sent as an email is controlled in the [notification options](https://airvpn.org/index.php?app=core&module=usercp&tab=core&area=notifications) under **Air → API**.
 
 **Access type:** User-specific, API key required.
 
+## Methods
+
+### `send(subject, body)`
+
 ```py
-api.send_notification(
+api.notification.send(
     subject="Backup finished",
     body="The nightly backup job completed successfully.",
 )
@@ -23,5 +27,3 @@ api.send_notification(
 **Raises:**:
 - `APIError` — If the request results in an error.
 - `RateLimited` — If too many requests go through.
-
-**Returns:** `bool` — `True` if the notification was sent successfully, `False` otherwise.
