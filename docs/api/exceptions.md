@@ -23,11 +23,9 @@ AirVPNException
 ├── InvalidMethod
 ├── RateLimited
 ├── DeviceException
-│   ├── DeviceAPIError
 │   ├── DeviceOperationError
 │   └── DeviceValidationError
 └── GeneratorException
-    ├── GeneratorAPIError
     └── GeneratorResponseError
 ```
 
@@ -72,7 +70,6 @@ Base exception for all errors raised by the [Devices](devices.md) manager. Subcl
 
 | Exception | Raised when |
 |---|---|
-| `DeviceAPIError` | The AirVPN devices API explicitly reports an error in its JSON response (for example an invalid device ID or invalid action parameters). The request reached the API and was rejected. |
 | `DeviceOperationError` | A multi-step device operation doesn't complete as expected even though no individual API call reported an error. For example, `get(..., create=True)` creates a device but no ID is returned, or a rename operation doesn't report success. |
 | `DeviceValidationError` | Arguments passed to a Devices method are invalid before any request is made. For example, calling `modify()` without a `name` or `description` to change. |
 
@@ -91,11 +88,10 @@ Base exception for all errors raised by the config [Generator](generator.md). Su
 
 | Exception | Raised when |
 |---|---|
-| `GeneratorAPIError` | The AirVPN generator API explicitly reports an error in its JSON response (for example an invalid server name, invalid device, or permissions issue). The request reached the API and was rejected. |
 | `GeneratorResponseError` | The generator API's response doesn't match the expected shape. For example, a JSON response missing the `options` field required by `create()`. This indicates an unexpected or malformed response rather than an API-reported error and may signal an API change worth investigating. |
 
 ```py
-from airvpn.exceptions import GeneratorAPIError, GeneratorResponseError
+from airvpn.exceptions import GeneratorResponseError
 
 try:
     config = api.generator.create("Achernar", device="my-device")
