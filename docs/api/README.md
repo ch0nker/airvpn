@@ -24,6 +24,7 @@ Reference documentation for the `AirVPN` API.
 
 ## Other
 | Name | Description |
+| --- | --- |
 | [Exceptions](exceptions.md) | Exception hierarchy raised across the wrapper | 
 
 ## Quick Start
