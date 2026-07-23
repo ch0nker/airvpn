@@ -27,9 +27,6 @@ class AirClient:
     RC_URL = "https://gitlab.com/AirVPN/AirVPN-Suite/-/raw/master/AirVPN-Suite/etc/airvpn/bluetit.rc?ref_type=heads"
 
     def __init__(self):
-        """
-        Initialize the AirClient with a session for making HTTP requests.
-        """
         self.session = requests.Session()
         self.rc_map = None
 
