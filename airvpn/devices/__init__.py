@@ -1,5 +1,5 @@
+from airvpn.exceptions import DeviceValidationError
 from airvpn.network import AirSession
-from airvpn.exceptions import DeviceAPIError, DeviceValidationError
 from airvpn.devices.models import Device
 from enum import StrEnum
 

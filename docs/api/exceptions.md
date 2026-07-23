@@ -3,11 +3,11 @@
 All errors raised by the AirVPN library inherit from `AirVPNException`, giving you a single root exception to catch when you don't need to distinguish the exact cause. The Devices manager and config Generator also define their own exception subtrees (`DeviceException` and `GeneratorException`), both of which subclass `AirVPNException`.
 
 ```py
-from airvpn.exceptions import AirVPNException, DeviceAPIError
+from airvpn.exceptions import AirVPNException, APIError
 
 try:
     api.devices.get("my-device", create=True)
-except DeviceAPIError as e:
+except APIError as e:
     print(f"AirVPN rejected the request: {e}")
 except AirVPNException as e:
     print(f"Something else went wrong: {e}")
@@ -99,7 +99,7 @@ from airvpn.exceptions import GeneratorAPIError, GeneratorResponseError
 
 try:
     config = api.generator.create("Achernar", device="my-device")
-except GeneratorAPIError as e:
+except APIError as e:
     print(f"Generator rejected the request: {e}")
 except GeneratorResponseError as e:
     print(f"Unexpected response shape: {e}")
