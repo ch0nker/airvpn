@@ -64,16 +64,19 @@ The `Run Tests` workflow runs the same suite as `python test`, but it can't read
   run: python test
 ```
 
-### Setting the secret
+### Setting the secrets
 
 1. Go to the repository on GitHub.
 2. Open **Settings** (repo settings, not your account settings).
 3. In the sidebar, go to **Secrets and variables → Actions**.
 4. Under the **Secrets** tab, click **New repository secret**.
-5. Set:
-   - **Name:** `AIRVPN_API_KEY`
-   - **Secret:** your AirVPN API key
-6. Click **Add secret**.
+5. Set variables:
+    1. - **Name:** `AIRVPN_API_KEY`
+       - **Secret:** your AirVPN API key
+    2. - **Name:** `AIRVPN_USERNAME`
+       - **Secret:** your AirVPN username/email          
+    1. - **Name:** `AIRVPN_PASSWORD`
+       - **Secret:** your AirVPN password
 
 Only users with admin access to the repository can view or edit this page — the secret's value is never shown again after saving, and it's masked automatically in any workflow log output.
 

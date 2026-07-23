@@ -53,7 +53,7 @@ class Generator:
                     wireguard_persistent_keepalive: int = 15,
                     iplayer_entry: str = "ipv4",
                     iplayer_exit: str = "both",
-                    **kwargs: dict):
+                    **kwargs: Unpack[OptionsDict]):
             """Build and send a raw config-generator request, returning the raw response body.
 
             Internal helper shared by `create` and `download`. Assembles

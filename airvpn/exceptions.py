@@ -98,6 +98,9 @@ class ClientException(AirVPNException):
     by the library as a whole.
     """
 
+class LoginError(ClientException):
+    """Raised when `AirClient.login` fails."""
+
 class RCParseError(ClientException):
     """Raised when an error with rc parsing happens."""
 

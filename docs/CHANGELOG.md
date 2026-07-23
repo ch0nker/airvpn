@@ -1,3 +1,6 @@
+# 0.1.12
+- Add `AirClient`, a low-level client for AirVPN's bootstrap api used in AirVPN-Suite's bluetit. Read more in the [docs](api/client.md).
+
 # 0.1.11
 - For some reason pypi broke with 0.1.10 so this is also 0.1.10
 

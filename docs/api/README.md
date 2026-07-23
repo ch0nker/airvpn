@@ -1,12 +1,18 @@
 # API Documentation
 
-Reference documentation for every service exposed by the `AirVPN` client.
+Reference documentation for the `AirVPN` API.
+
+## Clients
+ 
+| Class | Description |
+|---|---|
+| [AirVPN](airvpn.md) | Main entry point; lazily exposes the services below as cached properties |
+| [AirClient](client.md) | Legacy bootstrap-based (RSA+AES encrypted) protocol client, separate from the REST API used by `AirVPN` — a standalone class you instantiate yourself |
 
 ## Services
 
 | Service | Description | API Key Required |
 |---|---|---|
-| [AirVPN](airvpn.md) | Main entry point, lazily exposes all services below | Depends on service used |
 | [Devices](devices.md) | List, add, delete, renew, and modify registered devices | Yes |
 | [DnsLists](dns_lists.md) | Fetch available DNS filtering lists | No |
 | [Generator](generator.md) | Generate OpenVPN/WireGuard configuration files | Yes |
@@ -15,7 +21,10 @@ Reference documentation for every service exposed by the `AirVPN` client.
 | [WhatIsMyIp](whatismyip.md) | Detected IP address and geolocation info | No |
 | [Disconnect](disconnect.md) | Force-disconnect one or more active sessions | Yes |
 | [Notification](notification.md) | Send yourself a notification via the AirVPN website/email | Yes |
-| [Exceptions](exceptions.md) | Exception hierarchy raised across all services | N/A |
+
+## Other
+| Name | Description |
+| [Exceptions](exceptions.md) | Exception hierarchy raised across the wrapper | 
 
 ## Quick Start
 
