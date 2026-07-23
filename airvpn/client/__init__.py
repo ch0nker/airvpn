@@ -31,6 +31,7 @@ class AirClient:
         Initialize the AirClient with a session for making HTTP requests.
         """
         self.session = requests.Session()
+        self.rc_map = None
 
     def parse_rc(self) -> dict[str, str | list[str]]:
         """
@@ -51,6 +52,8 @@ class AirClient:
                 value = [result[key], value]
 
             result[key] = value
+
+        self.rc_map = result
 
         return result
 
@@ -189,7 +192,7 @@ class AirClient:
             RSAError or AESEncryptionError: If an error occurs during encryption.
             AESDecryptionError: If an error occurs during decryption.
         """
-        rc = self.parse_rc()
+        rc = self.parse_rc() if self.rc_map is None else self.rc_map
 
         params = {"act": action, **kwargs}
 
