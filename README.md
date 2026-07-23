@@ -30,6 +30,24 @@ pip install -e airvpn
 ```
 
 ## Example
+
+### Client:
+```py
+from airvpn.client import AirClient
+from dotenv import load_dotenv
+
+import os
+
+load_dotenv()
+
+client = AirClient()
+
+user = client.login(os.getenv("LOGIN"), os.getenv("PASSWORD"))
+
+print(user.login)
+```
+
+### API:
 Without an API key:
 ```py
 from airvpn import AirVPN
@@ -42,10 +60,10 @@ for server in api.status.servers:
 
 With an API key:
 ```py
-import os
-
 from airvpn import AirVPN
 from dotenv import load_dotenv
+
+import os
 
 load_dotenv()
 # Get your API key from https://airvpn.org/apisettings/
