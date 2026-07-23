@@ -1,6 +1,6 @@
 # Exceptions
 
-All errors raised by the AirVPN library inherit from `AirVPNException`, giving you a single root exception to catch when you don't need to distinguish the exact cause. The Devices manager and config Generator also define their own exception subtrees (`DeviceException` and `GeneratorException`), both of which subclass `AirVPNException`.
+All errors raised by the AirVPN library inherit from `AirVPNException`, giving you a single root exception to catch when you don't need to distinguish the exact cause. The Devices manager, config Generator, and `AirClient` also define their own exception subtrees (`DeviceException`, `GeneratorException`, and `ClientException`), each of which subclasses `AirVPNException`.
 
 ```py
 from airvpn.exceptions import AirVPNException, APIError
@@ -25,8 +25,14 @@ AirVPNException
 ├── DeviceException
 │   ├── DeviceOperationError
 │   └── DeviceValidationError
-└── GeneratorException
-    └── GeneratorResponseError
+├── GeneratorException
+│   └── GeneratorResponseError
+└── ClientException
+    ├── RCParseError
+    ├── RSAError
+    ├── AESEncryptionError
+    ├── AESDecryptionError
+    └── LoginError
 ```
 
 ## `AirVPNException`
@@ -99,4 +105,32 @@ except APIError as e:
     print(f"Generator rejected the request: {e}")
 except GeneratorResponseError as e:
     print(f"Unexpected response shape: {e}")
+```
+
+## `ClientException`
+
+Base exception for all errors raised by [`AirClient`](client.md), the legacy bootstrap-based (RSA+AES encrypted) protocol client. Subclasses `AirVPNException`. This is a separate protocol from the REST API used by the main `AirVPN` class and its services.
+
+| Exception | Raised when |
+|---|---|
+| `RCParseError` | A required field (e.g. `rsamodulus`/`rsaexponent`) can't be found in the `.rc` configuration file fetched from `AirClient.RC_URL`. |
+| `RSAError` | RSA encryption of the AES key/IV association blob fails. |
+| `AESEncryptionError` | AES encryption of the request parameters fails. |
+| `AESDecryptionError` | AES decryption or unpadding of a response fails — for example, if the secret key/IV don't match, or the response content is corrupted. |
+| `LoginError` | `AirClient.login()`'s response has a `message_action` of `"stop"` — the server rejected the credentials. The exception's message is the server's `message`. |
+
+```py
+from airvpn.airclient import AirClient
+from airvpn.exceptions import ClientException, RCParseError, LoginError
+
+client = AirClient()
+
+try:
+    user = client.login("myusername", "mypassword")
+except LoginError as e:
+    print(f"Login rejected: {e}")
+except RCParseError as e:
+    print(f"Couldn't read bootstrap config: {e}")
+except ClientException as e:
+    print(f"AirClient request failed: {e}")
 ```
