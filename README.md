@@ -1,4 +1,4 @@
-# Python AirVPN Wrapper
+# Python AirVPN
 
 [![Python versions](https://img.shields.io/pypi/pyversions/airvpn)](https://pypi.org/project/airvpn/)
 [![PyPI version](https://img.shields.io/pypi/v/airvpn)](https://pypi.org/project/airvpn/)
@@ -31,22 +31,6 @@ pip install -e airvpn
 
 ## Example
 
-### Client:
-```py
-from airvpn.client import AirClient
-from dotenv import load_dotenv
-
-import os
-
-load_dotenv()
-
-client = AirClient()
-
-user = client.login(os.getenv("LOGIN"), os.getenv("PASSWORD"))
-
-print(user.login)
-```
-
 ### API:
 Without an API key:
 ```py
@@ -71,4 +55,21 @@ api = AirVPN(os.getenv("API_KEY"))
 device = api.devices.get("test", create=True)
 
 api.generator.download("AirVPN-Earth.conf", "earth", device.id)
+```
+
+
+### Client:
+```py
+from airvpn.client import AirClient
+from dotenv import load_dotenv
+
+import os
+
+load_dotenv()
+
+client = AirClient()
+
+user = client.login(os.getenv("LOGIN"), os.getenv("PASSWORD"))
+
+print(user.login)
 ```
