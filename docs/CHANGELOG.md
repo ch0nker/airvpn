@@ -1,3 +1,7 @@
+# 0.1.10
+- Replace `send_notification` with the service `Notification`
+- Removed service specific APIError exceptions `GeneratorAPIError`, and `DeviceAPIError`  
+
 # 0.1.9
 - Fix incorrect service name for `send_notification`.
 - Add `notification` test
