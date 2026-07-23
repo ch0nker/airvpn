@@ -1,6 +1,6 @@
 # API Documentation
 
-Reference documentation for the `AirVPN` API.
+Reference documentation for the AirVPN API.
 
 ## Clients
  
