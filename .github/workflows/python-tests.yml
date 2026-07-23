@@ -1,13 +1,6 @@
 name: Run Tests
 on:
   workflow_dispatch:
-    inputs:
-      username:
-        description: 'Username'
-        required: true
-      password:
-        description: 'Password'
-        required: true
   schedule:
     - cron: "0 6 * * *"
 jobs:
@@ -30,6 +23,4 @@ jobs:
       - name: Run tests
         env:
           API_KEY: ${{ secrets.AIRVPN_API_KEY }}
-          USERNAME: ${{ inputs.username || secrets.AIRVPN_USERNAME }}
-          PASSWORD: ${{ inputs.password || secrets.AIRVPN_PASSWORD }}
         run: python test
