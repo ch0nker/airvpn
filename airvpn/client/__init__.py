@@ -168,16 +168,21 @@ class AirClient:
 
         return bytes_param_s, bytes_param_d, secret_key, iv
 
-    def request(self, action: str, **kwargs):
+    def request(self, action: str, **kwargs) -> str | None:
         """
         Make a request to the AirVPN API with the specified action and parameters.
+
+        Bootstrap servers are tried one at a time, in random order. A server that
+        can't be connected to is skipped in favor of the next one; a server that
+        responds with a non-200 status or an empty body is also skipped.
 
         Args:
             action (str): The API action to perform.
             **kwargs: Additional keyword arguments representing the parameters for the API call.
 
         Returns:
-            ElementTree.Element: An XML element tree of the decrypted response content.
+            str | None: The decrypted response body as a raw XML string, or None if
+                every bootstrap server failed to connect or respond successfully.
 
         Raises:
             RCParseError: If an error occurs while parsing the RC configuration file.
@@ -215,19 +220,24 @@ class AirClient:
         }
 
         for url in bootstrap_servers:
-            response = requests.post(url,
-                                    headers={
-                                        "Accept": "",
-                                        "Content-Type": "application/x-www-form-urlencoded"},
-                                    data=encrypted_params, timeout=10)
+            try:
+                response = requests.post(url,
+                                        headers={
+                                            "Accept": "",
+                                            "Content-Type": "application/x-www-form-urlencoded"},
+                                        data=encrypted_params, timeout=10)
 
-            if response.status_code == 200 and response.content is not None:
-                try:
-                    return self.decrypt_response(response.content, secret_key, iv)
-                except (ValueError, TypeError) as e:
-                    raise AESDecryptionError(f"AES decryption error: {e}")
+                if response.status_code == 200 and response.content is not None:
+                    try:
+                        return self.decrypt_response(response.content, secret_key, iv)
+                    except (ValueError, TypeError) as e:
+                        raise AESDecryptionError(f"AES decryption error: {e}")
+            except requests.exceptions.ConnectionError:
+                continue
 
-    def login(self, username: str, password: str):
+        return None
+
+    def login(self, username: str, password: str) -> User | None:
         """
         Authenticate with the AirVPN API using the provided username and password.
 
@@ -236,23 +246,34 @@ class AirClient:
             password (str): The password to use for authentication.
 
         Returns:
-            User: A class built off the XML response.
+            User | None: A class built off the XML response, or None if no bootstrap
+                server could be reached (see `request()`).
 
         Raises:
             LoginError: If the login's `message_action` is stop.
         """
-        user = User.from_string(self.request("user", login=username, password=password))
+        xml = self.request("user", login=username, password=password)
+        if xml is None:
+            return None
+
+        user = User.from_string(xml)
 
         if user.message_action == "stop":
             raise LoginError(user.message)
 
         return user
 
-    def manifest(self):
+    def manifest(self) -> Manifest | None:
         """
         Retrieve the manifest information from the AirVPN API.
 
         Returns:
-            Manifest: A class built off the XML response.
+            Manifest | None: A class built off the XML response, or None if no
+                bootstrap server could be reached (see `request()`).
         """
-        return Manifest.from_string(self.request("manifest"))
+        xml = self.request("manifest")
+
+        if xml is None:
+            return None
+
+        return Manifest.from_string(xml)

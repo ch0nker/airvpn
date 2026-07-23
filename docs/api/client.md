@@ -104,14 +104,14 @@ Generates a random AES key and IV, RSA-encrypts them (PKCS#1 v1.5) alongside the
 
 ### `request(action: str, **kwargs) -> str | None`
 
-Performs a full round-trip request to the AirVPN bootstrap API: fetches and parses the `.rc` file, encrypts the given action and parameters, POSTs to each bootstrap server (tried in random order) until one responds, and decrypts the response. Used internally by [`login()`](#loginusername-str-password-str) and [`manifest()`](#manifest).
+Performs a full round-trip request to the AirVPN bootstrap API: fetches and parses the `.rc` file, encrypts the given action and parameters, POSTs to each bootstrap server (tried one at a time, in random order) until one responds, and decrypts the response. A server that can't be connected to is skipped in favor of the next one; a server that responds with a non-`200` status or an empty body is also skipped. Used internally by [`login()`](#loginusername-str-password-str) and [`manifest()`](#manifest).
 
 | Parameter | Type | Description |
 |---|---|---|
 | `action` | `str` | The API action to perform (e.g. `"user"`, `"manifest"`). |
 | `**kwargs` | | Additional parameters for the action. `system`, `version`, `software`, and `arch` are auto-filled with sensible defaults if not provided. |
 
-**Returns:** The decrypted response body as a raw XML `str`. Returns `None` if every bootstrap server fails to respond with a `200` and non-empty body.
+**Returns:** The decrypted response body as a raw XML `str`. Returns `None` if every bootstrap server fails to connect or respond with a `200` and non-empty body.
 
 **Raises:**
 - `RCParseError` — if `rsamodulus`/`rsaexponent` can't be found in the parsed `.rc` file.
@@ -120,7 +120,7 @@ Performs a full round-trip request to the AirVPN bootstrap API: fetches and pars
 
 ---
 
-### `login(username: str, password: str) -> User`
+### `login(username: str, password: str) -> User | None`
 
 Authenticates with the given credentials and parses the response into a [`User`](#user).
 
@@ -133,7 +133,7 @@ user = client.login("myusername", "mypassword")
 | `username` | `str` | AirVPN account username. |
 | `password` | `str` | AirVPN account password. |
 
-**Returns:** A [`User`](#user) built from the parsed XML response, containing the account's connection credentials.
+**Returns:** A [`User`](#user) built from the parsed XML response, containing the account's connection credentials. Returns `None` if no bootstrap server could be reached (see [`request()`](#requestaction-str-kwargs)).
 
 **Raises:**
 - `LoginError` — if the response's `message_action` is `"stop"` (login rejected; `LoginError`'s message is the server's `message`).
@@ -141,7 +141,7 @@ user = client.login("myusername", "mypassword")
 
 ---
 
-### `manifest() -> Manifest`
+### `manifest() -> Manifest | None`
 
 Retrieves the AirVPN manifest (server list, connection modes, and bootstrap metadata) and parses it into a [`Manifest`](#manifest-1).
 
@@ -149,7 +149,7 @@ Retrieves the AirVPN manifest (server list, connection modes, and bootstrap meta
 manifest = client.manifest()
 ```
 
-**Returns:** A [`Manifest`](#manifest-1) built from the parsed XML response.
+**Returns:** A [`Manifest`](#manifest-1) built from the parsed XML response. Returns `None` if no bootstrap server could be reached (see [`request()`](#requestaction-str-kwargs)).
 
 **Raises:** Same as [`request()`](#requestaction-str-kwargs).
 
