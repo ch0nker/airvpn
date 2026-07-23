@@ -1,3 +1,6 @@
+# 0.1.11
+- For some reason pypi broke with 0.1.10 so this is also 0.1.10
+
 # 0.1.10
 - Replace `send_notification` with the service `Notification`
 - Removed service specific APIError exceptions `GeneratorAPIError`, and `DeviceAPIError`  
