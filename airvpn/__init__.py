@@ -87,7 +87,7 @@ class AirVPN:
 
     @property
     def notification(self) -> Notification:
-        """The devices service"""
+        """The notification service"""
         if self._notification is None:
             self._notification = self.get_service("notification")
         return self._notification
