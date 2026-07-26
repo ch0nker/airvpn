@@ -1,8 +1,8 @@
 from __future__ import annotations
 
 from airvpn.exceptions import GeneratorResponseError
-from airvpn.generator.models import *
-from airvpn.network import AirSession
+from airvpn.api.generator.models import *
+from airvpn.api.network import AirSession
 from typing import Literal, Iterator
 from zipfile import ZipFile
 from io import BytesIO

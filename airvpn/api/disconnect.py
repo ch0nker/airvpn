@@ -1,4 +1,4 @@
-from airvpn.network import AirSession
+from airvpn.api.network import AirSession
 
 
 def disconnect(session: AirSession,

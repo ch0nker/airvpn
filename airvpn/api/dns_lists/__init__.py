@@ -4,8 +4,8 @@ I can't really understand the documentation for dns_lists.
 If you can understand it or can get it to change at all please open an issue or create a PR with how you did it.
 """
 
-from airvpn.network import AirSession
-from airvpn.dns_lists.models import Dns
+from airvpn.api.network import AirSession
+from airvpn.api.dns_lists.models import Dns
 
 class DnsLists:
     """Fetches available DNS filtering lists.

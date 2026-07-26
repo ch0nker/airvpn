@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from airvpn.status.models import Routing, Server, Country, Continent, Planet
-from airvpn.network import AirSession
+from airvpn.api.status.models import Routing, Server, Country, Continent, Planet
+from airvpn.api.network import AirSession
 from typing import Type, TypeVar, Iterator, Generic
 
 T = TypeVar("T")

@@ -1,5 +1,5 @@
 from typing import Unpack, TypedDict
-from airvpn.network import AirStatus
+from airvpn.api.network import AirStatus
 
 class ServerDict(TypedDict, total=False):
     public_name: str

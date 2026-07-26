@@ -15,6 +15,10 @@ import base64
 import os
 import re
 
+__all__ = ["AirClient"]
+
+# TODO: Config generator with ssh and ssl support.
+
 class AirClient:
     """
     A client for interacting with the AirVPN API. This class handles various tasks such as parsing configuration files,
@@ -185,7 +189,7 @@ class AirClient:
                 every bootstrap server failed to connect or respond successfully.
 
         Raises:
-            RCParseError: If an error occurs while parsing the RC configuration file.
+            RCParseError: If an error occurs while parsing the RC file.
             RSAError or AESEncryptionError: If an error occurs during encryption.
             AESDecryptionError: If an error occurs during decryption.
         """

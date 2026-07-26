@@ -1,6 +1,6 @@
 from airvpn.exceptions import DeviceValidationError
-from airvpn.network import AirSession
-from airvpn.devices.models import *
+from airvpn.api.network import AirSession
+from airvpn.api.devices.models import *
 
 import time
 

@@ -1,5 +1,5 @@
-from airvpn.network import AirSession
-from airvpn.whatismyip.models import IpInfo
+from airvpn.api.network import AirSession
+from airvpn.api.whatismyip.models import IpInfo
 
 class WhatIsMyIp:
     """Your IP address, and a check if you are reaching API from our VPN or not.

@@ -1,5 +1,5 @@
-from airvpn.network import AirSession
-from airvpn.userinfo.models import Connection, User
+from airvpn.api.network import AirSession
+from airvpn.api.userinfo.models import Connection, User
 
 class UserInfo:
     """Details about yourself, including connection details.
