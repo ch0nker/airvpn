@@ -10,31 +10,29 @@
       
       
       
-        <link rel="canonical" href="https://airvpn.chonker.cc/airvpn/api/dns_lists/models/">
+        <link rel="canonical" href="https://airvpn.chonker.cc/">
       
       
-        <link rel="prev" href="../">
       
-      
-        <link rel="next" href="../../generator/">
+        <link rel="next" href="changelog/">
       
       
         
       
       
-      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <link rel="icon" href="assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>Models - Python AirVPN API</title>
+        <title>Python AirVPN API</title>
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
       
         
-        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -53,9 +51,9 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="assets/_mkdocstrings.css">
     
-    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -80,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#models" class="md-skip">
+        <a href="#python-airvpn" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +94,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../.." title="Python AirVPN API" class="md-header__button md-logo" aria-label="Python AirVPN API" data-md-component="logo">
+    <a href="." title="Python AirVPN API" class="md-header__button md-logo" aria-label="Python AirVPN API" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -116,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Models
+              Introduction
             
           </span>
         </div>
@@ -232,7 +230,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../.." title="Python AirVPN API" class="md-nav__button md-logo" aria-label="Python AirVPN API" data-md-component="logo">
+    <a href="." title="Python AirVPN API" class="md-nav__button md-logo" aria-label="Python AirVPN API" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -259,10 +257,37 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../../.." class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
         
   
   
@@ -278,6 +303,98 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interfaces
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Start
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Start">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#airvpn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AirVPN
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#airclient" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AirClient
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#webclient" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WebClient
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -289,7 +406,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../changelog/" class="md-nav__link">
+      <a href="changelog/" class="md-nav__link">
         
   
   
@@ -363,7 +480,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../guides/contributing/" class="md-nav__link">
+      <a href="guides/contributing/" class="md-nav__link">
         
   
   
@@ -391,7 +508,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../guides/tests/" class="md-nav__link">
+      <a href="guides/tests/" class="md-nav__link">
         
   
   
@@ -423,24 +540,22 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../" class="md-nav__link ">
+            <a href="airvpn/" class="md-nav__link ">
               
   
   
@@ -464,7 +579,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -479,24 +594,22 @@
                 
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../" class="md-nav__link ">
+            <a href="airvpn/api/" class="md-nav__link ">
               
   
   
@@ -520,7 +633,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_1">
             <span class="md-nav__icon md-icon"></span>
             
@@ -550,7 +663,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../devices/" class="md-nav__link ">
+            <a href="airvpn/api/devices/" class="md-nav__link ">
               
   
   
@@ -592,7 +705,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../devices/models/" class="md-nav__link">
+      <a href="airvpn/api/devices/models/" class="md-nav__link">
         
   
   
@@ -625,24 +738,22 @@
                 
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_2" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="airvpn/api/dns_lists/" class="md-nav__link ">
               
   
   
@@ -666,7 +777,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_1_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -681,37 +792,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Models
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="airvpn/api/dns_lists/models/" class="md-nav__link">
         
   
   
@@ -727,48 +811,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#airvpn.api.dns_lists.models" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        models
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#airvpn.api.dns_lists.models.Dns" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Dns
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -801,7 +843,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../generator/" class="md-nav__link ">
+            <a href="airvpn/api/generator/" class="md-nav__link ">
               
   
   
@@ -843,7 +885,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../generator/models/" class="md-nav__link">
+      <a href="airvpn/api/generator/models/" class="md-nav__link">
         
   
   
@@ -879,7 +921,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../notification/" class="md-nav__link">
+      <a href="airvpn/api/notification/" class="md-nav__link">
         
   
   
@@ -919,7 +961,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../status/" class="md-nav__link ">
+            <a href="airvpn/api/status/" class="md-nav__link ">
               
   
   
@@ -961,7 +1003,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../status/models/" class="md-nav__link">
+      <a href="airvpn/api/status/models/" class="md-nav__link">
         
   
   
@@ -1009,7 +1051,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../userinfo/" class="md-nav__link ">
+            <a href="airvpn/api/userinfo/" class="md-nav__link ">
               
   
   
@@ -1051,7 +1093,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../userinfo/models/" class="md-nav__link">
+      <a href="airvpn/api/userinfo/models/" class="md-nav__link">
         
   
   
@@ -1099,7 +1141,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../whatismyip/" class="md-nav__link ">
+            <a href="airvpn/api/whatismyip/" class="md-nav__link ">
               
   
   
@@ -1141,7 +1183,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../whatismyip/models/" class="md-nav__link">
+      <a href="airvpn/api/whatismyip/models/" class="md-nav__link">
         
   
   
@@ -1177,7 +1219,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../disconnect/" class="md-nav__link">
+      <a href="airvpn/api/disconnect/" class="md-nav__link">
         
   
   
@@ -1205,7 +1247,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../network/" class="md-nav__link">
+      <a href="airvpn/api/network/" class="md-nav__link">
         
   
   
@@ -1253,7 +1295,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../client/" class="md-nav__link ">
+            <a href="airvpn/client/" class="md-nav__link ">
               
   
   
@@ -1295,7 +1337,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../client/models/" class="md-nav__link">
+      <a href="airvpn/client/models/" class="md-nav__link">
         
   
   
@@ -1343,7 +1385,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../web/" class="md-nav__link ">
+            <a href="airvpn/web/" class="md-nav__link ">
               
   
   
@@ -1397,7 +1439,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../web/auth/" class="md-nav__link ">
+            <a href="airvpn/web/auth/" class="md-nav__link ">
               
   
   
@@ -1439,7 +1481,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../web/auth/models/" class="md-nav__link">
+      <a href="airvpn/web/auth/models/" class="md-nav__link">
         
   
   
@@ -1487,7 +1529,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../web/user/" class="md-nav__link ">
+            <a href="airvpn/web/user/" class="md-nav__link ">
               
   
   
@@ -1529,7 +1571,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../web/user/models/" class="md-nav__link">
+      <a href="airvpn/web/user/models/" class="md-nav__link">
         
   
   
@@ -1565,7 +1607,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../web/network/" class="md-nav__link">
+      <a href="airvpn/web/network/" class="md-nav__link">
         
   
   
@@ -1601,7 +1643,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../exceptions/" class="md-nav__link">
+      <a href="airvpn/exceptions/" class="md-nav__link">
         
   
   
@@ -1656,10 +1698,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#airvpn.api.dns_lists.models" class="md-nav__link">
+  <a href="#installation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        models
+        Installation
       
     </span>
   </a>
@@ -1667,13 +1709,63 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#airvpn.api.dns_lists.models.Dns" class="md-nav__link">
+  <a href="#interfaces" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Dns
+        Interfaces
       
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Start
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Start">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#airvpn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AirVPN
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#airclient" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AirClient
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#webclient" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WebClient
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1693,156 +1785,93 @@
                   
 
 
-
-<h1 id="models">Models</h1>
-<p><code>airvpn.api.dns_lists.models</code></p>
-
-
-<div class="doc doc-object doc-module">
-
-
-
-<a id="airvpn.api.dns_lists.models"></a>
-    <div class="doc doc-contents first">
-
-
-
-
-
-
-
-
-
-
-<div class="doc doc-children">
-
-
-
-
-
-
-
-
-
-<div class="doc doc-object doc-class">
-
-
-
-<h2 id="airvpn.api.dns_lists.models.Dns" class="doc doc-heading">
-            <code>Dns</code>
-
-
-</h2>
-
-
-    <div class="doc doc-contents ">
-
-
-
-        <p>Represents a DNS filtering list/profile.</p>
-
-
-<p><span class="doc-section-title">Attributes:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td><code><span title="airvpn.api.dns_lists.models.Dns.name">name</span></code></td>
-            <td>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>The DNS list's name.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td><code><span title="airvpn.api.dns_lists.models.Dns.description">description</span></code></td>
-            <td>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>Description of the DNS list.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td><code><span title="airvpn.api.dns_lists.models.Dns.home">home</span></code></td>
-            <td>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>URL of the DNS list's home page/source, if available;
-otherwise None.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td><code><span title="airvpn.api.dns_lists.models.Dns.last_update_unix">last_update_unix</span></code></td>
-            <td>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>Unix timestamp of when the DNS list was last updated.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td><code><span title="airvpn.api.dns_lists.models.Dns.n_items">n_items</span></code></td>
-            <td>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>Number of entries in the DNS list.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-
-
-
-
-
-
-
-
-
-<div class="doc doc-children">
-
-
-
-
-
-
-
-
-
-
-
-
-  </div>
-
-    </div>
-
-</div>
-
-
-
-
-  </div>
-
-    </div>
-
-</div>
+  
+  
+
+
+<h1 id="python-airvpn">Python AirVPN</h1>
+<p><a href="https://pypi.org/project/airvpn/"><img alt="Python versions" src="https://img.shields.io/pypi/pyversions/airvpn" /></a>
+<a href="https://pypi.org/project/airvpn/"><img alt="PyPI version" src="https://img.shields.io/pypi/v/airvpn" /></a>
+<a href="https://github.com/ch0nker/airvpn/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/pypi/l/airvpn" /></a>
+<a href="https://github.com/ch0nker/airvpn/actions/workflows/python-tests.yml"><img alt="Tests" src="https://github.com/ch0nker/airvpn/actions/workflows/python-tests.yml/badge.svg" /></a></p>
+<p>A Python wrapper for AirVPN's <a href="https://airvpn.org/apisettings/">API</a> — manage devices, generate configs, check server status, and authenticate against AirVPN's bootstrap and web services.</p>
+<blockquote>
+<p><strong>Note:</strong> Docstrings and documentation were AI-assisted. If you spot any errors, please open a PR or an issue.</p>
+</blockquote>
+<h2 id="installation">Installation</h2>
+<p>PyPI:
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span>airvpn
+</code></pre></div></p>
+<p>Locally:
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/ch0nker/airvpn.git
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>airvpn
+</code></pre></div></p>
+<h2 id="interfaces">Interfaces</h2>
+<p>This library exposes three interfaces depending on how much control you need:</p>
+<ul>
+<li><strong><code>AirVPN</code></strong> — high-level wrapper, best for most use cases</li>
+<li><strong><code>AirClient</code></strong> — low-level client for the encrypted bootstrap API (servers, manifest, status)</li>
+<li><strong><code>WebClient</code></strong> — client for AirVPN's website/session-based endpoints (account/profile actions)</li>
+</ul>
+<h2 id="quick-start">Quick Start</h2>
+<h3 id="airvpn">AirVPN</h3>
+<p>Without an API key (limited to public endpoints like server status):
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">airvpn</span><span class="w"> </span><span class="kn">import</span> <span class="n">AirVPN</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">api</span> <span class="o">=</span> <span class="n">AirVPN</span><span class="p">()</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">for</span> <span class="n">server</span> <span class="ow">in</span> <span class="n">api</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">servers</span><span class="p">:</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">server</span><span class="o">.</span><span class="n">public_name</span><span class="p">)</span>
+</code></pre></div></p>
+<p>With an API key (required for account-specific actions like devices and config generation):
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">load_dotenv</span><span class="p">()</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">airvpn</span><span class="w"> </span><span class="kn">import</span> <span class="n">AirVPN</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="c1"># Get your API key from https://airvpn.org/apisettings/</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="n">api</span> <span class="o">=</span> <span class="n">AirVPN</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;API_KEY&quot;</span><span class="p">))</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="n">device</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">devices</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="n">create</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="n">api</span><span class="o">.</span><span class="n">generator</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s2">&quot;config-directory&quot;</span><span class="p">,</span> <span class="s2">&quot;earth&quot;</span><span class="p">,</span> <span class="n">device</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+</code></pre></div></p>
+<h3 id="airclient">AirClient</h3>
+<p>Without credentials:
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">airvpn</span><span class="w"> </span><span class="kn">import</span> <span class="n">AirClient</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">client</span> <span class="o">=</span> <span class="n">AirClient</span><span class="p">()</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">manifest</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">manifest</span><span class="p">()</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">manifest</span><span class="o">.</span><span class="n">time</span><span class="p">)</span>
+</code></pre></div></p>
+<p>With credentials:
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">load_dotenv</span><span class="p">()</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">airvpn</span><span class="w"> </span><span class="kn">import</span> <span class="n">AirClient</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="n">client</span> <span class="o">=</span> <span class="n">AirClient</span><span class="p">()</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="n">user</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;LOGIN&quot;</span><span class="p">),</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;PASSWORD&quot;</span><span class="p">))</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="nb">print</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">login</span><span class="p">)</span>
+</code></pre></div></p>
+<h3 id="webclient">WebClient</h3>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">load_dotenv</span><span class="p">()</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">airvpn</span><span class="w"> </span><span class="kn">import</span> <span class="n">WebClient</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="n">client</span> <span class="o">=</span> <span class="n">WebClient</span><span class="p">()</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="n">user</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;LOGIN&quot;</span><span class="p">),</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;PASSWORD&quot;</span><span class="p">))</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="nb">print</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+</code></pre></div>
 
 
 
@@ -1892,10 +1921,10 @@ otherwise None.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["content.code.copy"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["content.code.copy"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>
