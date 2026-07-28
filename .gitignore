@@ -9,5 +9,6 @@ __pycache__
 venv
 dist
 build
+site
 *.pyc
 *.pyo
