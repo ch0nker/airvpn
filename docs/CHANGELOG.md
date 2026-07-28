@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.2.2
+- PyPi issues again
+
 ## 0.2.1
 - Add some missing fields for pyproject.toml
 
