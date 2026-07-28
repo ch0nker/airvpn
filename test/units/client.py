@@ -1,6 +1,6 @@
 import os
 
-from airvpn.client import AirClient
+from airvpn import AirClient
 
 
 client: AirClient = None

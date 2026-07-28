@@ -1,3 +1,32 @@
+"""
+# Hierarchy
+```
+AirVPNException
+├── APIKeyRequired
+├── InvalidService
+├── LoginError
+├── APIError
+├── InvalidMethod
+├── RateLimited
+├── DeviceException
+│   ├── DeviceOperationError
+│   └── DeviceValidationError
+├── GeneratorException
+│   └── GeneratorResponseError
+└── ClientException
+    ├── RCParseError
+    ├── RSAError
+    ├── AESEncryptionError
+    └── AESDecryptionError
+```
+
+Unless you need to distinguish a specific failure, catching
+`AirVPNException` will handle every exception raised by the library.
+Catch one of the intermediate base classes (`DeviceException`,
+`GeneratorException`, or `ClientException`) to handle errors from a
+particular component.
+"""
+
 class AirVPNException(Exception):
     """Base exception for all errors raised by the AirVPN API.
 
@@ -18,6 +47,9 @@ class APIKeyRequired(AirVPNException):
     `__KEY_NEEDED__ = True`). This is raised before any request is
     made, as soon as a call to such a service is attempted without one.
     """
+
+class LoginError(AirVPNException):
+    """Raised when authentication fails."""
 
 class InvalidService(AirVPNException):
     """Raised when an unrecognized or unsupported service is requested.
@@ -97,9 +129,6 @@ class ClientException(AirVPNException):
     went wrong, or catch `AirVPNException` to handle any error raised
     by the library as a whole.
     """
-
-class LoginError(ClientException):
-    """Raised when `AirClient.login` fails."""
 
 class RCParseError(ClientException):
     """Raised when an error with rc parsing happens."""
