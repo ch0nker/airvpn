@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.2.1
+- Add some missing fields for pyproject.toml
+
 ## 0.2.0
 - Use mkdocs for easier documentation.
 - Restructured so now the clients are split into their own parts.
