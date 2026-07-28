@@ -54,7 +54,7 @@ class WebUser:
         self.name = kwargs.get("name")
         self.id = kwargs.get("id")
         self.image = kwargs.get("image")
-        self.profile_url = f"{WebSession.__BASE_URL__}/profile/{self.id}-{self.name.replace(" ", "-")}/"
+        self.profile_url = f"{WebSession.__BASE_URL__}/profile/{self.id}-{self.name.replace(' ', '-')}/"
 
         self._content_count = kwargs.get("content_count")
         self._followers = kwargs.get("followers")
