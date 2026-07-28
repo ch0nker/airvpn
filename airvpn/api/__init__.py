@@ -48,6 +48,7 @@ class AirVPN:
     def __init__(self, api_key: str = None):
         from airvpn.api.network import AirSession
 
+        self.api_key = api_key
         self.session = AirSession(api_key)
 
         self._devices = None
