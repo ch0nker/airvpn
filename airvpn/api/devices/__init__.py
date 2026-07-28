@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from airvpn.exceptions import DeviceValidationError
 from airvpn.api.network import AirSession
 from airvpn.api.devices.models import *
@@ -7,12 +9,13 @@ import time
 class Devices:
     """
     Manages registered devices/keys associated with the account.
+
+    Access type:
+        User-specific, API KEY required    
     
     Attributes:
         devices: A list of devices
 
-    Access type:
-        User-specific, API KEY required
     """
 
     __KEY_NEEDED__ = True
@@ -29,7 +32,7 @@ class Devices:
                action: DeviceAction,
                id: str | None = None,
                name: str | None = None,
-               description: str | None = None):
+               description: str | None = None) -> dict:
         """Send a raw devices action request.
 
         Args:
@@ -65,7 +68,7 @@ class Devices:
             self._cache_devices()
             self._diff = False
 
-    def get(self, name: str, create: bool = False):
+    def get(self, name: str, create: bool = False) -> Device | None:
         """Get/create a device using a name
         
         Args:
@@ -106,7 +109,7 @@ class Devices:
 
         return self._devices
     
-    def list(self):
+    def list(self) -> list[Device]:
         """List all devices registered to the account.
 
         Returns:
@@ -116,7 +119,7 @@ class Devices:
 
         return [Device(**device) for device in response.get("devices", [])]
     
-    def add(self):
+    def add(self) -> str | None:
         """Register a new device.
 
         Returns:
@@ -129,7 +132,7 @@ class Devices:
         return response.get("id", None)
 
 
-    def delete(self, id: str):
+    def delete(self, id: str) -> bool:
         """Delete a device.
 
         Args:
@@ -158,7 +161,7 @@ class Devices:
 
         return response.get("result", "error") == "ok"
         
-    def renew(self, id: str):
+    def renew(self, id: str) -> bool:
         """Renew a device.
 
         Args:
@@ -173,7 +176,7 @@ class Devices:
 
         return response.get("result", "error") == "ok"
 
-    def modify(self, id: str, name: str | None = None, description: str | None = None):
+    def modify(self, id: str, name: str | None = None, description: str | None = None) -> bool:
         """Modify a device's name and/or description.
 
         Args:

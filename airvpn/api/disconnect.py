@@ -3,9 +3,12 @@ from airvpn.api.network import AirSession
 
 def disconnect(session: AirSession,
                server_name: str = None,
-               device: str = None):
+               device: str = None) -> int:
     """Requests a disconnection. If none of the filter parameters is specified, disconnect all sessions of the user.
-
+    
+    Access type:
+        User-specific, API KEY required.
+    
     Args:
         session: The active AirSession used to make the API request.
         server_name: Name of the server to disconnect from.
@@ -17,13 +20,7 @@ def disconnect(session: AirSession,
     Raises:
         APIError: If it fails to disconnect.
         RateLimited: If too many requests go through.
-
-    Access type:
-        User-specific, API KEY required.
     """
-
-    # This doesn't seem to disconnect, even when I do it through the api page??
-    # or at least the sessions page doesn't update.
 
     json = session.service_request("get", "disconnect", data={
         "server": server_name,

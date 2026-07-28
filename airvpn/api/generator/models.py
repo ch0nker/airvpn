@@ -129,7 +129,7 @@ class Options:
         """
         return int.from_bytes(str(self).encode())
     
-    def clone(self):
+    def clone(self) -> Options:
         """Return a new `Options` instance with a shallow copy of this instance's attributes.
 
         Since `protocols`/`servers` etc. are passed straight through
@@ -175,7 +175,7 @@ class Config:
         with open(fp, "wb") as f:
             f.write(self.buffer)
     
-    def read(self):
+    def read(self) -> str:
         """Return this config's contents as text, decoding if necessary.
 
         Attempts to decode `buffer` as UTF-8 text, normalizing Windows-style
@@ -184,8 +184,7 @@ class Config:
         instead.
 
         Returns:
-            The decoded text with normalized line endings, or a
-            base64-encoded string if the contents aren't valid UTF-8 text.
+            The decoded text with normalized line endings, or a base64-encoded string if the contents aren't valid UTF-8 text.
         """
         try:
             return self.buffer.decode().replace("\r\n", "\n")

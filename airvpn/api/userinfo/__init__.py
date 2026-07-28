@@ -1,16 +1,18 @@
 from airvpn.api.network import AirSession
 from airvpn.api.userinfo.models import Connection, User
 
+__title__ = "UserInfo"
+
 class UserInfo:
     """Details about yourself, including connection details.
+
+    Access type:
+        User-specific, API KEY required.
 
     Attributes:
         user: Info about the account that generated the API key.
         sessions: A list of connections ordered oldest to newest.
         connection: Info about the oldest connection.
-
-    Access type:
-        User-specific, API KEY required.
     """
 
     __KEY_NEEDED__ = True

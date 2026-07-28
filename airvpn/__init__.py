@@ -1,5 +1,10 @@
 """
-Test
+Python API for AirVPN.
+
+Exposes three main interfaces:
+    - AirClient: low-level client for AirVPN's encrypted bootstrap API
+    - AirVPN: high-level wrapper for common AirVPN operations
+    - WebClient: client for AirVPN's website/session-based endpoints
 """
 
 __title__ = "AirVPN"

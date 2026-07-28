@@ -7,7 +7,6 @@ from Crypto.Cipher import AES, PKCS1_v1_5
 from Crypto.Util.Padding import pad, unpad
 from Crypto.PublicKey import RSA
 
-
 import platform
 import requests
 import random
@@ -20,13 +19,12 @@ __all__ = ["AirClient"]
 # TODO: Config generator with ssh and ssl support.
 
 class AirClient:
-    """
-    A client for interacting with the AirVPN API. This class handles various tasks such as parsing configuration files,
-    encrypting parameters, making requests to the API, and decrypting responses. It supports operations like logging in,
-    retrieving manifest information, and handling RSA and AES encryption.
-    
-    Attributes:
-        RC_URL (str): The URL of the AirVPN configuration file.
+    """Client for interacting with AirVPN's encrypted bootstrap API.
+
+    The client downloads and caches the bootstrap configuration, encrypts
+    requests using the public RSA key advertised by the bootstrap server,
+    decrypts responses with AES, and exposes low-level operations such as
+    authentication and manifest retrieval.
     """
     RC_URL = "https://gitlab.com/AirVPN/AirVPN-Suite/-/raw/master/AirVPN-Suite/etc/airvpn/bluetit.rc?ref_type=heads"
 
@@ -35,12 +33,6 @@ class AirClient:
         self.rc_map = None
 
     def parse_rc(self) -> dict[str, str | list[str]]:
-        """
-        Parse the configuration file from the specified URL and return a dictionary of key-value pairs.
-
-        Returns:
-            dict[str, str | list[str]]: A dictionary containing configuration parameters.
-        """
         text = requests.get(AirClient.RC_URL).text
         result = {}
 
@@ -59,33 +51,12 @@ class AirClient:
         return result
 
     def system_description(self) -> str:
-        """
-        Determine the description of the current system.
-
-        Returns:
-            str: The description of the current system.
-        """
         return platform.system()
 
     def architecture(self) -> str:
-        """
-        Determine the architecture of the current system.
-
-        Returns:
-            str: The architecture of the current system.
-        """
         return platform.machine()
 
     def b64_map(self, params: dict) -> str:
-        """
-        Encode a dictionary of parameters into a base64 string.
-
-        Args:
-            params (dict): A dictionary containing the parameters to encode.
-
-        Returns:
-            str: The encoded base64 string.
-        """
         output = ""
         for key, value in params.items():
             output += base64.b64encode(str(key).encode()).decode()
@@ -95,20 +66,6 @@ class AirClient:
         return output
 
     def decrypt_response(self, response_content: bytes, secret_key: bytes, iv: bytes) -> str:
-        """
-        Decrypt the AES-encrypted response content using the provided secret key and IV.
-
-        Args:
-            response_content (bytes): The encrypted response content.
-            secret_key (bytes): The secret key used for decryption.
-            iv (bytes): The initialization vector used for decryption.
-
-        Returns:
-            str: The decrypted plaintext string.
-
-        Raises:
-            AESDecryptionError: If an error occurs during the decryption process.
-        """
         aes_decryptor = AES.new(secret_key, AES.MODE_CBC, iv)
         decrypted_padded = aes_decryptor.decrypt(response_content)
         try:
@@ -124,24 +81,6 @@ class AirClient:
         key_size: int = 32,
         iv_size: int = 16
     ) -> tuple[bytes, bytes, bytes, bytes]:
-        """
-        Encrypt the parameters using RSA and AES encryption.
-
-        Args:
-            rsa_modulus_b64 (str): The base64-encoded modulus of the RSA public key.
-            rsa_exponent_b64 (str): The base64-encoded exponent of the RSA public key.
-            params (dict): A dictionary containing the parameters to encrypt.
-            key_size (int, optional): The size of the secret key in bytes. Defaults to 32.
-            iv_size (int, optional): The size of the initialization vector in bytes. Defaults to 16.
-
-        Returns:
-            tuple[bytes, bytes, bytes, bytes]: A tuple containing the encrypted association parameters,
-                                                encrypted data parameters, secret key, and IV.
-
-        Raises:
-            RSAError: If an error occurs during RSA encryption.
-            AESEncryptionError: If an error occurs during AES encryption.
-        """
         rsa_mod_int = int.from_bytes(base64.b64decode(rsa_modulus_b64), byteorder="big")
         rsa_exp_int = int.from_bytes(base64.b64decode(rsa_exponent_b64), byteorder="big")
 
@@ -185,8 +124,7 @@ class AirClient:
             **kwargs: Additional keyword arguments representing the parameters for the API call.
 
         Returns:
-            str | None: The decrypted response body as a raw XML string, or None if
-                every bootstrap server failed to connect or respond successfully.
+            str | None: The decrypted response body as a raw XML string, or None if every bootstrap server failed to connect or respond successfully.
 
         Raises:
             RCParseError: If an error occurs while parsing the RC file.
@@ -250,8 +188,7 @@ class AirClient:
             password (str): The password to use for authentication.
 
         Returns:
-            User | None: A class built off the XML response, or None if no bootstrap
-                server could be reached (see `request()`).
+            User | None: A class built off the XML response, or None if no bootstrap server could be reached (see `request()`).
 
         Raises:
             LoginError: If the login's `message_action` is stop.
@@ -272,8 +209,7 @@ class AirClient:
         Retrieve the manifest information from the AirVPN API.
 
         Returns:
-            Manifest | None: A class built off the XML response, or None if no
-                bootstrap server could be reached (see `request()`).
+            Manifest | None: A class built off the XML response, or None if no bootstrap server could be reached (see `request()`).
         """
         xml = self.request("manifest")
 

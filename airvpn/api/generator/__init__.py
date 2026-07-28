@@ -12,12 +12,12 @@ import os
 class Generator:
     """Generates VPN configuration files via the AirVPN config generator API.
 
+    Access type:
+        User-specific, API KEY required.
+
     Wraps the same endpoint used by https://airvpn.org/generator, allowing
     programmatic creation of OpenVPN/WireGuard configs for one or more
     servers, systems, and protocols.
-
-    Access type:
-        User-specific, API KEY required.
     """
 
     __KEY_NEEDED__ = True
@@ -106,8 +106,7 @@ class Generator:
                 APIError: If the API response is JSON and reports an `error` field.
 
             Returns:
-                The raw response body (`bytes`) — either a config file, an
-                archive, or a JSON payload describing the generated files.
+                The raw response body (`bytes`) — either a config file, an archive, or a JSON payload describing the generated files.
             """
             options = locals()
 
@@ -213,13 +212,7 @@ class Generator:
                     undocumented API parameters can also be passed this way.
  
             Returns:
-                A `str` with the config file's contents (Windows-style line
-                endings normalized to "\\n") when the generator returns exactly
-                one file directly; otherwise a `ConfigList` covering all
-                generated files. Fetching an individual `Config` from a
-                `ConfigList` decodes it the same way, except any file that
-                isn't valid UTF-8 text (e.g. a bundled binary from
-                `files_binary`) is returned as a base64 encoded string instead.
+                A `str` with the config file's contents (Windows-style line endings normalized to "\\n") when the generator returns exactly one file directly; otherwise a `ConfigList` covering all generated files. Fetching an individual `Config` from a `ConfigList` decodes it the same way, except any file that isn't valid UTF-8 text (e.g. a bundled binary from `files_binary`) is returned as a base64 encoded string instead.
             """
 
             config = self._create_config(servers, device, 
@@ -333,9 +326,6 @@ class Generator:
                 in the downloaded bundle (e.g.
                 `server_earth="on", server_america="on"`). Any other
                 undocumented API parameters can also be passed this way.
-
-        Returns:
-            None. Files are written directly to `output_dir`.
         """
         zip_bytes = self._create_config(servers, device, 
                                 system, vpn_type, 
@@ -383,7 +373,7 @@ class ConfigList:
         self._options = options
         self._cached_configs = [None] * self._size
 
-    def __get_config__(self, index: int):
+    def __get_config__(self, index: int) -> Config:
         """Fetch (or return the cached) `Config` at a single integer index.
 
         Args:
@@ -395,8 +385,7 @@ class ConfigList:
             IndexError: If `index` is out of range (`self._size <= index`).
 
         Returns:
-            The `Config` at `index`, fetching and caching it first if it
-            hasn't been fetched yet.
+            The `Config` at `index`, fetching and caching it first if it hasn't been fetched yet.
         """
         if self._size <= index:
             raise IndexError
@@ -426,7 +415,7 @@ class ConfigList:
         """Return whether `other` is a `ConfigList` with an equal hash (i.e. equal `Options`)."""
         return isinstance(other, ConfigList) and hash(self) == hash(other)
 
-    def __getitem__(self, index: int | slice):
+    def __getitem__(self, index: int | slice) -> Config | ConfigList:
         """Fetch a single `Config`, or a new `ConfigList` scoped to a slice.
 
         Args:
@@ -437,8 +426,7 @@ class ConfigList:
                 unaffected).
 
         Returns:
-            A `Config` for an integer index, or a new `ConfigList` for a
-            slice.
+            A `Config` for an integer index, or a new `ConfigList` for a slice.
         """
         if isinstance(index, slice):
             start, stop, step = index.indices(self._size)

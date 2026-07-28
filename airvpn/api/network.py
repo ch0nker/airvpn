@@ -54,7 +54,7 @@ class AirSession(Session):
     REQUESTS_MAX_MINUTES = 10
     REQUESTS_PER_MIN = floor(REQUESTS_MAX / REQUESTS_MAX_MINUTES)
 
-    def __init__(self, api_key: str, rate_window_minutes = 5, *args, **kwargs):
+    def __init__(self, api_key: str, rate_window_minutes: int = 5, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.headers.setdefault("API-KEY", api_key)
 

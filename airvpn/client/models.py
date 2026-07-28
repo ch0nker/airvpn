@@ -173,7 +173,6 @@ class ManifestUrl:
         self.address = kwargs.get("address")
 
     def __str__(self):
-        """Returns the bootstrap server's URL."""
         return self.address
 
 
@@ -290,7 +289,6 @@ class ManifestServer:
         return self.warning_closed is not None
 
     def __str__(self):
-        """Returns the server's public name."""
         return self.name
 
 
@@ -540,5 +538,4 @@ class Manifest:
         return Manifest.from_element(ElementTree.fromstring(xml))
 
     def __str__(self):
-        """Returns a short summary of the server count and generation time."""
         return f"Manifest({len(self.servers)} servers, generated at {self.time})"

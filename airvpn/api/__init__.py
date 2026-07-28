@@ -1,5 +1,8 @@
+"""Wrapper for AirVPN's [REST API](https://airvpn.org/apisettings/)"""
+
 from __future__ import annotations
 
+__title__ = "API"
 __all__ = ["AirVPN"]
 
 from airvpn.api.devices import Devices, Device
@@ -21,8 +24,6 @@ class AirVPN:
     sending notifications and disconnecting sessions.
 
     Attributes:
-        api_key: The API key used for authenticated requests, if provided.
-        session: The underlying AirSession used to make API requests.
         devices: The devices service, created and cached on first access.
         dns_lists: The DNS lists service, created and cached on first access.
         generator: The config generator service, created and cached on
@@ -47,7 +48,6 @@ class AirVPN:
     def __init__(self, api_key: str = None):
         from airvpn.api.network import AirSession
 
-        self.api_key = api_key
         self.session = AirSession(api_key)
 
         self._devices = None
@@ -58,7 +58,7 @@ class AirVPN:
         self._whatismyip = None
         self._notification = None
 
-    def get_service(self, service: str):
+    def get_service(self, service: str) -> Devices | DnsLists | Generator | Status | UserInfo | WhatIsMyIp | Notification:
         """Instantiate a named service class, enforcing its API key requirement.
 
         Args:
@@ -136,34 +136,11 @@ class AirVPN:
         if self._whatismyip is None:
             self._whatismyip = self.get_service("whatismyip")
         return self._whatismyip
-    
-    def send_notification(self, subject: str, body: str):
-        """Send a message to yourself.
-
-        Access type:
-            User-specific, API KEY required.
-
-        Args:
-            subject: The notification's subject line.
-            body: The notification's message content.
-
-        Raises:
-            APIKeyRequired: If you don't set your api_key.
-            APIError: If the API fails.
-            RateLimited: If too many requests go through.
-
-        """
-        from airvpn.api.notification import send_notification
-
-        if self.api_key is None:
-            raise APIKeyRequired("API key is required")
-
-        send_notification(self.session, subject, body)
 
     def disconnect(self,
                     server: Server | str = None,
                     device: Device = None,
-                    device_id: str = None):
+                    device_id: str = None) -> int:
         """Requests a disconnection. If none of the filter parameters is specified, disconnect all sessions of the user.
 
         Access type:
@@ -177,7 +154,7 @@ class AirVPN:
                 is provided.
 
         Returns:
-            The number of sessions that were disconnected.
+            Sessions disconnected.
 
         Raises:
             APIKeyRequired: If you don't set your api_key.
@@ -190,6 +167,6 @@ class AirVPN:
         if self.api_key is None:
             raise APIKeyRequired("API key is required")
 
-        disconnect(self.session, 
+        return disconnect(self.session, 
                    server_name=str(server),
                    device_id=device.id if device else device_id)

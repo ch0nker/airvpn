@@ -46,6 +46,9 @@ class StatusList(Generic[T]):
 class Status:
     """Represents the full VPN network status response.
 
+    Access type:
+        Public, no API KEY required
+
     Attributes:
         servers: List of individual VPN servers and their current status.
         routing: List of routing nodes and their current status.
@@ -53,9 +56,6 @@ class Status:
         continents: List of aggregate VPN status per continent.
         planets: List of aggregate VPN status globally (typically a single entry).
         deprecated_warning: A deprecated warning from the API.
-
-    Access type:
-        Public, no API KEY required.
     """
 
     __KEY_NEEDED__ = False
