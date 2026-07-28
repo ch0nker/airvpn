@@ -1,0 +1,53 @@
+site_name: Python AirVPN API
+site_description: Python wrapper for the AirVPN API
+site_url: https://airvpn.chonker.cc
+repo_url: https://github.com/ch0nker/airvpn
+
+theme:
+  name: material
+  features:
+    - content.code.copy
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+  hljs_languages:
+    - python
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - tables
+
+plugins:
+  - search
+  - gen-files:
+      scripts:
+        - scripts/gen_pages.py
+  - literate-nav:
+      nav_file: summary.md
+  - section-index
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            show_root_heading: false
+            show_source: false
+            annotations_path: brief
+            show_signature_annotations: true
+            inherited_members: true

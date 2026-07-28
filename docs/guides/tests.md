@@ -86,7 +86,7 @@ If you're testing from a fork, note that GitHub does not pass repository secrets
 
 Each file under `test/units/` is one unit. A unit registers one or more test functions with the `@test.unit` decorator. `test` is injected automatically by the runner — you don't need to import it.
 
-```py
+```python
 # test/units/userinfo.py
 import os
 
@@ -113,7 +113,7 @@ A test function passes if it returns normally (or returns anything that isn't a 
 
 In most cases you don't need a `try`/`except` in your own test — just let exceptions raise naturally and the runner will catch and report them with a full traceback. Only return a string explicitly if you want a custom, human-readable failure message instead of a raw traceback.
 
-```py
+```python
 @test.unit
 def check_user_present():
     if not userinfo.user:
@@ -124,7 +124,7 @@ def check_user_present():
 
 Since all test functions in a unit run inside the same module, ordinary module-level variables (like `userinfo` above) can be set in one test and read in another — `@test.unit` functions in the same file run top-to-bottom in the order they're defined.
 
-```py
+```python
 @test.unit
 def check_request():
     global userinfo
@@ -143,7 +143,7 @@ def check_login():
 
 Every unit automatically gets two extra functions injected alongside `print` — `print` itself is overridden with a timestamped, color-coded version, and `warn` is added for warning-level output. Neither needs to be imported; the runner injects them into your unit's module before it executes.
 
-```py
+```python
 print("Fetched userinfo successfully")
 warn("Rate limit is getting close")
 ```
@@ -162,6 +162,6 @@ Both accept the same signature as the built-in `print` (`sep`, `end`, `file`, `f
 1. Create a new file under `test/units/`, e.g. `test/units/devices.py`.
 2. Import whatever you need from `airvpn` and set up any module-level state.
 3. Register one or more functions with `@test.unit`.
-4. Run it directly to confirm it works: `python test.py devices`.
+4. Run it directly to confirm it works: `python test devices`.
 
 No registration elsewhere is required — `list_units()` automatically discovers every `.py` file in `test/units/`.

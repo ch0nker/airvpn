@@ -6,8 +6,8 @@ Thanks for your interest in contributing to AirVPN! To keep the library consiste
 
 Any new addition — a new method, service, or exception — needs to include:
 
-- **A test function.** New behavior should be covered by a corresponding test. See [tests/README.md](../tests/README.md) for how the test suite is structured and how to run it locally.
-- **Proper documentation.** Public methods, classes, and exceptions should have complete docstrings (see the existing services for the expected format: `Args`, `Returns`, and `Raises` sections where applicable), and any user-facing addition should be reflected in the relevant page under `docs/` (or a new page added to [api/README.md](api/README.md) if it introduces a new service).
+- **A test function.** New behavior should be covered by a corresponding test. See [tests](tests.md) for how the test suite is structured and how to run it locally.
+- **Proper documentation.** Public methods, classes, and exceptions should have complete docstrings (see the existing services for the expected format: `Args`, `Returns`, and `Raises` sections where applicable), and any user-facing addition should be reflected in the relevant page under `docs/` (or a new page added to [api](../airvpn/index.md) if it introduces a new service).
 
 Pull requests that add functionality without either of these will be asked for changes before merging.
 
@@ -15,13 +15,13 @@ Pull requests that add functionality without either of these will be asked for c
 
 1. Fork the repository and create a branch for your change.
 2. Make your changes, including a test function and documentation as described above.
-3. Run the test suite locally to confirm everything passes — see [tests/README.md](../tests/README.md) for instructions.
+3. Run the test suite locally to confirm everything passes — see [tests](tests.md) for instructions.
 4. Open a pull request describing what changed and why.
 
 ## Style
 
 - Follow the existing code style and docstring conventions already used throughout the codebase.
-- Keep exceptions consistent with the existing hierarchy (see [api/exceptions.md](api/exceptions.md)) — prefer raising a specific, well-documented exception over a generic one.
+- Keep exceptions consistent with the existing hierarchy (see [exceptions.md](../airvpn/exceptions.md)) — prefer raising a specific, well-documented exception over a generic one.
 - Prefer small, focused pull requests over large ones covering multiple unrelated changes.
 
 ## Naming conventions
