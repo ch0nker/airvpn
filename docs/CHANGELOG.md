@@ -1,7 +1,7 @@
 # Changelog
 
 ## 0.2.5
-- I'm so tired.
+- Read 0.2.0 for the actual changes these past 5 releases has been me shooting myself in the foot.
 
 ## 0.2.4
 - Forgot to update the version in the script.
