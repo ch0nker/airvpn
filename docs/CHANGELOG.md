@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.2.5
+- I'm so tired.
+
 ## 0.2.4
 - Forgot to update the version in the script.
 
