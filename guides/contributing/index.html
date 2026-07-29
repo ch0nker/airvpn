@@ -436,6 +436,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#documentation-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Documentation generation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#workflow" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1685,6 +1696,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#documentation-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Documentation generation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#workflow" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1743,9 +1765,18 @@
 <p>Any new addition — a new method, service, or exception — needs to include:</p>
 <ul>
 <li><strong>A test function.</strong> New behavior should be covered by a corresponding test. See <a href="../tests/">tests</a> for how the test suite is structured and how to run it locally.</li>
-<li><strong>Proper documentation.</strong> Public methods, classes, and exceptions should have complete docstrings (see the existing services for the expected format: <code>Args</code>, <code>Returns</code>, and <code>Raises</code> sections where applicable), and any user-facing addition should be reflected in the relevant page under <code>docs/</code> (or a new page added to <a href="../../airvpn/">api</a> if it introduces a new service).</li>
+<li><strong>Proper documentation.</strong> Public methods, classes, and exceptions should have complete docstrings (see the existing services for the expected format: <code>Args</code>, <code>Returns</code>, and <code>Raises</code> sections where applicable). You don't need to manually add a page under <code>docs/</code> for a new module or class — <code>gen_pages.py</code> walks the <code>airvpn</code> package on build and generates an <code>mkdocstrings</code> page for every submodule and package (via each <code>__init__.py</code>) automatically, mirroring the package's folder structure. As long as your addition lives inside the <code>airvpn</code> package and has a docstring, it'll show up in the nav on its own.</li>
 </ul>
 <p>Pull requests that add functionality without either of these will be asked for changes before merging.</p>
+<h2 id="documentation-generation">Documentation generation</h2>
+<p>A quick note on how the docs site is built, since it affects how your additions will appear:</p>
+<ul>
+<li>Every file and folder inside <code>airvpn/</code> gets its own generated page (<code>&lt;name&gt;.md</code>) titled after the module, with an <code>mkdocstrings</code> <code>module.path</code> directive pulling in your docstrings. Folders (packages) get an <code>index.md</code> generated from their <code>__init__.py</code>.</li>
+<li>The page title defaults to the module's name, snake_case-split into words and capitalized (e.g. <code>dns_lists</code> → "Dns lists"). If you want a specific display name instead, set <code>__title__ = "..."</code> in the module — the generator will use that if present. Note that <code>__title__</code> only affects the <strong>nav label and page heading</strong>; it doesn't change the <code>module.path</code> reference shown under the heading, so the module's actual dotted path is still visible on the page regardless.</li>
+<li>Guide pages under <code>docs/guides/</code> are picked up the same way and added under the "Guides" nav section, with <code>docs/guides/index.md</code> becoming the "Guides" landing page itself rather than a nested entry. Guide filenames also have underscores converted to spaces for the nav title (e.g. <code>getting_started.md</code> → "Getting started"), matching the module title behavior.</li>
+<li><strong>Module-level docstrings matter, not just class/method ones.</strong> Because each generated page uses <code>module.path</code> (an <code>mkdocstrings</code> directive that renders everything in that module), any docstring placed at the top of the file — before your imports/classes — will be rendered on the page too, typically as introductory text above the class/function documentation. If you're adding a new module, consider adding a short module docstring describing its purpose; it'll show up on the generated page for free and gives readers context before they hit the API reference.</li>
+</ul>
+<p>If you add a new top-level guide or module, you shouldn't need to touch <code>gen_pages.py</code> or <code>summary.md</code> at all — just make sure the file lands in the right place (<code>airvpn/</code> for code, <code>docs/guides/</code> for guides) with a proper docstring or content.</p>
 <h2 id="workflow">Workflow</h2>
 <ol>
 <li>Fork the repository and create a branch for your change.</li>
@@ -1770,7 +1801,7 @@
 <li>Specific exceptions end in <code>Error</code> and describe the failure, not the subsystem twice — <code>DeviceAPIError</code>, not <code>DeviceAPIException</code> (e.g. <code>DeviceAPIError</code>, <code>GeneratorResponseError</code>).</li>
 <li>Prefix specific exceptions with the subsystem they belong to, so it's clear which base exception they fall under at a glance.</li>
 <li><strong>Private/internal attributes and methods</strong> are prefixed with a single underscore (e.g. <code>_diff</code>, <code>_cache_devices</code>, <code>_create_config</code>), consistent with the rest of the codebase.</li>
-<li><strong>Files and modules</strong> use <code>snake_case</code> matching their primary export where practical (e.g. <code>models.py</code>, <code>exceptions.py</code>).</li>
+<li><strong>Files and modules</strong> use <code>snake_case</code> matching their primary export where practical (e.g. <code>models.py</code>, <code>exceptions.py</code>). Since module/page titles are auto-generated from the filename (see "Documentation generation" above), avoid overly abbreviated or ambiguous names — or set <code>__title__</code> if the auto-generated title wouldn't read well.</li>
 </ul>
 <p>If you're adding something that doesn't cleanly fit an existing pattern, match the convention of the nearest analogous class or exception rather than introducing a new one.</p>
 <p>If you're unsure whether a change fits the scope of the project, feel free to open an issue first to discuss it before submitting a pull request.</p>

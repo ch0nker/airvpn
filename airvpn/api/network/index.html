@@ -1232,6 +1232,28 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#airvpn.api.network.AirStatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AirStatus
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#airvpn.api.network.ServiceType" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ServiceType
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1709,6 +1731,28 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#airvpn.api.network.AirStatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AirStatus
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#airvpn.api.network.ServiceType" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ServiceType
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1986,6 +2030,243 @@ with a warning.</p>
     </div>
 
 </div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="airvpn.api.network.AirStatus" class="doc doc-heading">
+            <code>AirStatus</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="enum.StrEnum">StrEnum</span></code></p>
+
+
+
+        <p>Overall status reported by the AirVPN API/service.</p>
+
+
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="airvpn.api.network.AirStatus.OK">OK</span></code></td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Service is operating normally.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="airvpn.api.network.AirStatus.WARNING">WARNING</span></code></td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Service is operating but with a non-critical issue.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="airvpn.api.network.AirStatus.ERROR">ERROR</span></code></td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Service is experiencing a critical issue.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="airvpn.api.network.ServiceType" class="doc doc-heading">
+            <code>ServiceType</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="enum.StrEnum">StrEnum</span></code></p>
+
+
+
+        <p>Identifies an AirVPN API service endpoint.</p>
+<p>Each member's value corresponds to the path segment used to build the
+request URL in <code>AirSession.service_request()</code> (e.g. <code>DEVICES</code> maps to
+<code>https://airvpn.org/api/devices/</code>).</p>
+
+
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="airvpn.api.network.ServiceType.DEVICES">DEVICES</span></code></td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Manage or list the account's registered devices.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="airvpn.api.network.ServiceType.DNS_LISTS">DNS_LISTS</span></code></td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Retrieve available DNS list options.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="airvpn.api.network.ServiceType.GENERATOR">GENERATOR</span></code></td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Generate VPN configuration files/keys.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="airvpn.api.network.ServiceType.STATUS">STATUS</span></code></td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Retrieve current service/server status.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="airvpn.api.network.ServiceType.USERINFO">USERINFO</span></code></td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Retrieve information about the authenticated account.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="airvpn.api.network.ServiceType.WHATISMYIP">WHATISMYIP</span></code></td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Retrieve the caller's public IP address.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="airvpn.api.network.ServiceType.DISCONNECT">DISCONNECT</span></code></td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Disconnect an active VPN session/device.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="airvpn.api.network.ServiceType.NOTIFICATION">NOTIFICATION</span></code></td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Retrieve or manage account notifications.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
 
 
 

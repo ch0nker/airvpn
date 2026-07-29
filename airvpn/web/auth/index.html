@@ -1779,6 +1779,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#airvpn.web.auth.ProfilePrivacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ProfilePrivacy
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2628,7 +2639,7 @@ scraped from the edit form's textarea if not provided.</p>
                 <code>profile_privacy</code>
             </td>
             <td>
-                  <code><span title="airvpn.web.auth.models.ProfilePrivacy">ProfilePrivacy</span></code>
+                  <code><a class="autorefs autorefs-internal" title="ProfilePrivacy (airvpn.web.auth.models.ProfilePrivacy)" href="models/#airvpn.web.auth.models.ProfilePrivacy">ProfilePrivacy</a></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2910,6 +2921,111 @@ login attempt).</p>
     </div>
 
 </div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="airvpn.web.auth.ProfilePrivacy" class="doc doc-heading">
+            <code>ProfilePrivacy</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="enum.IntEnum">IntEnum</span></code></p>
+
+
+
+        <p>Controls who is allowed to view a user's profile.</p>
+<p>Used with <code>AuthUser.edit_profile</code> to set the
+<code>air_ipb_profile_privacy_title</code> field on the profile edit form.</p>
+
+
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="airvpn.web.auth.ProfilePrivacy.ALL">ALL</span></code></td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Profile is visible to everyone, including guests.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="airvpn.web.auth.ProfilePrivacy.FOLLOWED_MEMBERS">FOLLOWED_MEMBERS</span></code></td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Profile is visible only to members the user follows.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="airvpn.web.auth.ProfilePrivacy.COMMUNITY_MEMBERS">COMMUNITY_MEMBERS</span></code></td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Profile is visible only to registered/logged-in
+community members.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="airvpn.web.auth.ProfilePrivacy.PRIVATE">PRIVATE</span></code></td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Profile is visible only to the user themselves.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
 
 
 
