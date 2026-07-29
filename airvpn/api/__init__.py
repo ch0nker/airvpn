@@ -1,4 +1,4 @@
-"""Wrapper for AirVPN's [REST API](https://airvpn.org/apisettings/)"""
+"""An interface for AirVPN's [REST API](https://airvpn.org/apisettings/)"""
 
 from __future__ import annotations
 
