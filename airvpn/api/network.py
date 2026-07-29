@@ -10,11 +10,34 @@ import warnings
 import time
 
 class AirStatus(StrEnum):
+    """Overall status reported by the AirVPN API/service.
+
+    Attributes:
+        OK: Service is operating normally.
+        WARNING: Service is operating but with a non-critical issue.
+        ERROR: Service is experiencing a critical issue.
+    """
     OK = "ok"
     WARNING = "warning"
     ERROR = "error"
 
 class ServiceType(StrEnum):
+    """Identifies an AirVPN API service endpoint.
+
+    Each member's value corresponds to the path segment used to build the
+    request URL in `AirSession.service_request()` (e.g. `DEVICES` maps to
+    `https://airvpn.org/api/devices/`).
+
+    Attributes:
+        DEVICES: Manage or list the account's registered devices.
+        DNS_LISTS: Retrieve available DNS list options.
+        GENERATOR: Generate VPN configuration files/keys.
+        STATUS: Retrieve current service/server status.
+        USERINFO: Retrieve information about the authenticated account.
+        WHATISMYIP: Retrieve the caller's public IP address.
+        DISCONNECT: Disconnect an active VPN session/device.
+        NOTIFICATION: Retrieve or manage account notifications.
+    """
     DEVICES = "devices"
     DNS_LISTS = "dns_lists"
     GENERATOR = "generator"

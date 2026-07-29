@@ -1,5 +1,4 @@
 from airvpn.web import WebClient
-from airvpn.web.user import WebUser
 
 import os
 
@@ -17,8 +16,8 @@ def follow():
 
 @test.unit
 def unfollow():
-    user.unfollow(65)
+    assert user.unfollow(65), "Failed to unfollow"
 
 @test.unit
 def edit():
-    user.edit_profile(website="https://airvpn.chonker.cc")
+    assert user.edit_profile(website="https://airvpn.chonker.cc"), "Failed to edit profile"

@@ -8,7 +8,7 @@ nav["Introduction"] = "index.md"
 nav["Changelog"] = "changelog.md"
 
 for file in os.listdir("docs/guides"):
-    name = file.capitalize()[:-3]
+    name = file.capitalize()[:-3].replace("_", " ")
     path = "guides/" + file
 
     if file == "index.md":
