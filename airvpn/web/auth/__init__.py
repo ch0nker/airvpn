@@ -59,22 +59,6 @@ class AuthUser(WebUser):
         self.session = WebSession()
         self.login(username, password)
 
-    def _request(self,
-                method: str,
-                do: str,
-                controller: str,
-                app = "core",
-                module = "system",
-                ajax_params: dict = {},
-                **kwargs):
-        return self.session.session.request(method, f"{WebSession.__BASE_URL__}/index.php", **kwargs, params={
-                    "app": app,
-                    "module": module,
-                    "controller": controller,
-                    "do": do,
-                    **ajax_params
-                })
-
     def follow(self, id: int) -> bool:
         """Follow another member by ID.
 
@@ -84,7 +68,7 @@ class AuthUser(WebUser):
         Returns:
             bool: ``True`` if the request succeeded (HTTP 200 or 301), ``False`` otherwise.
         """
-        response = self._request("post", "follow", "notifications", ajax_params = {
+        response = self.session.ajax("post", "follow", "notifications", ajax_params = {
             "follow_app": "core",
             "follow_area": "member",
             "follow_id": id
@@ -205,6 +189,20 @@ class AuthUser(WebUser):
             )
         )
 
+        self.about.birthday = birthday
+        self.contacts.website = website
+        self.contacts.twitter = twitter
+        self.contacts.mastodon = mastodon
+        self.contacts.aim = aim
+        self.contacts.msn = msn
+        self.contacts.icq = icq
+        self.contacts.yahoo = yahoo
+        self.contacts.xmpp = xmpp
+        self.contacts.skype = skype
+        self.location = location
+        self.gender = gender
+        self.interests = interests
+
         return response.status_code == 200 or response.status_code == 301
         
     def unfollow(self, id: int) -> bool:
@@ -216,7 +214,7 @@ class AuthUser(WebUser):
         Returns:
             bool: ``True`` if the request succeeded (HTTP 200 or 301), ``False`` otherwise.
         """
-        response = self._request("get", "follow", "notifications", 
+        response = self.session.ajax("get", "follow", "notifications", 
                                 ajax_params={
                                     "follow_area": "member",
                                     "follow_id": id,
