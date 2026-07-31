@@ -93,7 +93,7 @@ class WebUser:
         """
         current = time.monotonic()
 
-        if current - self._cache_ts > WebUser.CACHE_MINUTES:
+        if current - self._cache_ts < WebUser.CACHE_MINUTES:
             return
 
         self._cache_ts = current
