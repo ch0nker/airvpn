@@ -83,10 +83,6 @@ class WebUser:
         Information" sections (rank details, birthday, gender, location,
         interests).
 
-        Sets ``self._cached`` to ``True`` once the request has been made, so
-        that subsequent property accesses do not trigger another network
-        request even if a given field turns out to be unavailable.
-
         Raises:
             TypeError: If a profile stat is encountered with an unrecognized
                 ``data-ui-type`` value.
@@ -98,7 +94,6 @@ class WebUser:
 
         self._cache_ts = current
         response = self._session.request("get", self.profile_url)
-        self._cached = True
 
         soup = BeautifulSoup(response.text, "html.parser")
 
