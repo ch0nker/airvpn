@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from airvpn.web.network import WebSession
-from airvpn.exceptions import LoginError, InvalidPort, APIError
+from airvpn.exceptions import LoginError, InvalidPort, APIError, InvalidAPIKey
 from airvpn.web.auth.models import *
 from airvpn.web.user import WebUser
 from datetime import datetime
@@ -11,7 +11,187 @@ import re
 import json
 import time
 
-class PortManager:
+class ClientService:
+    """Base class for AJAX-based clients against an AirVPN endpoint.
+
+    Provides shared CSRF-token handling and a generic AJAX request/edit
+    interface that endpoint-specific managers (like `PortManager` or
+    `APIManager`) can build on.
+
+    Attributes:
+        session (WebSession): The authenticated web session used for all
+            requests made by this service.
+        ecsrf (str | None): CSRF token scraped from the endpoint's page,
+            used to authorize AJAX requests. Lazily fetched on first use.
+        endpoint (str): URL of the AirVPN page this service issues AJAX
+            requests against.
+    """
+    def __init__(self, endpoint: str, session: WebSession):
+        self.session = session
+        self.ecsrf = None
+        self.endpoint = endpoint
+
+    def _get_ecsrf(self):
+            """Scrape and cache the CSRF token from the endpoint's page.
+
+            Does nothing if `ecsrf` has already been fetched. Loads the
+            endpoint page, extracts the embedded ``air_data`` JSON blob, and
+            stores its ``ecsrf`` value for use in subsequent AJAX requests.
+            """
+            if self.ecsrf is not None:
+                return
+    
+            response = self.session.request("get", self.endpoint)
+            soup = BeautifulSoup(response.text, "html.parser")
+    
+            data = soup.find("div", id="air_data")
+            json_data = json.loads(data.get("data-json"))
+    
+            self.ecsrf = json_data.get("ecsrf")
+
+    def request(self, action: str, **kwargs):
+        """Send an AJAX action request to the endpoint.
+
+        Automatically attaches the CSRF token (fetching it first if not
+        already known) and requests an AJAX-rendered response.
+
+        Args:
+            action: Name of the action to perform.
+            **kwargs: Additional form fields to send along with the request.
+
+        Returns:
+            The parsed JSON response from the server.
+
+        Raises:
+            APIError: If the response is a dict containing a non-``None``
+                ``"error"`` field.
+        """
+        self._get_ecsrf()
+
+        data = self.session.session.post(
+            self.endpoint,
+            data={
+                "action": action,
+                "ecsrf": self.ecsrf,
+                "render": "ajax",
+                **kwargs
+            }
+        ).json()
+
+        if isinstance(data, dict):
+            error = data.get("error")
+            if error is not None:
+                raise APIError(error)
+
+        return data
+
+    def edit_request(self, name, value, **kwargs):
+        """Send a generic ``edit_<name>`` action to the endpoint.
+
+        Convenience wrapper around `request` for the common pattern of
+        editing a single field by name.
+
+        Args:
+            name: Name of the field to edit; sent as the ``edit_{name}``
+                action.
+            value: New value to set for the field.
+            **kwargs: Additional form fields to send along with the request
+                (e.g. an ``id`` or ``port`` identifying the target record).
+
+        Returns:
+            The parsed JSON response from the server.
+
+        Raises:
+            APIError: If the response is a dict containing a non-``None``
+                ``"error"`` field.
+        """
+        return self.request(f"edit_{name}", value=value, **kwargs)
+
+class APIManager(ClientService):
+    """Manages the authenticated user's AirVPN API keys.
+
+    Wraps the AJAX endpoints behind ``https://airvpn.org/apisettings/`` to
+    list, add, rename, and delete API keys.
+
+    Attributes:
+        keys (list[APIKey]): All API keys currently owned by the user.
+    """
+
+    __URL__ = "https://airvpn.org/apisettings/"
+
+    def __init__(self, session: WebSession):
+        super().__init__(APIManager.__URL__, session)
+        self.keys: list[APIKey] = []
+        self._key_map = {}
+        self.update()
+
+    def update(self):
+        """Refresh `keys` from the server manifest.
+
+        Fetches the current manifest and repopulates `keys` and the
+        internal key lookup map from the response.
+        """
+        data = self.request("manifest")
+        self._key_map = {}
+        self.keys = []
+
+        for key in data.get("keys", []):
+            key = APIKey(**key)
+            self._key_map[key.id] = key
+            self.keys.append(key)
+
+    def add(self):
+        """Create a new API key.
+
+        The ``"add"`` action doesn't return the new key's data, so `update`
+        is called afterward to refresh `keys` with the newly created key.
+        """
+        self.request("add")
+        # the add request doesn't give any info on the new key
+        # so we'll need to run manifest again.
+        self.update()
+
+    def edit(self, key: APIKey | str, name: str):
+        """Rename an existing API key.
+
+        Args:
+            key: `APIKey` instance or key ID to edit.
+            name: New name to set for the key.
+
+        Raises:
+            InvalidAPIKey: If `key` is a string ID that doesn't match any
+                known key.
+        """
+        if isinstance(key, str):
+            _key = self._key_map.get(key)
+            if _key is None:
+                raise InvalidAPIKey(f"No key with the id of `{key}`")
+            key = _key
+
+        self.edit_request("name", name, id=key.id)
+
+    def delete(self, key: APIKey | str):
+        """Delete an existing API key.
+
+        Args:
+            key: `APIKey` instance or key ID to delete.
+
+        Raises:
+            InvalidAPIKey: If `key` is a string ID that doesn't match any
+                known key.
+        """
+        if isinstance(key, str):
+            _key = self._key_map.get(key)
+            if _key is None:
+                raise InvalidAPIKey(f"No key with the id of `{key}`")
+            key = _key
+
+        self.request("delete", id=key.id)
+
+        self.keys.remove(key)
+        del self._key_map[key.id]
+
+class PortManager(ClientService):
     """Manages the authenticated user's forwarded ports on AirVPN.
 
     Wraps the AJAX endpoints behind ``https://airvpn.org/ports/`` to list,
@@ -35,51 +215,13 @@ class PortManager:
     __URL__ = "https://airvpn.org/ports/"
 
     def __init__(self, session: WebSession):
-        self.session = session
-        self.ecsrf = None
+        super().__init__(PortManager.__URL__, session)
         self.pool = None
         self.ports: list[Port] = []
-        self.keys: list[Key] = []
+        self.keys: list[PortKey] = []
         self._port_map = {}
 
         self.update()
-
-    def request(self, action: str, **kwargs):
-        """Send an AJAX action request to the ports endpoint.
-
-        Automatically attaches the CSRF token (fetching it first if not
-        already known) and requests an AJAX-rendered response.
-
-        Args:
-            action: Name of the action to perform (e.g. ``"manifest"``,
-                ``"insert"``, ``"delete"``, ``"pending"``).
-            **kwargs: Additional form fields to send along with the request.
-
-        Returns:
-            The parsed JSON response from the server.
-
-        Raises:
-            APIError: If the response is a dict containing a non-``None``
-                ``"error"`` field.
-        """
-        self._get_ecsrf()
-
-        data = self.session.session.post(
-            PortManager.__URL__,
-            data={
-                "action": action,
-                "ecsrf": self.ecsrf,
-                "render": "ajax",
-                **kwargs
-            }
-        ).json()
-
-        if isinstance(data, dict):
-            error = data.get("error")
-            if error is not None:
-                raise APIError(error)
-
-        return data
 
     def update(self):
         """Refresh the manager's state from the server manifest.
@@ -98,19 +240,7 @@ class PortManager:
             self._port_map[port.port] = port
             self.ports.append(port)
     
-        self.keys = [Key(**key) for key in manifest.get("keys", [])]
-
-    def _get_ecsrf(self):
-        if self.ecsrf is not None:
-            return
-
-        response = self.session.request("get", PortManager.__URL__)
-        soup = BeautifulSoup(response.text, "html.parser")
-
-        data = soup.find("div", id="air_data")
-        json_data = json.loads(data.get("data-json"))
-
-        self.ecsrf = json_data.get("ecsrf")
+        self.keys = [PortKey(**key) for key in manifest.get("keys", [])]
 
     def poll_update(self):
         """Block until the server finishes applying a pending port change.
@@ -161,10 +291,9 @@ class PortManager:
             port = self[port_number]
 
         def edit_request(name, value):
-            self.request(f"edit_{name}",
-                         pool=port.pool,
-                         value=value,
-                         port=port_number)
+            self.edit_request(name, value,
+                pool=port.pool,
+                port=port_number)
 
         if device is not None:
             edit_request("device", device)
@@ -242,22 +371,22 @@ class PortManager:
         self.request("delete", port=port, pool=pool)
         self.poll_update()
 
-    def get_sessions(self, port: int | Port) -> list[Session]:
+    def get_sessions(self, port: int | Port) -> list[PortSession]:
         """Retrieve active sessions for a given port.
 
         Args:
             port: Port number or `Port` instance to query.
 
         Returns:
-            list[Session]: Active sessions currently using the port.
+            list[PortSession]: Active sessions currently using the port.
         """
         if isinstance(port, Port):
             port = port.port
 
         data = self.request("sessions", port=port, pool=self.pool)
-        return [Session(session) for session in data.get("items", [])]
+        return [PortSession(**session) for session in data.get("items", [])]
 
-    def test_open(self, port: int | Port):
+    def test_open(self, port: int | Port) -> list[str]:
         """Test which of a port's active TCP sessions are reachable.
 
         Fetches the sessions for `port` and, for each non-UDP session,
@@ -290,7 +419,7 @@ class PortManager:
 
         return result
 
-    def sequential_search(self, amount: int):
+    def sequential_search(self, amount: int) -> int:
         """Search for a run of consecutive free ports.
 
         Asks the server to find `amount` consecutive unused ports.
@@ -358,6 +487,7 @@ class AuthUser(WebUser):
     Attributes:
         session (WebSession): The authenticated web session used for all
             requests made by this user.
+        api (APIManager): Manager for the user's api keys.
         ports (PortManager): Manager for the user's forwarded ports.
         name (str): Display name of the user. Inherited from
             `WebUser`.
@@ -401,14 +531,35 @@ class AuthUser(WebUser):
         self.session = WebSession()
         self.login(username, password)
         self._ports = None
+        self._api = None
+        self._session_service = ClientService("https://airvpn.org/sessions/", self.session)
+
+    @property
+    def api(self):
+        """APIManager: Manager for the user's api keys"""
+        if self._api is None:
+            self._api = APIManager(self.session)
+
+        return self._api
 
     @property
     def ports(self):
-        "PortManager: Manager for the user's forwarded ports."
+        """PortManager: Manager for the user's forwarded ports."""
         if self._ports is None:
             self._ports = PortManager(self.session)
 
         return self._ports
+
+    def get_sessions(self) -> list[Session]:
+        """Retrieve the device's currently active VPN connection sessions.
+
+        Fetches the session manifest and parses each entry into a `Session`.
+
+        Returns:
+            list[Session]: Active VPN connection sessions for this device.
+        """
+        data = self._session_service.request("manifest")
+        return [Session(**session) for session in data.get("sessions", [])]
 
     def follow(self, id: int) -> bool:
         """Follow another member by ID.
