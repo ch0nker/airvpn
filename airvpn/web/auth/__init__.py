@@ -123,8 +123,11 @@ class PortManager:
         while self.request("pending") == "1":
             time.sleep(1)
 
-    def __getitem__(self, port: int | slice) -> None | Port | list[Port]:
+    def get(self, port: int):
         return self._port_map.get(port)
+
+    def __getitem__(self, port: int) -> None | Port:
+        return self.get(port)
 
     def edit(self, port: int | Port,
              device: str | None = None,
@@ -151,6 +154,7 @@ class PortManager:
                 ``"v4"``).
         """
         port_number = port
+
         if isinstance(port, Port):
             port_number = port.port
         else:
@@ -158,7 +162,7 @@ class PortManager:
 
         def edit_request(name, value):
             self.request(f"edit_{name}",
-                         pool=self.pool,
+                         pool=port.pool,
                          value=value,
                          port=port_number)
 
@@ -188,7 +192,7 @@ class PortManager:
 
         self.poll_update()
 
-    def open(self, port: int) -> Port:
+    def open(self, port: int | None = None) -> Port:
         """Open (forward) a new port.
 
         Args:
@@ -201,18 +205,19 @@ class PortManager:
         Raises:
             InvalidPort: If `port` is below 2048, or is already in use.
         """
-        if port < 2048:
+        if port is not None and port < 2048:
             raise InvalidPort("You can use only ports >=2048, lower ports are already reserved.")
 
         if self[port] is not None:
             raise InvalidPort(f"The port {port} is already in use.")
 
+        port = port or ""
         data = self.request("insert", port=port)
         self.poll_update()
 
         result = Port(**data)
         self.ports.append(result)
-        self._port_map[port] = result
+        self._port_map[result.port] = result
 
         return result
 
@@ -231,7 +236,7 @@ class PortManager:
             pool = port.pool
             port = port.port
 
-        if self[port] is None:
+        if self.get(port) is None:
             raise InvalidPort(f"Port {port} does not exist.")
 
         self.request("delete", port=port, pool=pool)
