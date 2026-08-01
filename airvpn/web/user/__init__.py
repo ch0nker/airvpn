@@ -21,6 +21,7 @@ class WebUser:
         profile_url (str): Full URL to the user's profile page.
         content_count (int | None): Number of content items (posts) the user
             has made. Lazily fetched via profile scrape if not supplied.
+        contacts (Contacts | None): The user's contact information.
         followers (int | None): Number of followers the user has. Lazily
             fetched via profile scrape if not supplied.
         community_reputation (int | None): The user's community reputation
@@ -201,6 +202,7 @@ class WebUser:
                 skype = get_group_value(contacts, "skype"))
 
     def update(self):
+            """Force update attributes."""
             self._cache_ts = 0
             self._cache_profile()
 
