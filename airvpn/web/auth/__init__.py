@@ -153,7 +153,8 @@ class PortManager:
         port_number = port
         if isinstance(port, Port):
             port_number = port.port
-            port = self[port]
+        else:
+            port = self[port_number]
 
         def edit_request(name, value):
             self.request(f"edit_{name}",
@@ -227,8 +228,8 @@ class PortManager:
         pool = self.pool
     
         if isinstance(port, Port):
-            port = port.port
             pool = port.pool
+            port = port.port
 
         if self[port] is None:
             raise InvalidPort(f"Port {port} does not exist.")
