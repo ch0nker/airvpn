@@ -290,6 +290,35 @@ class PortManager:
 
         return result
 
+    def sequential_search(self, amount: int):
+        """Search for a run of consecutive free ports.
+
+        Asks the server to find `amount` consecutive unused ports.
+
+        Args:
+            amount: Number of consecutive free ports to search for.
+
+        Returns:
+            The starting port number of the free run, or ``0`` if no such
+            run of free ports was found.
+        """
+        data = self.request("seq_search", n=amount)
+
+        return data.get("port")
+
+    def get_used_ports(self) -> list[int]:
+        """Retrieve the list of currently used ports in the primary pool.
+
+        Fetches usage data via the ``"graph"`` action and returns the ports
+        from the first pool in the response.
+
+        Returns:
+            list[int]: Port numbers currently in use in the primary pool, or
+                an empty list if the response contains no pool data.
+        """
+        data = self.request("graph")
+        return data.get("pools", [[]])[0]
+
     def check_propagation(self,
                       ddns_name: str,
                       services = ["airvpn", "dnsadvantage", "cloudflare", "google", "opendns"]):
