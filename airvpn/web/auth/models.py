@@ -2,14 +2,15 @@ from typing import TypedDict, Literal, Unpack
 from enum import IntEnum
 
 class Key:
-    """A key associated with the user's port pool.
+    """A device associated with the user's account.
 
     Represents an entry from the ``keys`` section of the `PortManager`
-    manifest.
+    manifest. Despite the name, these correspond to the user's devices
+    rather than cryptographic keys.
 
     Attributes:
-        name (str): Display name of the key.
-        id (str): Unique identifier of the key.
+        name (str): Display name of the device.
+        id (str): Unique identifier of the device.
     """
     def __init__(self, name: str, id: str):
         self.name = name
