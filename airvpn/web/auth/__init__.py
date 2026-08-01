@@ -1,11 +1,288 @@
+from __future__ import annotations
+
 from airvpn.web.network import WebSession
-from airvpn.exceptions import LoginError
+from airvpn.exceptions import LoginError, InvalidPort, APIError
 from airvpn.web.auth.models import *
 from airvpn.web.user import WebUser
 from datetime import datetime
 from bs4 import BeautifulSoup
 
 import re
+import json
+import time
+
+class PortManager:
+    """Manages the authenticated user's forwarded ports on AirVPN.
+
+    Wraps the AJAX endpoints behind ``https://airvpn.org/ports/`` to list,
+    open, close, and edit forwarded ports, as well as inspect active
+    sessions on a port. Any mutating action (`open`, `close`, `edit`)
+    triggers a poll loop afterward, since AirVPN applies these changes
+    asynchronously on the server side.
+
+    Attributes:
+        session (WebSession): The authenticated web session used for all
+            requests made by this manager.
+        ecsrf (str | None): CSRF token scraped from the ports page, used to
+            authorize AJAX requests. Lazily fetched on first use.
+        pool (str | None): Identifier of the port pool the user belongs to,
+            as reported by the manifest.
+        ports (list[Port]): All ports currently owned by the user.
+        keys (list[Key]): Keys associated with the user's ports, as reported
+            by the manifest.
+    """
+
+    __URL__ = "https://airvpn.org/ports/"
+
+    def __init__(self, session: WebSession):
+        self.session = session
+        self.ecsrf = None
+        self.pool = None
+        self.ports: list[Port] = []
+        self.keys: list[Key] = []
+        self._port_map = {}
+
+        self.update()
+
+    def request(self, action: str, **kwargs):
+        """Send an AJAX action request to the ports endpoint.
+
+        Automatically attaches the CSRF token (fetching it first if not
+        already known) and requests an AJAX-rendered response.
+
+        Args:
+            action: Name of the action to perform (e.g. ``"manifest"``,
+                ``"insert"``, ``"delete"``, ``"pending"``).
+            **kwargs: Additional form fields to send along with the request.
+
+        Returns:
+            The parsed JSON response from the server.
+
+        Raises:
+            APIError: If the response is a dict containing a non-``None``
+                ``"error"`` field.
+        """
+        self._get_ecsrf()
+
+        data = self.session.session.post(
+            PortManager.__URL__,
+            data={
+                "action": action,
+                "ecsrf": self.ecsrf,
+                "render": "ajax",
+                **kwargs
+            }
+        ).json()
+
+        if isinstance(data, dict):
+            error = data.get("error")
+            if error is not None:
+                raise APIError(error)
+
+        return data
+
+    def update(self):
+        """Refresh the manager's state from the server manifest.
+
+        Fetches the current manifest and repopulates `pool`, `ports`,
+        `keys`, and the internal port lookup map from the response.
+        """
+        self._get_ecsrf()
+        manifest = self.request("manifest")
+        self.pool = manifest.get("pool")
+
+        self.ports = []
+        self._port_map = {}
+        for port in manifest.get("ports", []):
+            port = Port(**port)
+            self._port_map[port.port] = port
+            self.ports.append(port)
+    
+        self.keys = [Key(**key) for key in manifest.get("keys", [])]
+
+    def _get_ecsrf(self):
+        if self.ecsrf is not None:
+            return
+
+        response = self.session.request("get", PortManager.__URL__)
+        soup = BeautifulSoup(response.text, "html.parser")
+
+        data = soup.find("div", id="air_data")
+        json_data = json.loads(data.get("data-json"))
+
+        self.ecsrf = json_data.get("ecsrf")
+
+    def poll_update(self):
+        """Block until the server finishes applying a pending port change.
+
+        Repeatedly queries the ``"pending"`` action, sleeping one second
+        between checks, until the server reports the change is no longer
+        pending. Used after actions like `open`, `close`, and `edit` that
+        are applied asynchronously.
+        """
+        while self.request("pending") == "1":
+            time.sleep(1)
+
+    def __getitem__(self, port: int | slice) -> None | Port | list[Port]:
+        return self._port_map.get(port)
+
+    def edit(self, port: int | Port,
+             device: str | None = None,
+             note: str | None = None,
+             protocol: Literal["both", "udp", "tcp"] | None = None,
+             localport: int | None = None,
+             ddns: str | None = None,
+             layer: Literal["both", "v6", "v4"] | None = None):
+        """Edit one or more attributes of an existing forwarded port.
+
+        Only fields that are not ``None`` are sent as edit requests. After
+        submitting the requested edits, blocks until the server finishes
+        applying them.
+
+        Args:
+            port: Port number or `Port` instance to edit.
+            device: New device name to associate with the port.
+            note: New note/description for the port.
+            protocol: New protocol restriction (``"both"``, ``"udp"``, or
+                ``"tcp"``).
+            localport: New local port to forward to.
+            ddns: New dynamic DNS hostname for the port.
+            layer: New IP layer restriction (``"both"``, ``"v6"``, or
+                ``"v4"``).
+        """
+        port_number = port
+        if isinstance(port, Port):
+            port_number = port.port
+            port = self[port]
+
+        def edit_request(name, value):
+            self.request(f"edit_{name}",
+                         pool=self.pool,
+                         value=value,
+                         port=port_number)
+
+        if device is not None:
+            edit_request("device", device)
+            port.device = device
+
+        if note is not None:
+            edit_request("note", note)
+            port.notes = note
+
+        if protocol is not None:
+            edit_request("protocol", protocol)
+            port.protocol = protocol
+
+        if localport is not None:
+            edit_request("localport", localport)
+            port.local = localport
+
+        if ddns is not None:
+            edit_request("ddns", ddns)
+            port.dns = ddns
+
+        if layer is not None:
+            edit_request("layer", layer)
+            port.iplayer = layer
+
+        self.poll_update()
+
+    def open(self, port: int) -> Port:
+        """Open (forward) a new port.
+
+        Args:
+            port: Port number to open. Must be ``>= 2048`` and not already
+                in use.
+
+        Returns:
+            Port: The newly created `Port` instance.
+
+        Raises:
+            InvalidPort: If `port` is below 2048, or is already in use.
+        """
+        if port < 2048:
+            raise InvalidPort("You can use only ports >=2048, lower ports are already reserved.")
+
+        if self[port] is not None:
+            raise InvalidPort(f"The port {port} is already in use.")
+
+        data = self.request("insert", port=port)
+        self.poll_update()
+
+        result = Port(**data)
+        self.ports.append(result)
+        self._port_map[port] = result
+
+        return result
+
+    def close(self, port: int | Port):
+        """Close (delete) an existing forwarded port.
+
+        Args:
+            port: Port number or `Port` instance to close.
+
+        Raises:
+            InvalidPort: If the given port does not exist.
+        """
+        pool = self.pool
+    
+        if isinstance(port, Port):
+            port = port.port
+            pool = port.pool
+
+        if self[port] is None:
+            raise InvalidPort(f"Port {port} does not exist.")
+
+        self.request("delete", port=port, pool=pool)
+        self.poll_update()
+
+    def get_sessions(self, port: int | Port) -> list[Session]:
+        """Retrieve active sessions for a given port.
+
+        Args:
+            port: Port number or `Port` instance to query.
+
+        Returns:
+            list[Session]: Active sessions currently using the port.
+        """
+        if isinstance(port, Port):
+            port = port.port
+
+        data = self.request("sessions", port=port, pool=self.pool)
+        return [Session(session) for session in data.get("items", [])]
+
+    def test_open(self, port: int | Port):
+        """Test which of a port's active TCP sessions are reachable.
+
+        Fetches the sessions for `port` and, for each non-UDP session,
+        issues a connectivity test against the session's server IP and
+        port.
+
+        Args:
+            port: Port number or `Port` instance to test.
+
+        Returns:
+            list[Session]: The sessions that passed the connectivity test.
+        """
+        sessions = self.get_sessions(port)
+        result = []
+
+        for session in sessions:
+            if session.protocol == "udp":
+                continue
+
+            data = self.request("test",
+                                ip=session.server_ip,
+                                port=session.port,
+                                pool=session.pool,
+                                protocol=session.protocol)
+
+            if data.get("type", "error") == "error":
+                continue
+
+            result.append(session)
+
+        return result
 
 class AuthUser(WebUser):
     """Represents the currently logged-in AirVPN user.
@@ -16,6 +293,7 @@ class AuthUser(WebUser):
     Attributes:
         session (WebSession): The authenticated web session used for all
             requests made by this user.
+        ports (PortManager): Manager for the user's forwarded ports.
         name (str): Display name of the user. Inherited from
             `WebUser`.
         id (int): Numeric user ID. Inherited from `WebUser`.
@@ -54,10 +332,18 @@ class AuthUser(WebUser):
             property from `WebUser`; lazily fetched via profile
             scrape if not already known.
     """
-
     def __init__(self, username: str, password: str):
         self.session = WebSession()
         self.login(username, password)
+        self._ports = None
+
+    @property
+    def ports(self):
+        "PortManager: Manager for the user's forwarded ports."
+        if self._ports is None:
+            self._ports = PortManager(self.session)
+
+        return self._ports
 
     def follow(self, id: int) -> bool:
         """Follow another member by ID.
@@ -189,19 +475,19 @@ class AuthUser(WebUser):
             )
         )
 
-        self.about.birthday = birthday
-        self.contacts.website = website
-        self.contacts.twitter = twitter
-        self.contacts.mastodon = mastodon
-        self.contacts.aim = aim
-        self.contacts.msn = msn
-        self.contacts.icq = icq
-        self.contacts.yahoo = yahoo
-        self.contacts.xmpp = xmpp
-        self.contacts.skype = skype
-        self.location = location
-        self.gender = gender
-        self.interests = interests
+        self._about.birthday = birthday
+        self._contacts.website = website
+        self._contacts.twitter = twitter
+        self._contacts.mastodon = mastodon
+        self._contacts.aim = aim
+        self._contacts.msn = msn
+        self._contacts.icq = icq
+        self._contacts.yahoo = yahoo
+        self._contacts.xmpp = xmpp
+        self._contacts.skype = skype
+        self._location = location
+        self._gender = gender
+        self._interests = interests
 
         return response.status_code == 200 or response.status_code == 301
         
@@ -229,6 +515,9 @@ class AuthUser(WebUser):
 
         response = self.session.session.get(following_member.get("href"))
         return response.status_code == 200 or response.status_code == 301
+
+    def get_notifications(self):
+        """https://airvpn.org/?app=core&module=system&controller=ajax&do=instantNotifications&csrfKey=3c66426ef527c9888e58507320ea156b&notifications=0&messages=0"""
         
     def login(self, username: str, password: str):
         """Log in to the AirVPN website and populate the base user fields.
