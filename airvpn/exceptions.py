@@ -144,3 +144,6 @@ class AESDecryptionError(ClientException):
 
 class InvalidPort(AirVPNException):
     """Raised when the port requested isn't available."""
+
+class InvalidAPIKey(AirVPNException):
+    """Raised when the API key specified doesn't exist"""
