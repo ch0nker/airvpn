@@ -97,7 +97,7 @@ class AirSession(Session):
             warnings.warn(f"rate_window_minutes={value} exceeds max of {AirSession.REQUESTS_MAX_MINUTES}; clamping")
             value = AirSession.REQUESTS_MAX_MINUTES
 
-        self._rate_window_minutes = value
+        self._rate_window_minutes = max(5, value)
     
     def _check_rate_limit(self):
         elapsed = time.monotonic() - self._request_start
