@@ -290,6 +290,36 @@ class PortManager:
 
         return result
 
+    def check_propagation(self,
+                      ddns_name: str,
+                      services = ["airvpn", "dnsadvantage", "cloudflare", "google", "opendns"]):
+        """Check which DNS services have propagated a dynamic DNS record.
+
+        Queries each service in `services` for the current IPv4/IPv6
+        resolution of `ddns_name`, and collects the names of services that
+        have already propagated the record (i.e. return a non-empty address).
+
+        Args:
+            ddns_name: The dynamic DNS hostname to check propagation for.
+            services: Names of DNS services to check. Defaults to
+                ``["airvpn", "dnsadvantage", "cloudflare", "google", "opendns"]``.
+
+        Returns:
+            list[str]: Names of the services that have propagated the record.
+        """
+        results = []
+        for service in services:
+            data = self.request("ddns_service",
+                                service=service,
+                                name=ddns_name)
+
+            if data.get("ipv4") == "" and data.get("ipv6") == "":
+                continue
+
+            results.append(service)
+
+        return results
+
 class AuthUser(WebUser):
     """Represents the currently logged-in AirVPN user.
 
