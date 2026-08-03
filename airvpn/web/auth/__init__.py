@@ -22,6 +22,9 @@ class AuthUser(WebUser):
             requests made by this user.
         api (APIManager): Manager for the user's api keys.
         ports (PortManager): Manager for the user's forwarded ports.
+        devices (DeviceManager): Manager for the user's devices.
+        sessions (SessionManager): Manager for the user's active sessions.
+        dns (DnsManager): Manager for the user's dns settings.
         name (str): Display name of the user. Inherited from
             `WebUser`.
         id (int): Numeric user ID. Inherited from `WebUser`.
@@ -67,7 +70,15 @@ class AuthUser(WebUser):
         self._api = None
         self._sessions = None
         self._devices = None
-        self._dns = DnsManager(self.session)
+        self._dns = None
+
+    @property
+    def dns(self):
+        """DnsManager: Manager for the user's dns settings"""
+        if self._dns is None:
+            self._dns = DnsManager(self.session)
+
+        return self._dns
 
     @property
     def api(self):
