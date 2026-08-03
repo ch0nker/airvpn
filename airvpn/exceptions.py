@@ -9,6 +9,7 @@ AirVPNException
 ├── InvalidMethod
 ├── RateLimited
 ├── InvalidPort
+├── ValidationError
 ├── DeviceException
 │   ├── DeviceOperationError
 │   └── DeviceValidationError
@@ -51,6 +52,9 @@ class APIKeyRequired(AirVPNException):
 
 class LoginError(AirVPNException):
     """Raised when authentication fails."""
+
+class ValidationError(AirVPNException):
+    """Raised when a validation check fails."""
 
 class InvalidService(AirVPNException):
     """Raised when an unrecognized or unsupported service is requested.
