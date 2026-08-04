@@ -1,4 +1,4 @@
-from airvpn.web import WebClient
+from airvpn import WebClient
 
 import os
 
@@ -12,11 +12,11 @@ def login():
 
 @test.unit
 def follow():
-    assert user.follow(65), "Failed to follow"
+    assert user.follow(842942), "Failed to follow"
 
 @test.unit
 def unfollow():
-    assert user.unfollow(65), "Failed to unfollow"
+    assert user.unfollow(842942), "Failed to unfollow"
 
 @test.unit
 def edit():
