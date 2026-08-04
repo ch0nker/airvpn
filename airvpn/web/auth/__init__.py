@@ -25,6 +25,7 @@ class AuthUser(WebUser):
         devices (DeviceManager): Manager for the user's devices.
         sessions (SessionManager): Manager for the user's active sessions.
         dns (DnsManager): Manager for the user's dns settings.
+        premium (bool): Flag for if the user has a current plan.
         name (str): Display name of the user. Inherited from
             `WebUser`.
         id (int): Numeric user ID. Inherited from `WebUser`.
@@ -65,6 +66,7 @@ class AuthUser(WebUser):
     """
     def __init__(self, username: str, password: str):
         self.session = WebSession()
+        self.premium = False
         self.login(username, password)
         self._ports = None
         self._api = None
@@ -284,7 +286,7 @@ class AuthUser(WebUser):
         return response.status_code == 200 or response.status_code == 301
 
     def get_notifications(self):
-        """https://airvpn.org/?app=core&module=system&controller=ajax&do=instantNotifications&csrfKey=3c66426ef527c9888e58507320ea156b&notifications=0&messages=0"""
+        """https://airvpn.org/?app=core&module=system&controller=ajax&do=instantNotifications&notifications=0&messages=0"""
         
     def login(self, username: str, password: str):
         """Log in to the AirVPN website and populate the base user fields.
@@ -330,6 +332,8 @@ class AuthUser(WebUser):
             raise LoginError("Failed to login.")
 
         soup = BeautifulSoup(response.text, "html.parser")
+
+        self.premium = soup.find("a", {"class": "tooltip-bottom", "data-tooltip": "Your current plan"}) is not None
 
         user_info = soup.find("li", id="cUserLink").find("a")
         profile_url = user_info.get("href")
