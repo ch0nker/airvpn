@@ -1,8 +1,29 @@
 from typing import TypedDict, Unpack, Literal
 from datetime import datetime, timezone
 
+from enum import StrEnum
+
+class AnswerType(StrEnum):
+    EXACT = "exact"
+    DOMAIN = "domain"
+    CONTAIN = "contain"
+    WILDCARD = "wildcard"
+    STARTS_WITH = "startswith"
+    ENDS_WITH = "endswith"
+
+class ActionType(StrEnum):
+    DENY = "deny"
+    ALLOW = "allow"
+    CUSTOM = "custom"
+
+class RecordType(StrEnum):
+    A = "A"
+    AAAA = "AAAA"
+    TXT = "TXT"
+    CNAME = "CNAME"
+
 class RecordDict(TypedDict):
-    type: Literal["A", "AAAA", "TXT", "CNAME"]
+    type: RecordType
     value: str
 
 class Record:
@@ -17,9 +38,9 @@ class Record:
         }
 
 class AnswerDict(TypedDict):
-    type: Literal["exact", "domain", "contain", "wildcard", "startswith", "endswith"]
+    type: AnswerType
     host: str
-    action: Literal["deny", "allow", "custom"]
+    action: ActionType
     records: list[RecordDict]
 
 class Answer:
