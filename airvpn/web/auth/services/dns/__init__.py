@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 
 import json
 
-from .models import Current, DnsList
+from .models import Current, DnsList, Answer, Record, AnswerType, ActionType, RecordType
 
 class DnsManager(ClientService):
     """Manages the authenticated user's custom DNS configuration.
@@ -84,6 +84,26 @@ class DnsManager(ClientService):
         """Toggle custom DNS on or off and save the change."""
         self.current.enabled = not self.current.enabled
         self.save()
+
+    def add_record(self, answer: Answer, type: RecordType, value: str) -> Record:
+        record = Record(type, value)
+        answer.records.append(record)
+
+        self.save()
+
+        return answer
+
+    def add_answer(self,
+                   host: str,
+                   type: AnswerType = AnswerType.EXACT, 
+                   action: ActionType = ActionType.DENY,
+                   records: list[Record] = []) -> Answer:
+        answer = Answer(type, host, action, records)
+
+        self.current.answers.append(answer)
+        self.save()
+
+        return answer
 
     def add_list(self, dns: DnsList | list[DnsList] | list[str] | str):
         """Add one or more DNS lists to the current configuration.
