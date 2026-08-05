@@ -67,12 +67,11 @@ class ClientService:
 
         if isinstance(data, dict):
             error = data.get("error")
-
-            if "Invalid CSRF Token" in error:
-                self.ecsrf = None
-                return self.request(action, **kwargs)
-
             if error is not None:
+                if "Invalid CSRF Token" in error:
+                    self.ecsrf = None
+                    return self.request(action, **kwargs)
+
                 raise APIError(error)
 
         return data
