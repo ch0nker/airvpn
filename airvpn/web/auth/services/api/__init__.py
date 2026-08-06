@@ -46,9 +46,9 @@ class APIManager(ClientService):
         data = None
 
         while check_callback(keys):
-            data = self.session.request("manifest")
+            data = self.request("manifest")
             keys = data.get("keys", [])
-            time.sleep(1)
+            time.sleep(7)
 
         self.update(data)
 
