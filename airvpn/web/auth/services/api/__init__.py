@@ -57,6 +57,9 @@ class APIManager(ClientService):
 
         The ``"add"`` action doesn't return the new key's data, so `update`
         is called afterward to refresh `keys` with the newly created key.
+
+        Returns:
+            APIKey: The most recently added api key.
         """
         self.request("add")
         self.poll_update(
