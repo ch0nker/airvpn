@@ -120,7 +120,7 @@ class DnsManager(ClientService):
                host: str,
                type: AnswerType = AnswerType.EXACT, 
                action: ActionType = ActionType.DENY,
-               records: list[Record] = []) -> Answer:
+               records: list[Record] | None = None) -> Answer:
         """Create a new answer rule and add it to the current configuration.
 
         Args:
@@ -135,7 +135,7 @@ class DnsManager(ClientService):
         Returns:
             The newly created `Answer`.
         """
-        answer = Answer(type, host, action, records)
+        answer = Answer(type, host, action, records or [])
 
         self.current.answers.append(answer)
         self.save()
