@@ -4,13 +4,14 @@ Python API for interacting with AirVPN.
 This module provides a set of Python interfaces for working with AirVPN's
 services, covering three main components:
 
-    - AirClient: A client for AirVPN's encrypted bootstrap API, used to
-      retrieve server and configuration data before authentication.
-    - AirAPI: A wrapper around AirVPN's official REST API
-      (https://airvpn.org/apisettings/), used for authenticated operations
-      such as managing devices and API keys.
-    - WebClient: A client that interacts directly with the AirVPN website,
-      handling tasks not exposed through the official API.
+- AirClient: A client for AirVPN's encrypted bootstrap API, used to
+retrieve server and configuration data before authentication.
+- AirAPI: A wrapper around AirVPN's official REST API
+(https://airvpn.org/apisettings/), used for authenticated operations
+such as managing devices and API keys.
+- WebClient: A client that interacts directly with the AirVPN website,
+handling tasks not exposed through the official API.
+
 """
 
 __title__ = "AirVPN"
@@ -56,19 +57,21 @@ class AirVPN:
         api (AirAPI): Authenticated client for AirVPN's official REST API.
 
     Example:
-        >>> # Log in immediately (website + REST API)
-        >>> vpn = AirVPN("myusername", "mypassword")
-        >>> vpn.client.api.keys
-        >>> vpn.api.devices
+        ```python
+         # Log in immediately (website + REST API)
+         vpn = AirVPN("myusername", "mypassword")
+         vpn.client.api.keys
+         vpn.api.devices
 
-        >>> # REST API access only, no website login
-        >>> vpn = AirVPN(api_key="mysecret")
-        >>> vpn.api.devices.get("my-device")
+         # REST API access only, no website login
+         vpn = AirVPN(api_key="mysecret")
+         vpn.api.devices.get("my-device")
 
-        >>> # Defer login
-        >>> vpn = AirVPN()
-        >>> vpn.login("myusername", "mypassword")
-        >>> vpn.client.api.keys
+         # Defer login
+         vpn = AirVPN()
+         vpn.login("myusername", "mypassword")
+         vpn.client.api.keys
+        ```
     """
 
     def __init__(self, username: str = None, password: str = None, api_key: str = None):
