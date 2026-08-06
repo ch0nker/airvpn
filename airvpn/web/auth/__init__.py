@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from airvpn.web.auth.services import PortManager, APIManager, SessionManager, DeviceManager, DnsManager
-from airvpn.web.auth.models import ProfilePrivacy
+from airvpn.web.auth.models import ProfilePrivacy, Notification, Message
 from airvpn.web.network import WebSession
 from airvpn.exceptions import LoginError
 from airvpn.web.user import WebUser
@@ -285,9 +285,53 @@ class AuthUser(WebUser):
         response = self.session.session.get(following_member.get("href"))
         return response.status_code == 200 or response.status_code == 301
 
-    def get_notifications(self):
-        """https://airvpn.org/?app=core&module=system&controller=ajax&do=instantNotifications&notifications=0&messages=0"""
-        
+    def get_unread_notifications(self) -> tuple[list[Notification], list[Message]]:
+        """
+        Retrieves a list of unread notifications and messages for the authenticated user.
+
+        Returns:
+            tuple[list[Notification], list[Message]]: A tuple containing two lists:
+                - A list of `Notification` objects representing unread notifications.
+                - A list of `Message` objects representing unread messages.
+        """
+        data = self.session.ajax("get", "instantNotifications", "ajax", url="", ajax_params={
+            "notifications": 0,
+            "messages": 0
+        }).json()
+
+        notifications = data.get("notifications", {}).get("data", [])
+        messages = data.get("messages", {}).get("data", [])
+
+        return (
+            [Notification(**notification) for notification in notifications],
+            [Message(**message) for message in messages]
+        )
+
+    def send_message(self, username: str, subject: str, body: str) -> bool:
+        """
+        Sends a message to another user on the AirVPN platform.
+
+        Args:
+            username (str): The username of the recipient.
+            subject (str): The subject of the message.
+            body (str): The body content of the message.
+
+        Returns:
+            bool: A boolean indicating whether the message was successfully sent.
+        """
+        response = self.session.request("post", "https://airvpn.org/messenger/compose/", headers={
+                "Content-Type": "application/x-www-form-urlencoded"
+            }, data = {
+                "csrfKey": self.session.csrf,
+                "form_submitted": 1,
+                "messenger_to_original": "",
+                "messenger_to": username,
+                "messenger_title": subject,
+                "messenger_content": body
+        })
+
+        return response.status_code == 200 or response.status_code == 301
+
     def login(self, username: str, password: str):
         """Log in to the AirVPN website and populate the base user fields.
 
