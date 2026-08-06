@@ -24,25 +24,25 @@ class DeviceManager(ClientService):
     def __init__(self, session: WebSession):
         super().__init__(DeviceManager.__URL__, session)
         self.total_deprecated = 0
-        self.devices: list[DeviceKey] = []
+        self.items: list[DeviceKey] = []
         self._device_map = {}
         self.update()
 
-    def update(self, data):
+    def update(self, data = None):
         """Refresh `devices` and `total_deprecated` from the server.
 
         Args:
             data: Pre-fetched manifest data to use instead of making a new
                 request. If falsy, the manifest is fetched from the server.
         """
-        data = data or self.request("manifest")
+        data = data if data is not None else self.request("manifest")
         self.total_deprecated = data.get("total_deprecated")
 
-        self.devices = []
+        self.items = []
         self._device_map = {}
         for key in data.get("keys", []):
             key = DeviceKey(**key)
-            self.devices.append(key)
+            self.items.append(key)
             self._device_map[key.id] = key
 
     def poll_update(self, check_callback: Callable[[list[DeviceKeyDict]], bool]):
@@ -60,9 +60,9 @@ class DeviceManager(ClientService):
         data = None
 
         while check_callback(keys):
-            data = self.session.request("manifest")
+            data = self.request("manifest")
             keys = data.get("keys", [])
-            time.sleep(1)
+            time.sleep(7)
 
         self.update(data)
 
@@ -115,12 +115,25 @@ class DeviceManager(ClientService):
             self.edit_request("description", description, id=device.id)
             device.description = description
 
-    def add(self):
-        """Register a new device and refresh `devices` once it appears."""
+    def add(self) -> DeviceKey:
+        """Register a new device and refresh `devices` once it appears.
+        
+        Returns:
+            DeviceKey: The newly added device.
+        """
         self.request("add")
-        self.poll_update(
-            lambda keys : len(keys) - len(self.keys) < 0
-        )
+
+        def check(devices):
+            size = len(devices)
+
+            if size <= 0:
+                return True
+
+            return devices[size - 1].get("id") == self.items[len(self.items) - 1].id
+
+        self.poll_update(check)
+
+        return self.items[len(self.items) - 1]
 
     def renew(self, device: DeviceKey | str):
         """Renew an existing device.
@@ -141,5 +154,5 @@ class DeviceManager(ClientService):
 
         self.request("delete", id=device.id)
 
-        self.devices.remove(device)
+        self.items.remove(device)
         del self._device_map[device.id]
