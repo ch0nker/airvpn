@@ -60,15 +60,8 @@ class PortManager(ClientService):
         self.keys = [DeviceKey(**key) for key in manifest.get("keys", [])]
 
     def poll_update(self):
-        """Block until the server finishes applying a pending port change.
-
-        Repeatedly queries the ``"pending"`` action, sleeping one second
-        between checks, until the server reports the change is no longer
-        pending. Used after actions like `open`, `close`, and `edit` that
-        are applied asynchronously.
-        """
         while self.request("pending") == "1":
-            time.sleep(1)
+            time.sleep(3)
 
     def get(self, port: int):
         return self._port_map.get(port)
