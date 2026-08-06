@@ -25,7 +25,7 @@ class DnsManager(ClientService):
         super().__init__(DnsManager.__URL__, session)
         self.lists: list[DnsList] = []
         self._lists_map = {}
-        self.current = Current([], False)
+        self.current = Current(lists=[], custom=False, answers=[], hole="default", routingtable="default", useapplicationdnsdotnet="default")
         self.device = device
         self.update()
 
@@ -47,6 +47,9 @@ class DnsManager(ClientService):
         self.current.enabled = current.get("custom")
         self.current.lists = current.get("lists")
         self.device = data.get("device")
+        self.current.hole = current.get("hole")
+        self.current.use_application_dns_dot_net = current.get("useapplicationdnsdotnet")
+        self.current.routing_table = current.get("routingtable")
 
         self.lists = []
         self._lists_map = {}
@@ -78,7 +81,7 @@ class DnsManager(ClientService):
 
     def save(self):
         """Persist the current DNS configuration to the server."""
-        self.request("save", data=json.dumps(self.current.to_json()))
+        self.request("save", is_act=True, data=json.dumps(self.current.to_json()))
 
     def toggle(self):
         """Toggle custom DNS on or off and save the change."""
@@ -96,12 +99,12 @@ class DnsManager(ClientService):
         Returns:
             The `Answer` the record was added to.
         """
-        record = Record(type, value)
+        record = Record(type=type, value=value)
         answer.records.append(record)
 
         self.save()
 
-        return answer
+        return record
 
     def remove_record(self, answer: Answer, record: Record):
         """Remove a record from an answer's record list and save the change.
@@ -135,7 +138,7 @@ class DnsManager(ClientService):
         Returns:
             The newly created `Answer`.
         """
-        answer = Answer(type, host, action, records or [])
+        answer = Answer(type=type, host=host, action=action, records=records or [])
 
         self.current.answers.append(answer)
         self.save()
