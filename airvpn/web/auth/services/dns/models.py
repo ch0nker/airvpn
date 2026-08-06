@@ -54,7 +54,7 @@ class Answer:
         return {
             "type": self.type,
             "host": self.host,
-            "aciton": self.action,
+            "action": self.action,
             "records": [record.to_json() for record in self.records]
         }
 
