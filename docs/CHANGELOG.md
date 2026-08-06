@@ -1,6 +1,7 @@
 # Changelog
 
 ## 0.2.6
+- Replace the `AirVPN` class with a global interface for easier interaction with the other interfaces.
 - Add session management through the `SessionManager` class which can be accessed via `AuthUser.sessions`.
 - Add devices management through the `DeviceManager` class which can be accesed via `AuthUser.devices`.
 - Add dns management through the `DnsManager` class which can be accessed via `AuthUser.dns`
