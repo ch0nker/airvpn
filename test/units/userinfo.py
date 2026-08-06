@@ -2,14 +2,14 @@ import os
 
 from airvpn import AirVPN
 
-api = AirVPN(os.getenv("API_KEY"))
+api = AirVPN(api_key=os.getenv("API_KEY"))
 userinfo = None
 
 @test.unit
 def check_request():
     print("Caching service.")
     global userinfo
-    userinfo = api.userinfo
+    userinfo = api.api.userinfo
 
 @test.unit
 def check_user_present():

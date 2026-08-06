@@ -1,9 +1,9 @@
-"""Wrapper for AirVPN's [REST API](https://airvpn.org/apisettings/)"""
+"""An interface for AirVPN's [REST API](https://airvpn.org/apisettings/)"""
 
 from __future__ import annotations
 
 __title__ = "API"
-__all__ = ["AirVPN"]
+__all__ = ["AirAPI"]
 
 from airvpn.api.devices import Devices, Device
 from airvpn.api.dns_lists import DnsLists
@@ -15,7 +15,7 @@ from airvpn.api.notification import Notification
 
 from airvpn.exceptions import APIKeyRequired, InvalidService
 
-class AirVPN:
+class AirAPI:
     """Main entry point for interacting with the AirVPN API.
 
     Provides access to all available services (devices, DNS lists, config
@@ -76,7 +76,7 @@ class AirVPN:
             APIKeyRequired: If the service requires an API key and none was provided.
         """
 
-        service_class = AirVPN.__service_classes__.get(service.lower())
+        service_class = AirAPI.__service_classes__.get(service.lower())
         if service_class is None:
             raise InvalidService(f"Service \"{service}\" doesn't exist")
 

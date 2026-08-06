@@ -8,6 +8,8 @@ AirVPNException
 ├── APIError
 ├── InvalidMethod
 ├── RateLimited
+├── InvalidPort
+├── ValidationError
 ├── DeviceException
 │   ├── DeviceOperationError
 │   └── DeviceValidationError
@@ -51,6 +53,9 @@ class APIKeyRequired(AirVPNException):
 class LoginError(AirVPNException):
     """Raised when authentication fails."""
 
+class ValidationError(AirVPNException):
+    """Raised when a validation check fails."""
+
 class InvalidService(AirVPNException):
     """Raised when an unrecognized or unsupported service is requested.
 
@@ -65,11 +70,10 @@ class InvalidMethod(AirVPNException):
     """Raised when an invalid method type is requested."""
 
 class RateLimited(AirVPNException):
-    """Raised when the rate limit of `rate_window_minutes * AirSession.REQUESTS_PER_MIN` is hit.
+    """Raised when the rate limit of `min(rate_window_minutes, 10) * AirSession.REQUESTS_PER_MIN` is hit.
 
     This is based off of the documentation in the FAQ (https://airvpn.org/faq/api/),
-    which states you can only make 600 requests every 10 minutes
-    or you will be IP banned.
+    which states you can only make 600 requests every 10 minutes or you will be IP banned.
     """
 
 class DeviceException(AirVPNException):
@@ -141,3 +145,9 @@ class AESEncryptionError(ClientException):
 
 class AESDecryptionError(ClientException):
     """Raised when AES decryption fails."""
+
+class InvalidPort(AirVPNException):
+    """Raised when the port requested isn't available."""
+
+class InvalidAPIKey(AirVPNException):
+    """Raised when the API key specified doesn't exist"""

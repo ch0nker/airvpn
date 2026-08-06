@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 from typing import Unpack
 
 import re
+import time
 
 class WebUser:
     """Represents an AirVPN forum member's public profile.
@@ -20,6 +21,7 @@ class WebUser:
         profile_url (str): Full URL to the user's profile page.
         content_count (int | None): Number of content items (posts) the user
             has made. Lazily fetched via profile scrape if not supplied.
+        contacts (Contacts | None): The user's contact information.
         followers (int | None): Number of followers the user has. Lazily
             fetched via profile scrape if not supplied.
         community_reputation (int | None): The user's community reputation
@@ -49,6 +51,8 @@ class WebUser:
         own docstring below for details.
     """
 
+    CACHE_MINUTES = 5 * 60
+
     def __init__(self, session: WebSession, **kwargs: Unpack[WebUserDict]):
         self._session = session
         self.name = kwargs.get("name")
@@ -68,7 +72,7 @@ class WebUser:
         self._interests = kwargs.get("interests")
         self._contacts = kwargs.get("contacts")
 
-        self._cached = False
+        self._cache_ts = 0
 
     def _cache_profile(self):
         """Fetch and parse the user's profile page, populating all lazily
@@ -80,16 +84,17 @@ class WebUser:
         Information" sections (rank details, birthday, gender, location,
         interests).
 
-        Sets ``self._cached`` to ``True`` once the request has been made, so
-        that subsequent property accesses do not trigger another network
-        request even if a given field turns out to be unavailable.
-
         Raises:
             TypeError: If a profile stat is encountered with an unrecognized
                 ``data-ui-type`` value.
         """
+        current = time.monotonic()
+
+        if current - self._cache_ts < WebUser.CACHE_MINUTES:
+            return
+
+        self._cache_ts = current
         response = self._session.request("get", self.profile_url)
-        self._cached = True
 
         soup = BeautifulSoup(response.text, "html.parser")
 
@@ -196,112 +201,86 @@ class WebUser:
                 xmpp = get_group_value(contacts, "XMPP / Jabber"),
                 skype = get_group_value(contacts, "skype"))
 
+    def update(self):
+            """Force update attributes."""
+            self._cache_ts = 0
+            self._cache_profile()
+
     @property
     def contacts(self):
         """Contacts | None: The user's contact methods."""
-        if self._contacts is None and not self._cached:
-            self._cache_profile()
+        self._cache_profile()
 
         return self._contacts
 
     @property
     def content_count(self):
-        """int | None: Number of content items (posts) the user has made.
-        Triggers a profile fetch on first access if not already known.
-        """
-        if self._content_count is None and not self._cached:
-            self._cache_profile()
+        """int | None: Number of content items (posts) the user has made."""
+        self._cache_profile()
 
         return self._content_count
 
     @property
     def followers(self):
-        """int | None: Number of followers the user has. Triggers a profile
-        fetch on first access if not already known.
-        """
-        if self._followers is None and not self._cached:
-            self._cache_profile()
+        """int | None: Number of followers the user has."""
+        self._cache_profile()
 
         return self._followers
 
     @property
     def community_reputation(self):
-        """int | None: The user's community reputation score. Triggers a
-        profile fetch on first access if not already known.
-        """
-        if self._community_reputation is None and not self._cached:
-            self._cache_profile()
+        """int | None: The user's community reputation score. """
+        self._cache_profile()
 
         return self._community_reputation
 
     @property
     def rank(self):
         """str | None: Display name of the user's rank, as shown in the
-        profile header. Triggers a profile fetch on first access if not
-        already known.
-        """
-        if self._rank is None and not self._cached:
-            self._cache_profile()
+        profile header."""
+        self._cache_profile()
     
         return self._rank
 
     @property
     def joined(self):
-        """datetime | None: Date and time the user joined. Triggers a
-        profile fetch on first access if not already known.
-        """
-        if self._joined is None and not self._cached:
-            self._cache_profile()
+        """datetime | None: Date and time the user joined. """
+        self._cache_profile()
     
         return self._joined
 
     @property
     def last_visited(self):
-        """datetime | None: Date and time of the user's last visit. Triggers
-        a profile fetch on first access if not already known.
-        """
-        if self._last_visited is None and not self._cached:
-            self._cache_profile()
+        """datetime | None: Date and time of the user's last visit."""
+        self._cache_profile()
     
         return self._last_visited
 
     @property
     def about(self):
         """About | None: The user's "About" information, including detailed
-        rank data and birthday. Triggers a profile fetch on first access if
-        not already known.
-        """
-        if self._about is None and not self._cached:
-            self._cache_profile()
+        rank data and birthday."""
+        self._cache_profile()
     
         return self._about
 
     @property
     def gender(self):
-        """str | None: The user's disclosed gender. Triggers a profile fetch
-        on first access if not already known.
-        """
-        if self._gender is None and not self._cached:
-            self._cache_profile()
+        """str | None: The user's disclosed gender."""
+        self._cache_profile()
     
         return self._gender
 
     @property
     def location(self):
-        """str | None: The user's disclosed location. Triggers a profile
-        fetch on first access if not already known.
-        """
-        if self._location is None and not self._cached:
-            self._cache_profile()
+        """str | None: The user's disclosed location."""
+        self._cache_profile()
     
         return self._location
 
     @property
     def interests(self):
-        """str | None: The user's disclosed interests. Triggers a profile
-        fetch on first access if not already known.
-        """
-        if self._interests is None and not self._cached:
-            self._cache_profile()
+        """str | None: The user's disclosed interests."""
+        self._cache_profile()
     
         return self._interests

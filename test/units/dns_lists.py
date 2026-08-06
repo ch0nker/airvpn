@@ -6,7 +6,7 @@ dns_lists = None
 @test.unit
 def check_service():
     global dns_lists
-    dns_lists = api.dns_lists
+    dns_lists = api.api.dns_lists
 
 @test.unit
 def check_lists():

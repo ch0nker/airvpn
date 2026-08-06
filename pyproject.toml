@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "airvpn"
-version = "0.2.5"
+version = "0.2.6"
 authors = [
     { name = "chonker" }
 ]
@@ -23,10 +23,10 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://airvpn.chonker.cc/"
+Homepage = "https://ch0nker.github.io/airvpn"
 Repository = "https://github.com/ch0nker/airvpn.git"
-Changelog = "https://airvpn.chonker.cc/changelog/"
-Documentation = "https://airvpn.chonker.cc/airvpn/"
+Changelog = "https://ch0nker.github.io/airvpn/changelog/"
+Documentation = "https://ch0nker.github.io/airvpn/airvpn/"
 
 [tool.setuptools.dynamic]
 dependencies = { file = ["requirements.txt"] }

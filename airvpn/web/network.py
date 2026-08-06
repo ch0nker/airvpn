@@ -98,3 +98,20 @@ class WebSession:
         final_url = f"{WebSession.__BASE_URL__}{redirect_path}"
 
         return self.session.request(method, final_url, **kwargs)
+
+    def ajax(self,
+            method: str,
+            do: str,
+            controller: str,
+            url = "index.php",
+            app = "core",
+            module = "system",
+            ajax_params: dict = {},
+            **kwargs):
+        return self.session.request(method, f"{WebSession.__BASE_URL__}/{url}", **kwargs, params={
+                    "app": app,
+                    "module": module,
+                    "controller": controller,
+                    "do": do,
+                    **ajax_params
+                })

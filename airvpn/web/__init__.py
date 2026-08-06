@@ -1,3 +1,5 @@
+"""An interface for interacting with the website."""
+
 from airvpn.web.auth import AuthUser
 
 __title__ = "WebClient"

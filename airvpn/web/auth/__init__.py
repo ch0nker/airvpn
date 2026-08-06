@@ -1,7 +1,11 @@
+from __future__ import annotations
+
+from airvpn.web.auth.services import PortManager, APIManager, SessionManager, DeviceManager, DnsManager
+from airvpn.web.auth.models import ProfilePrivacy, Notification, Message
 from airvpn.web.network import WebSession
 from airvpn.exceptions import LoginError
-from airvpn.web.auth.models import *
 from airvpn.web.user import WebUser
+
 from datetime import datetime
 from bs4 import BeautifulSoup
 
@@ -16,6 +20,12 @@ class AuthUser(WebUser):
     Attributes:
         session (WebSession): The authenticated web session used for all
             requests made by this user.
+        api (APIManager): Manager for the user's api keys.
+        ports (PortManager): Manager for the user's forwarded ports.
+        devices (DeviceManager): Manager for the user's devices.
+        sessions (SessionManager): Manager for the user's active sessions.
+        dns (DnsManager): Manager for the user's dns settings.
+        premium (bool): Flag for if the user has a current plan.
         name (str): Display name of the user. Inherited from
             `WebUser`.
         id (int): Numeric user ID. Inherited from `WebUser`.
@@ -54,26 +64,55 @@ class AuthUser(WebUser):
             property from `WebUser`; lazily fetched via profile
             scrape if not already known.
     """
-
     def __init__(self, username: str, password: str):
         self.session = WebSession()
+        self.premium = False
         self.login(username, password)
+        self._ports = None
+        self._api = None
+        self._sessions = None
+        self._devices = None
+        self._dns = None
 
-    def _request(self,
-                method: str,
-                do: str,
-                controller: str,
-                app = "core",
-                module = "system",
-                ajax_params: dict = {},
-                **kwargs):
-        return self.session.session.request(method, f"{WebSession.__BASE_URL__}/index.php", **kwargs, params={
-                    "app": app,
-                    "module": module,
-                    "controller": controller,
-                    "do": do,
-                    **ajax_params
-                })
+    @property
+    def dns(self):
+        """DnsManager: Manager for the user's dns settings"""
+        if self._dns is None:
+            self._dns = DnsManager(self.session)
+
+        return self._dns
+
+    @property
+    def api(self):
+        """APIManager: Manager for the user's api keys"""
+        if self._api is None:
+            self._api = APIManager(self.session)
+
+        return self._api
+
+    @property
+    def ports(self):
+        """PortManager: Manager for the user's forwarded ports."""
+        if self._ports is None:
+            self._ports = PortManager(self.session)
+
+        return self._ports
+
+    @property
+    def sessions(self):
+        """SessionManager: Manager for the user's sessions."""
+        if self._sessions is None:
+            self._sessions = SessionManager(self.session)
+
+        return self._sessions
+
+    @property
+    def devices(self):
+        """DeviceManager: Manager for the user's devices"""
+        if self._devices is None:
+            self._devices = DeviceManager(self.session)
+
+        return self._devices
 
     def follow(self, id: int) -> bool:
         """Follow another member by ID.
@@ -84,7 +123,7 @@ class AuthUser(WebUser):
         Returns:
             bool: ``True`` if the request succeeded (HTTP 200 or 301), ``False`` otherwise.
         """
-        response = self._request("post", "follow", "notifications", ajax_params = {
+        response = self.session.ajax("post", "follow", "notifications", ajax_params = {
             "follow_app": "core",
             "follow_area": "member",
             "follow_id": id
@@ -205,6 +244,20 @@ class AuthUser(WebUser):
             )
         )
 
+        self._about.birthday = birthday
+        self._contacts.website = website
+        self._contacts.twitter = twitter
+        self._contacts.mastodon = mastodon
+        self._contacts.aim = aim
+        self._contacts.msn = msn
+        self._contacts.icq = icq
+        self._contacts.yahoo = yahoo
+        self._contacts.xmpp = xmpp
+        self._contacts.skype = skype
+        self._location = location
+        self._gender = gender
+        self._interests = interests
+
         return response.status_code == 200 or response.status_code == 301
         
     def unfollow(self, id: int) -> bool:
@@ -216,7 +269,7 @@ class AuthUser(WebUser):
         Returns:
             bool: ``True`` if the request succeeded (HTTP 200 or 301), ``False`` otherwise.
         """
-        response = self._request("get", "follow", "notifications", 
+        response = self.session.ajax("get", "follow", "notifications", 
                                 ajax_params={
                                     "follow_area": "member",
                                     "follow_id": id,
@@ -231,7 +284,54 @@ class AuthUser(WebUser):
 
         response = self.session.session.get(following_member.get("href"))
         return response.status_code == 200 or response.status_code == 301
-        
+
+    def get_unread_notifications(self) -> tuple[list[Notification], list[Message]]:
+        """
+        Retrieves a list of unread notifications and messages for the authenticated user.
+
+        Returns:
+            tuple[list[Notification], list[Message]]: A tuple containing two lists:
+                - A list of `Notification` objects representing unread notifications.
+                - A list of `Message` objects representing unread messages.
+        """
+        data = self.session.ajax("get", "instantNotifications", "ajax", url="", ajax_params={
+            "notifications": 0,
+            "messages": 0
+        }).json()
+
+        notifications = data.get("notifications", {}).get("data", [])
+        messages = data.get("messages", {}).get("data", [])
+
+        return (
+            [Notification(**notification) for notification in notifications],
+            [Message(**message) for message in messages]
+        )
+
+    def send_message(self, username: str, subject: str, body: str) -> bool:
+        """
+        Sends a message to another user on the AirVPN platform.
+
+        Args:
+            username (str): The username of the recipient.
+            subject (str): The subject of the message.
+            body (str): The body content of the message.
+
+        Returns:
+            bool: A boolean indicating whether the message was successfully sent.
+        """
+        response = self.session.request("post", "https://airvpn.org/messenger/compose/", headers={
+                "Content-Type": "application/x-www-form-urlencoded"
+            }, data = {
+                "csrfKey": self.session.csrf,
+                "form_submitted": 1,
+                "messenger_to_original": "",
+                "messenger_to": username,
+                "messenger_title": subject,
+                "messenger_content": body
+        })
+
+        return response.status_code == 200 or response.status_code == 301
+
     def login(self, username: str, password: str):
         """Log in to the AirVPN website and populate the base user fields.
 
@@ -276,6 +376,8 @@ class AuthUser(WebUser):
             raise LoginError("Failed to login.")
 
         soup = BeautifulSoup(response.text, "html.parser")
+
+        self.premium = soup.find("a", {"class": "tooltip-bottom", "data-tooltip": "Your current plan"}) is not None
 
         user_info = soup.find("li", id="cUserLink").find("a")
         profile_url = user_info.get("href")

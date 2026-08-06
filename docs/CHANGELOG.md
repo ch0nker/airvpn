@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.2.6
+- Add session management through the `SessionManager` class which can be accessed via `AuthUser.sessions`.
+- Add devices management through the `DeviceManager` class which can be accesed via `AuthUser.devices`.
+- Add dns management through the `DnsManager` class which can be accessed via `AuthUser.dns`
+- Add api key management through the `APIManager` class which can be accessed via `AuthUser.api`.
+- Add port management through the `PortManager` class which can be accessed via `AuthUser.ports`.
+- Add `AuthUser.edit_profile`.
+- Add `AuthUser.get_sessions`.
+- Add `AuthUser.get_unread_notifications`.
+- Add `AuthUser.send_message`.
+
 ## 0.2.5
 - Read 0.2.0 for the actual changes these past 5 releases has been me shooting myself in the foot.
 
@@ -15,7 +26,7 @@
 
 ## 0.2.0
 - Use mkdocs for easier documentation.
-- Restructured so now the clients are split into their own parts.
+- Restructured so now the interfaces are split into their own parts.
 - Add `WebClient`, for interacting with AirVPN's website. Read more in the [docs](airvpn/web/index.md)
 
 ## 0.1.12

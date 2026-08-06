@@ -1,3 +1,5 @@
+"""An interface for interacting with the bootstrap API."""
+
 from __future__ import annotations
 
 from airvpn.exceptions import RSAError, AESEncryptionError, AESDecryptionError, RCParseError, LoginError
@@ -151,11 +153,7 @@ class AirClient:
         if rsamodulus is None:
             raise RCParseError("Failed to get rsamodulus")
 
-        try:
-            bytes_param_s, bytes_param_d, secret_key, iv = self.build_encrypted_params(rsamodulus, rsaexponent, params)
-        except (RSAError, AESEncryptionError) as e:
-            raise AESEncryptionError(f"Encryption failed: {e}")
-
+        bytes_param_s, bytes_param_d, secret_key, iv = self.build_encrypted_params(rsamodulus, rsaexponent, params)
         encrypted_params = {
             "s": base64.b64encode(bytes_param_s).decode(),
             "d": base64.b64encode(bytes_param_d).decode(),
