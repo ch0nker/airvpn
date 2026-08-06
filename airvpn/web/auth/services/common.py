@@ -1,7 +1,6 @@
 from airvpn.web.network import WebSession
 from airvpn.exceptions import APIError
 from bs4 import BeautifulSoup
-
 import json
 import time
 
@@ -37,7 +36,7 @@ class ClientService:
     
             self.ecsrf = json_data.get("ecsrf")
 
-    def request(self, action: str, **kwargs):
+    def request(self, action: str, is_act: bool = False, **kwargs):
         """Send an AJAX action request to the endpoint.
 
         Automatically attaches the CSRF token (fetching it first if not
@@ -55,6 +54,13 @@ class ClientService:
                 ``"error"`` field.
         """
         self._get_ecsrf()
+
+        payload = {"ecsrf": self.ecsrf, "render": "ajax", **kwargs}
+
+        if is_act:
+            payload["act"] = action
+        else:
+            payload["action"] = action
 
         data = self.session.session.post(
             self.endpoint,
