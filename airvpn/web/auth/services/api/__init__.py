@@ -52,7 +52,7 @@ class APIManager(ClientService):
 
         self.update(data)
 
-    def add(self):
+    def add(self) -> APIKey:
         """Create a new API key.
 
         The ``"add"`` action doesn't return the new key's data, so `update`
@@ -62,6 +62,8 @@ class APIManager(ClientService):
         self.poll_update(
             lambda keys : len(keys) - len(self.keys) < 0
         )
+
+        return self.keys[len(self.keys) - 1]
 
     def get(self, key: APIKey | str):
         if isinstance(key, str):
@@ -84,6 +86,8 @@ class APIManager(ClientService):
                 known key.
         """
         key = self.get(key)
+
+        key.name = name
 
         self.edit_request("name", name, id=key.id)
 
