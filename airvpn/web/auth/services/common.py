@@ -3,6 +3,7 @@ from airvpn.exceptions import APIError
 from bs4 import BeautifulSoup
 
 import json
+import time
 
 class ClientService:
     """Base class for AJAX-based clients against an AirVPN endpoint.
@@ -70,6 +71,10 @@ class ClientService:
             if error is not None:
                 if "Invalid CSRF Token" in error:
                     self.ecsrf = None
+                    return self.request(action, **kwargs)
+
+                if "Flood protection hit" in error:
+                    time.sleep(7)
                     return self.request(action, **kwargs)
 
                 raise APIError(error)
