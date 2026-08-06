@@ -86,6 +86,16 @@ class DnsManager(ClientService):
         self.save()
 
     def add_record(self, answer: Answer, type: RecordType, value: str) -> Record:
+        """Create a record, attach it to an answer, and save the change.
+
+        Args:
+            answer: The `Answer` instance to attach the new record to.
+            type: The `RecordType` of the record to create (e.g. A, AAAA, CNAME).
+            value: The record's value (e.g. an IP address or hostname).
+
+        Returns:
+            The `Answer` the record was added to.
+        """
         record = Record(type, value)
         answer.records.append(record)
 
@@ -93,17 +103,56 @@ class DnsManager(ClientService):
 
         return answer
 
+    def remove_record(self, answer: Answer, record: Record):
+        """Remove a record from an answer's record list and save the change.
+
+        Args:
+            answer: The `Answer` instance containing the record.
+            record: The `Record` instance to remove.
+
+        Raises:
+            ValueError: If `record` is not present in `answer.records`.
+        """
+        answer.records.remove(record)
+        self.save()
+
     def add_answer(self,
-                   host: str,
-                   type: AnswerType = AnswerType.EXACT, 
-                   action: ActionType = ActionType.DENY,
-                   records: list[Record] = []) -> Answer:
+               host: str,
+               type: AnswerType = AnswerType.EXACT, 
+               action: ActionType = ActionType.DENY,
+               records: list[Record] = []) -> Answer:
+        """Create a new answer rule and add it to the current configuration.
+
+        Args:
+            host: The hostname or pattern the rule matches against.
+            type: How `host` is matched (e.g. exact, wildcard). Defaults to
+                `AnswerType.EXACT`.
+            action: The action to take when the rule matches (e.g. allow,
+                deny). Defaults to `ActionType.DENY`.
+            records: Initial list of `Record` instances to attach to the
+                answer. Defaults to an empty list.
+
+        Returns:
+            The newly created `Answer`.
+        """
         answer = Answer(type, host, action, records)
 
         self.current.answers.append(answer)
         self.save()
 
         return answer
+
+    def remove_answer(self, answer: Answer):
+        """Remove an answer from the current DNS configuration and save the change.
+
+        Args:
+            answer: The `Answer` instance to remove.
+
+        Raises:
+            ValueError: If `answer` is not present in `self.current.answers`.
+        """
+        self.current.answers.remove(answer)
+        self.save()
 
     def add_list(self, dns: DnsList | list[DnsList] | list[str] | str):
         """Add one or more DNS lists to the current configuration.
@@ -128,6 +177,18 @@ class DnsManager(ClientService):
             return
 
         self.current.lists.append(dns.code)
+        self.save()
+
+    def remove_list(self, dns: DnsList):
+        """Remove a DNS list from the current configuration and save the change.
+
+        Args:
+            dns: The DNS list code (str) to remove from the current selection.
+
+        Raises:
+            ValueError: If `dns` is not present in `self.current.lists`.
+        """
+        self.current.lists.remove(dns)
         self.save()
 
     @classmethod
