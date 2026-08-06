@@ -3,7 +3,7 @@ import os
 from shutil import rmtree
 from airvpn import AirVPN
 
-airvpn = AirVPN(os.getenv("API_KEY"))
+airvpn = AirVPN(api_key=os.getenv("API_KEY"))
 generator = None
 devices = None
 device_name = None
@@ -13,8 +13,8 @@ def check_request():
     print("Caching services.")
     global generator, devices
 
-    generator = airvpn.generator
-    devices = airvpn.devices
+    generator = airvpn.api.generator
+    devices = airvpn.api.devices
     
     assert generator, "Failed to get generator service"
     assert devices, "Failed to get devices service"

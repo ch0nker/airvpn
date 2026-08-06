@@ -7,7 +7,7 @@ whatismyip = None
 def check_service():
     print("Caching service.")
     global whatismyip
-    whatismyip = api.whatismyip
+    whatismyip = api.api.whatismyip
 
 @test.unit
 def check_fetch():

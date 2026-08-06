@@ -2,14 +2,14 @@ import os
 
 from airvpn import AirVPN
 
-api = AirVPN(os.getenv("API_KEY"))
+api = AirVPN(api_key=os.getenv("API_KEY"))
 devices = None
 device_id = None
 
 @test.unit
 def check_service():
     global devices
-    devices = api.devices
+    devices = api.api.devices
 
 @test.unit
 def add_device():

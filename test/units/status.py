@@ -7,7 +7,7 @@ status = None
 def check_service():
     print("Caching service.")
     global status
-    status = api.status
+    status = api.api.status
 
 @test.unit
 def list_servers():
