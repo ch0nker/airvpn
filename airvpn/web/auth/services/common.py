@@ -64,12 +64,7 @@ class ClientService:
 
         data = self.session.session.post(
             self.endpoint,
-            data={
-                "action": action,
-                "ecsrf": self.ecsrf,
-                "render": "ajax",
-                **kwargs
-            }
+            data=payload
         ).json()
 
         if isinstance(data, dict):
