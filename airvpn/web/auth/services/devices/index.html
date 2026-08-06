@@ -10,31 +10,31 @@
       
       
       
-        <link rel="canonical" href="https://airvpn.chonker.cc/airvpn/api/network/">
+        <link rel="canonical" href="https://airvpn.chonker.cc/airvpn/web/auth/services/devices/">
       
       
-        <link rel="prev" href="../disconnect/">
+        <link rel="prev" href="../api/models/">
       
       
-        <link rel="next" href="../../client/">
+        <link rel="next" href="models/">
       
       
         
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>Network - Python AirVPN API</title>
+        <title>Devices - Python AirVPN API</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -53,9 +53,9 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../../../../../assets/_mkdocstrings.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#network" class="md-skip">
+        <a href="#devices" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="Python AirVPN API" class="md-header__button md-logo" aria-label="Python AirVPN API" data-md-component="logo">
+    <a href="../../../../.." title="Python AirVPN API" class="md-header__button md-logo" aria-label="Python AirVPN API" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Network
+              Devices
             
           </span>
         </div>
@@ -232,7 +232,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Python AirVPN API" class="md-nav__button md-logo" aria-label="Python AirVPN API" data-md-component="logo">
+    <a href="../../../../.." title="Python AirVPN API" class="md-nav__button md-logo" aria-label="Python AirVPN API" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -262,7 +262,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../../../../.." class="md-nav__link">
         
   
   
@@ -289,7 +289,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../changelog/" class="md-nav__link">
+      <a href="../../../../../changelog/" class="md-nav__link">
         
   
   
@@ -363,7 +363,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../guides/contributing/" class="md-nav__link">
+      <a href="../../../../../guides/contributing/" class="md-nav__link">
         
   
   
@@ -391,7 +391,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../guides/tests/" class="md-nav__link">
+      <a href="../../../../../guides/tests/" class="md-nav__link">
         
   
   
@@ -440,7 +440,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../" class="md-nav__link ">
+            <a href="../../../../" class="md-nav__link ">
               
   
   
@@ -479,24 +479,22 @@
                 
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="../../../../api/" class="md-nav__link ">
               
   
   
@@ -520,7 +518,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_1">
             <span class="md-nav__icon md-icon"></span>
             
@@ -550,7 +548,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../devices/" class="md-nav__link ">
+            <a href="../../../../api/devices/" class="md-nav__link ">
               
   
   
@@ -592,7 +590,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../devices/models/" class="md-nav__link">
+      <a href="../../../../api/devices/models/" class="md-nav__link">
         
   
   
@@ -640,7 +638,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../dns_lists/" class="md-nav__link ">
+            <a href="../../../../api/dns_lists/" class="md-nav__link ">
               
   
   
@@ -682,7 +680,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dns_lists/models/" class="md-nav__link">
+      <a href="../../../../api/dns_lists/models/" class="md-nav__link">
         
   
   
@@ -730,7 +728,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../generator/" class="md-nav__link ">
+            <a href="../../../../api/generator/" class="md-nav__link ">
               
   
   
@@ -772,7 +770,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../generator/models/" class="md-nav__link">
+      <a href="../../../../api/generator/models/" class="md-nav__link">
         
   
   
@@ -808,7 +806,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../notification/" class="md-nav__link">
+      <a href="../../../../api/notification/" class="md-nav__link">
         
   
   
@@ -848,7 +846,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../status/" class="md-nav__link ">
+            <a href="../../../../api/status/" class="md-nav__link ">
               
   
   
@@ -890,7 +888,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../status/models/" class="md-nav__link">
+      <a href="../../../../api/status/models/" class="md-nav__link">
         
   
   
@@ -938,7 +936,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../userinfo/" class="md-nav__link ">
+            <a href="../../../../api/userinfo/" class="md-nav__link ">
               
   
   
@@ -980,7 +978,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../userinfo/models/" class="md-nav__link">
+      <a href="../../../../api/userinfo/models/" class="md-nav__link">
         
   
   
@@ -1028,7 +1026,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../whatismyip/" class="md-nav__link ">
+            <a href="../../../../api/whatismyip/" class="md-nav__link ">
               
   
   
@@ -1070,7 +1068,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../whatismyip/models/" class="md-nav__link">
+      <a href="../../../../api/whatismyip/models/" class="md-nav__link">
         
   
   
@@ -1106,7 +1104,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../disconnect/" class="md-nav__link">
+      <a href="../../../../api/disconnect/" class="md-nav__link">
         
   
   
@@ -1131,37 +1129,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Network
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../../api/network/" class="md-nav__link">
         
   
   
@@ -1177,87 +1148,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#airvpn.api.network" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        network
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#airvpn.api.network.AirSession" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        AirSession
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="AirSession">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#airvpn.api.network.AirSession.service_request" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        service_request
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#airvpn.api.network.AirStatus" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        AirStatus
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#airvpn.api.network.ServiceType" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ServiceType
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1290,7 +1180,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../client/" class="md-nav__link ">
+            <a href="../../../../client/" class="md-nav__link ">
               
   
   
@@ -1332,7 +1222,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../client/models/" class="md-nav__link">
+      <a href="../../../../client/models/" class="md-nav__link">
         
   
   
@@ -1365,22 +1255,24 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../web/" class="md-nav__link ">
+            <a href="../../../" class="md-nav__link ">
               
   
   
@@ -1404,7 +1296,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1419,22 +1311,24 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_1" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../web/auth/" class="md-nav__link ">
+            <a href="../../" class="md-nav__link ">
               
   
   
@@ -1458,7 +1352,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_3_1_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_3_1_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4_3_1">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1473,22 +1367,24 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_1_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_1_1" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../web/auth/services/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   
@@ -1512,7 +1408,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_3_1_1_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_3_1_1_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4_3_1_1">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1542,7 +1438,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../web/auth/services/api/" class="md-nav__link ">
+            <a href="../api/" class="md-nav__link ">
               
   
   
@@ -1584,7 +1480,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../web/auth/services/api/models/" class="md-nav__link">
+      <a href="../api/models/" class="md-nav__link">
         
   
   
@@ -1617,22 +1513,24 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_1_1_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_1_1_2" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../web/auth/services/devices/" class="md-nav__link ">
+            <a href="./" class="md-nav__link md-nav__link--active">
               
   
   
@@ -1650,13 +1548,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_4_3_1_1_2" id="__nav_4_3_1_1_2_label" tabindex="0">
+              <label class="md-nav__link md-nav__link--active" for="__nav_4_3_1_1_2" id="__nav_4_3_1_1_2_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_3_1_1_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_3_1_1_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4_3_1_1_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1674,7 +1572,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../web/auth/services/devices/models/" class="md-nav__link">
+      <a href="models/" class="md-nav__link">
         
   
   
@@ -1722,7 +1620,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../web/auth/services/dns/" class="md-nav__link ">
+            <a href="../dns/" class="md-nav__link ">
               
   
   
@@ -1764,7 +1662,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../web/auth/services/dns/models/" class="md-nav__link">
+      <a href="../dns/models/" class="md-nav__link">
         
   
   
@@ -1812,7 +1710,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../web/auth/services/ports/" class="md-nav__link ">
+            <a href="../ports/" class="md-nav__link ">
               
   
   
@@ -1854,7 +1752,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../web/auth/services/ports/models/" class="md-nav__link">
+      <a href="../ports/models/" class="md-nav__link">
         
   
   
@@ -1902,7 +1800,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../web/auth/services/sessions/" class="md-nav__link ">
+            <a href="../sessions/" class="md-nav__link ">
               
   
   
@@ -1944,7 +1842,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../web/auth/services/sessions/models/" class="md-nav__link">
+      <a href="../sessions/models/" class="md-nav__link">
         
   
   
@@ -1980,7 +1878,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../web/auth/services/common/" class="md-nav__link">
+      <a href="../common/" class="md-nav__link">
         
   
   
@@ -2008,7 +1906,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../web/auth/services/models/" class="md-nav__link">
+      <a href="../models/" class="md-nav__link">
         
   
   
@@ -2044,7 +1942,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../web/auth/models/" class="md-nav__link">
+      <a href="../../models/" class="md-nav__link">
         
   
   
@@ -2092,7 +1990,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../web/user/" class="md-nav__link ">
+            <a href="../../../user/" class="md-nav__link ">
               
   
   
@@ -2134,7 +2032,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../web/user/models/" class="md-nav__link">
+      <a href="../../../user/models/" class="md-nav__link">
         
   
   
@@ -2170,7 +2068,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../web/network/" class="md-nav__link">
+      <a href="../../../network/" class="md-nav__link">
         
   
   
@@ -2206,7 +2104,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../exceptions/" class="md-nav__link">
+      <a href="../../../../exceptions/" class="md-nav__link">
         
   
   
@@ -2261,10 +2159,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#airvpn.api.network" class="md-nav__link">
+  <a href="#airvpn.web.auth.services.devices" class="md-nav__link">
     <span class="md-ellipsis">
       
-        network
+        devices
       
     </span>
   </a>
@@ -2272,22 +2170,110 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#airvpn.api.network.AirSession" class="md-nav__link">
+  <a href="#airvpn.web.auth.services.devices.DeviceManager" class="md-nav__link">
     <span class="md-ellipsis">
       
-        AirSession
+        DeviceManager
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="AirSession">
+    <nav class="md-nav" aria-label="DeviceManager">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#airvpn.api.network.AirSession.service_request" class="md-nav__link">
+  <a href="#airvpn.web.auth.services.devices.DeviceManager.add" class="md-nav__link">
     <span class="md-ellipsis">
       
-        service_request
+        add
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#airvpn.web.auth.services.devices.DeviceManager.delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        delete
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#airvpn.web.auth.services.devices.DeviceManager.edit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        edit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#airvpn.web.auth.services.devices.DeviceManager.edit_request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        edit_request
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#airvpn.web.auth.services.devices.DeviceManager.get" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#airvpn.web.auth.services.devices.DeviceManager.poll_update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        poll_update
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#airvpn.web.auth.services.devices.DeviceManager.renew" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        renew
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#airvpn.web.auth.services.devices.DeviceManager.request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        request
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#airvpn.web.auth.services.devices.DeviceManager.update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        update
       
     </span>
   </a>
@@ -2296,28 +2282,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#airvpn.api.network.AirStatus" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        AirStatus
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#airvpn.api.network.ServiceType" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ServiceType
-      
-    </span>
-  </a>
   
 </li>
       
@@ -2338,15 +2302,15 @@
 
 
 
-<h1 id="network">Network</h1>
-<p><code>airvpn.api.network</code></p>
+<h1 id="devices">Devices</h1>
+<p><code>airvpn.web.auth.services.devices</code></p>
 
 
 <div class="doc doc-object doc-module">
 
 
 
-<a id="airvpn.api.network"></a>
+<a id="airvpn.web.auth.services.devices"></a>
     <div class="doc doc-contents first">
 
 
@@ -2372,8 +2336,8 @@
 
 
 
-<h2 id="airvpn.api.network.AirSession" class="doc doc-heading">
-            <code>AirSession</code>
+<h2 id="airvpn.web.auth.services.devices.DeviceManager" class="doc doc-heading">
+            <code>DeviceManager</code>
 
 
 </h2>
@@ -2381,15 +2345,13 @@
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><span title="requests.Session">Session</span></code></p>
+              Bases: <code><a class="autorefs autorefs-internal" title="ClientService (airvpn.web.auth.services.common.ClientService)" href="../common/#airvpn.web.auth.services.common.ClientService">ClientService</a></code></p>
 
 
 
-        <p>A <code>requests.Session</code> subclass for the AirVPN API with built-in rate limiting.</p>
-<p>Automatically attaches the API key as an <code>API-KEY</code> header and enforces
-AirVPN's documented limit of 600 requests per 10 minutes to avoid getting
-IP banned. Requests should be made via <code>service_request()</code>, which handles
-endpoint construction, rate limiting, and response/error parsing.</p>
+        <p>Manages the authenticated user's registered devices.</p>
+<p>Wraps the AJAX endpoints behind <code>https://airvpn.org/devices/</code> to
+list, edit, renew, and delete the user's devices.</p>
 
 
 <p><span class="doc-section-title">Attributes:</span></p>
@@ -2403,105 +2365,25 @@ endpoint construction, rate limiting, and response/error parsing.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code><span title="airvpn.api.network.AirSession.BASE_URL">BASE_URL</span></code></td>
-            <td>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>Base URL for all AirVPN API requests.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td><code><span title="airvpn.api.network.AirSession.REQUESTS_MAX">REQUESTS_MAX</span></code></td>
-            <td>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>Maximum requests allowed per <code>REQUESTS_MAX_MINUTES</code> window,
-per AirVPN's API documentation.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td><code><span title="airvpn.api.network.AirSession.REQUESTS_MAX_MINUTES">REQUESTS_MAX_MINUTES</span></code></td>
-            <td>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>Length (in minutes) of AirVPN's fixed rate-limit window.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td><code><span title="airvpn.api.network.AirSession.REQUESTS_PER_MIN">REQUESTS_PER_MIN</span></code></td>
-            <td>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p><code>REQUESTS_MAX</code> divided evenly across <code>REQUESTS_MAX_MINUTES</code>,
-used to scale the limit for a given <code>rate_window_minutes</code>.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td><code><span title="airvpn.api.network.AirSession.rate_window_minutes">rate_window_minutes</span></code></td>
-            <td>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>The instance's configured window (in minutes) used to
-track and enforce the request rate limit. Clamped to <code>REQUESTS_MAX_MINUTES</code>.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<p><span class="doc-section-title">Parameters:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Description</th>
-          <th>Default</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>api_key</code>
-            </td>
-            <td>
-                  <code><span title="str">str</span></code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>AirVPN API key, sent via the <code>API-KEY</code> header.</p>
-              </div>
-            </td>
-            <td>
-                <em>required</em>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>rate_window_minutes</code>
-            </td>
+            <td><code><span title="airvpn.web.auth.services.devices.DeviceManager.total_deprecated">total_deprecated</span></code></td>
             <td>
                   <code><span title="int">int</span></code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Size of the rolling window used for rate limiting.
-Defaults to 5. Values above <code>REQUESTS_MAX_MINUTES</code> (10) are clamped,
-with a warning.</p>
+                <p>Number of deprecated devices on the account.</p>
               </div>
             </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="airvpn.web.auth.services.devices.DeviceManager.devices">devices</span></code></td>
             <td>
-                  <code>5</code>
+                  <code><span title="list">list</span>[<a class="autorefs autorefs-internal" title="DeviceKey (airvpn.web.auth.services.devices.models.DeviceKey)" href="models/#airvpn.web.auth.services.devices.models.DeviceKey">DeviceKey</a>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>All devices currently registered to the account.</p>
+              </div>
             </td>
           </tr>
       </tbody>
@@ -2531,15 +2413,168 @@ with a warning.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="airvpn.api.network.AirSession.service_request" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">service_request</span><span class="p">(</span><span class="n">method</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="s1">&#39;post&#39;</span><span class="p">],</span> <span class="n">service</span><span class="p">:</span> <span class="n">ServiceType</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{},</span> <span class="nb">format</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="s1">&#39;xml&#39;</span><span class="p">,</span> <span class="s1">&#39;php&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+<h3 id="airvpn.web.auth.services.devices.DeviceManager.add" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">add</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">DeviceKey</span></code>
 
 </h3>
 
 
     <div class="doc doc-contents ">
 
-        <p>Make a rate-limited request to an AirVPN API service.</p>
+        <p>Register a new device and refresh <code>devices</code> once it appears.</p>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>DeviceKey</code></td>            <td>
+                  <code><a class="autorefs autorefs-internal" title="DeviceKey (airvpn.web.auth.services.devices.models.DeviceKey)" href="models/#airvpn.web.auth.services.devices.models.DeviceKey">DeviceKey</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The newly added device.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="airvpn.web.auth.services.devices.DeviceManager.delete" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">delete</span><span class="p">(</span><span class="n">device</span><span class="p">:</span> <span class="n">DeviceKey</span> <span class="o">|</span> <span class="nb">str</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Delete an existing device.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>device</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="DeviceKey (airvpn.web.auth.services.devices.models.DeviceKey)" href="models/#airvpn.web.auth.services.devices.models.DeviceKey">DeviceKey</a> | <span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p><code>DeviceKey</code> instance or device ID to delete.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="airvpn.web.auth.services.devices.DeviceManager.edit" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">edit</span><span class="p">(</span><span class="n">device</span><span class="p">:</span> <span class="n">DeviceKey</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Edit a device's name and/or description.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>device</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="DeviceKey (airvpn.web.auth.services.devices.models.DeviceKey)" href="models/#airvpn.web.auth.services.devices.models.DeviceKey">DeviceKey</a> | <span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p><code>DeviceKey</code> instance or device ID to edit.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>name</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span> | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>New name to set for the device, if any.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>description</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span> | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>New description to set for the device, if any.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
 <p><span class="doc-section-title">Raises:</span></p>
@@ -2553,41 +2588,11 @@ with a warning.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
-                  <code><a class="autorefs autorefs-internal" title="InvalidService (airvpn.exceptions.InvalidService)" href="../../exceptions/#airvpn.exceptions.InvalidService">InvalidService</a></code>
+                  <code><a class="autorefs autorefs-internal" title="ValidationError (airvpn.exceptions.ValidationError)" href="../../../../exceptions/#airvpn.exceptions.ValidationError">ValidationError</a></code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>if <code>service</code> isn't a ServiceType member.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                  <code><a class="autorefs autorefs-internal" title="InvalidMethod (airvpn.exceptions.InvalidMethod)" href="../../exceptions/#airvpn.exceptions.InvalidMethod">InvalidMethod</a></code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>if <code>method</code> isn't "get" or "post".</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                  <code><a class="autorefs autorefs-internal" title="RateLimited (airvpn.exceptions.RateLimited)" href="../../exceptions/#airvpn.exceptions.RateLimited">RateLimited</a></code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>if the configured request rate limit is hit.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                  <code><a class="autorefs autorefs-internal" title="APIError (airvpn.exceptions.APIError)" href="../../exceptions/#airvpn.exceptions.APIError">APIError</a></code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>if the API responds with an error field.</p>
+                <p>If neither <code>name</code> nor <code>description</code> is provided.</p>
               </div>
             </td>
           </tr>
@@ -2599,216 +2604,99 @@ with a warning.</p>
 
 </div>
 
+<div class="doc doc-object doc-function">
 
 
-  </div>
+<h3 id="airvpn.web.auth.services.devices.DeviceManager.edit_request" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">edit_request</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
 
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-class">
-
-
-
-<h2 id="airvpn.api.network.AirStatus" class="doc doc-heading">
-            <code>AirStatus</code>
-
-
-</h2>
+</h3>
 
 
     <div class="doc doc-contents ">
-            <p class="doc doc-class-bases">
-              Bases: <code><span title="enum.StrEnum">StrEnum</span></code></p>
+
+        <p>Send a generic <code>edit_&lt;name&gt;</code> action to the endpoint.</p>
+<p>Convenience wrapper around <code>request</code> for the common pattern of
+editing a single field by name.</p>
 
 
-
-        <p>Overall status reported by the AirVPN API/service.</p>
-
-
-<p><span class="doc-section-title">Attributes:</span></p>
+<p><span class="doc-section-title">Parameters:</span></p>
     <table>
       <thead>
         <tr>
           <th>Name</th>
           <th>Type</th>
           <th>Description</th>
+          <th>Default</th>
         </tr>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code><span title="airvpn.api.network.AirStatus.OK">OK</span></code></td>
+            <td>
+                <code>name</code>
+            </td>
             <td>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Service is operating normally.</p>
+                <p>Name of the field to edit; sent as the <code>edit_{name}</code>
+action.</p>
               </div>
+            </td>
+            <td>
+                <em>required</em>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><span title="airvpn.api.network.AirStatus.WARNING">WARNING</span></code></td>
+            <td>
+                <code>value</code>
+            </td>
             <td>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Service is operating but with a non-critical issue.</p>
+                <p>New value to set for the field.</p>
               </div>
+            </td>
+            <td>
+                <em>required</em>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><span title="airvpn.api.network.AirStatus.ERROR">ERROR</span></code></td>
+            <td>
+                <code>**kwargs</code>
+            </td>
             <td>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Service is experiencing a critical issue.</p>
+                <p>Additional form fields to send along with the request
+(e.g. an <code>id</code> or <code>port</code> identifying the target record).</p>
               </div>
+            </td>
+            <td>
+                  <code>{}</code>
             </td>
           </tr>
       </tbody>
     </table>
 
 
-
-
-
-
-
-
-
-
-
-<div class="doc doc-children">
-
-
-
-
-
-
-
-
-
-
-
-
-  </div>
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-class">
-
-
-
-<h2 id="airvpn.api.network.ServiceType" class="doc doc-heading">
-            <code>ServiceType</code>
-
-
-</h2>
-
-
-    <div class="doc doc-contents ">
-            <p class="doc doc-class-bases">
-              Bases: <code><span title="enum.StrEnum">StrEnum</span></code></p>
-
-
-
-        <p>Identifies an AirVPN API service endpoint.</p>
-<p>Each member's value corresponds to the path segment used to build the
-request URL in <code>AirSession.service_request()</code> (e.g. <code>DEVICES</code> maps to
-<code>https://airvpn.org/api/devices/</code>).</p>
-
-
-<p><span class="doc-section-title">Attributes:</span></p>
+    <p><span class="doc-section-title">Returns:</span></p>
     <table>
       <thead>
         <tr>
-          <th>Name</th>
           <th>Type</th>
           <th>Description</th>
         </tr>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code><span title="airvpn.api.network.ServiceType.DEVICES">DEVICES</span></code></td>
             <td>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Manage or list the account's registered devices.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td><code><span title="airvpn.api.network.ServiceType.DNS_LISTS">DNS_LISTS</span></code></td>
-            <td>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>Retrieve available DNS list options.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td><code><span title="airvpn.api.network.ServiceType.GENERATOR">GENERATOR</span></code></td>
-            <td>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>Generate VPN configuration files/keys.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td><code><span title="airvpn.api.network.ServiceType.STATUS">STATUS</span></code></td>
-            <td>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>Retrieve current service/server status.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td><code><span title="airvpn.api.network.ServiceType.USERINFO">USERINFO</span></code></td>
-            <td>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>Retrieve information about the authenticated account.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td><code><span title="airvpn.api.network.ServiceType.WHATISMYIP">WHATISMYIP</span></code></td>
-            <td>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>Retrieve the caller's public IP address.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td><code><span title="airvpn.api.network.ServiceType.DISCONNECT">DISCONNECT</span></code></td>
-            <td>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>Disconnect an active VPN session/device.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td><code><span title="airvpn.api.network.ServiceType.NOTIFICATION">NOTIFICATION</span></code></td>
-            <td>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>Retrieve or manage account notifications.</p>
+                <p>The parsed JSON response from the server.</p>
               </div>
             </td>
           </tr>
@@ -2816,25 +2704,391 @@ request URL in <code>AirSession.service_request()</code> (e.g. <code>DEVICES</co
     </table>
 
 
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="APIError (airvpn.exceptions.APIError)" href="../../../../exceptions/#airvpn.exceptions.APIError">APIError</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the response is a dict containing a non-<code>None</code>
+<code>"error"</code> field.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
 
 
+<h3 id="airvpn.web.auth.services.devices.DeviceManager.get" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get</span><span class="p">(</span><span class="n">device</span><span class="p">:</span> <span class="n">DeviceKey</span> <span class="o">|</span> <span class="nb">str</span><span class="p">)</span></code>
+
+</h3>
 
 
+    <div class="doc doc-contents ">
+
+        <p>Resolve a device to a <code>DeviceKey</code> instance.</p>
 
 
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>device</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="DeviceKey (airvpn.web.auth.services.devices.models.DeviceKey)" href="models/#airvpn.web.auth.services.devices.models.DeviceKey">DeviceKey</a> | <span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p><code>DeviceKey</code> instance or device ID to resolve.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-<div class="doc doc-children">
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The matching <code>DeviceKey</code> instance.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="ValidationError (airvpn.exceptions.ValidationError)" href="../../../../exceptions/#airvpn.exceptions.ValidationError">ValidationError</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>device</code> is a string ID that doesn't match
+any known device.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
 
 
+<h3 id="airvpn.web.auth.services.devices.DeviceManager.poll_update" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">poll_update</span><span class="p">(</span><span class="n">check_callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">list</span><span class="p">[</span><span class="n">DeviceKeyDict</span><span class="p">]],</span> <span class="nb">bool</span><span class="p">])</span></code>
+
+</h3>
 
 
+    <div class="doc doc-contents ">
 
+        <p>Poll the server until a condition is met, then refresh <code>devices</code>.</p>
+<p>Repeatedly fetches the device manifest, sleeping one second between
+attempts, until <code>check_callback</code> returns False for the current set
+of keys, then applies the final result via <code>update</code>.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>check_callback</code>
+            </td>
+            <td>
+                  <code><span title="collections.abc.Callable">Callable</span>[[<span title="list">list</span>[<span title="airvpn.web.auth.services.devices.models.DeviceKeyDict">DeviceKeyDict</span>]], <span title="bool">bool</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Called with the current list of raw key data on
+each poll; polling continues while it returns True.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="airvpn.web.auth.services.devices.DeviceManager.renew" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">renew</span><span class="p">(</span><span class="n">device</span><span class="p">:</span> <span class="n">DeviceKey</span> <span class="o">|</span> <span class="nb">str</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Renew an existing device.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>device</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="DeviceKey (airvpn.web.auth.services.devices.models.DeviceKey)" href="models/#airvpn.web.auth.services.devices.models.DeviceKey">DeviceKey</a> | <span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p><code>DeviceKey</code> instance or device ID to renew.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="airvpn.web.auth.services.devices.DeviceManager.request" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">request</span><span class="p">(</span><span class="n">action</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">is_act</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Send an AJAX action request to the endpoint.</p>
+<p>Automatically attaches the CSRF token (fetching it first if not
+already known) and requests an AJAX-rendered response.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>action</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Name of the action to perform.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>**kwargs</code>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Additional form fields to send along with the request.</p>
+              </div>
+            </td>
+            <td>
+                  <code>{}</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The parsed JSON response from the server.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="APIError (airvpn.exceptions.APIError)" href="../../../../exceptions/#airvpn.exceptions.APIError">APIError</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the response is a dict containing a non-<code>None</code>
+<code>"error"</code> field.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="airvpn.web.auth.services.devices.DeviceManager.update" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Refresh <code>devices</code> and <code>total_deprecated</code> from the server.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>data</code>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Pre-fetched manifest data to use instead of making a new
+request. If falsy, the manifest is fetched from the server.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
 
 
 
@@ -2901,10 +3155,10 @@ request URL in <code>AirSession.service_request()</code> (e.g. <code>DEVICES</co
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../..", "features": ["content.code.copy"], "search": "../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

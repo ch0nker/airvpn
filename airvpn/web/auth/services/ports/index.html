@@ -10,31 +10,31 @@
       
       
       
-        <link rel="canonical" href="https://airvpn.chonker.cc/airvpn/api/network/">
+        <link rel="canonical" href="https://airvpn.chonker.cc/airvpn/web/auth/services/ports/">
       
       
-        <link rel="prev" href="../disconnect/">
+        <link rel="prev" href="../dns/models/">
       
       
-        <link rel="next" href="../../client/">
+        <link rel="next" href="models/">
       
       
         
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>Network - Python AirVPN API</title>
+        <title>Ports - Python AirVPN API</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -53,9 +53,9 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../../../../../assets/_mkdocstrings.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#network" class="md-skip">
+        <a href="#ports" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="Python AirVPN API" class="md-header__button md-logo" aria-label="Python AirVPN API" data-md-component="logo">
+    <a href="../../../../.." title="Python AirVPN API" class="md-header__button md-logo" aria-label="Python AirVPN API" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Network
+              Ports
             
           </span>
         </div>
@@ -232,7 +232,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Python AirVPN API" class="md-nav__button md-logo" aria-label="Python AirVPN API" data-md-component="logo">
+    <a href="../../../../.." title="Python AirVPN API" class="md-nav__button md-logo" aria-label="Python AirVPN API" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -262,7 +262,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../../../../.." class="md-nav__link">
         
   
   
@@ -289,7 +289,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../changelog/" class="md-nav__link">
+      <a href="../../../../../changelog/" class="md-nav__link">
         
   
   
@@ -363,7 +363,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../guides/contributing/" class="md-nav__link">
+      <a href="../../../../../guides/contributing/" class="md-nav__link">
         
   
   
@@ -391,7 +391,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../guides/tests/" class="md-nav__link">
+      <a href="../../../../../guides/tests/" class="md-nav__link">
         
   
   
@@ -440,7 +440,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../" class="md-nav__link ">
+            <a href="../../../../" class="md-nav__link ">
               
   
   
@@ -479,24 +479,22 @@
                 
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="../../../../api/" class="md-nav__link ">
               
   
   
@@ -520,7 +518,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_1">
             <span class="md-nav__icon md-icon"></span>
             
@@ -550,7 +548,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../devices/" class="md-nav__link ">
+            <a href="../../../../api/devices/" class="md-nav__link ">
               
   
   
@@ -576,6 +574,986 @@
         
         <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Devices
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../api/devices/models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../api/dns_lists/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DnsLists
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1_2" id="__nav_4_1_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    DnsLists
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../api/dns_lists/models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../api/generator/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generator
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1_3" id="__nav_4_1_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Generator
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../api/generator/models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../api/notification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../api/status/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Status
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1_5" id="__nav_4_1_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Status
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../api/status/models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../api/userinfo/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UserInfo
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1_6" id="__nav_4_1_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UserInfo
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../api/userinfo/models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../api/whatismyip/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WhatIsMyIp
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1_7" id="__nav_4_1_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    WhatIsMyIp
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../api/whatismyip/models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../api/disconnect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Disconnect
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../api/network/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../client/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Client
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Client
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../client/models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WebClient
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    WebClient
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_1" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Auth
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_3_1" id="__nav_4_3_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_3_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Auth
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_1_1" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Services
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_3_1_1" id="__nav_4_3_1_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_3_1_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_3_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Services
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_1_1_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../api/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_3_1_1_1" id="__nav_4_3_1_1_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_3_1_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_1_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_1_1_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../devices/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Devices
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_3_1_1_2" id="__nav_4_3_1_1_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_3_1_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_1_1_2">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -636,1093 +1614,11 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_2" >
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../dns_lists/" class="md-nav__link ">
-              
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DnsLists
-  
-
-    
-  </span>
-  
-  
-
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_4_1_2" id="__nav_4_1_2_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_1_2">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    DnsLists
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../dns_lists/models/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Models
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_3" >
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../generator/" class="md-nav__link ">
-              
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Generator
-  
-
-    
-  </span>
-  
-  
-
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_4_1_3" id="__nav_4_1_3_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_1_3">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Generator
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../generator/models/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Models
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../notification/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Notification
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_5" >
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../status/" class="md-nav__link ">
-              
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Status
-  
-
-    
-  </span>
-  
-  
-
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_4_1_5" id="__nav_4_1_5_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_1_5">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Status
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../status/models/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Models
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_6" >
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../userinfo/" class="md-nav__link ">
-              
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    UserInfo
-  
-
-    
-  </span>
-  
-  
-
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_4_1_6" id="__nav_4_1_6_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_1_6">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    UserInfo
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../userinfo/models/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Models
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_7" >
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../whatismyip/" class="md-nav__link ">
-              
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    WhatIsMyIp
-  
-
-    
-  </span>
-  
-  
-
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_4_1_7" id="__nav_4_1_7_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_1_7">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    WhatIsMyIp
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../whatismyip/models/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Models
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../disconnect/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Disconnect
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Network
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Network
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#airvpn.api.network" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        network
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#airvpn.api.network.AirSession" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        AirSession
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="AirSession">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#airvpn.api.network.AirSession.service_request" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        service_request
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#airvpn.api.network.AirStatus" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        AirStatus
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#airvpn.api.network.ServiceType" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ServiceType
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../../client/" class="md-nav__link ">
-              
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Client
-  
-
-    
-  </span>
-  
-  
-
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_2">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Client
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../client/models/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Models
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../../web/" class="md-nav__link ">
-              
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    WebClient
-  
-
-    
-  </span>
-  
-  
-
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_3">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    WebClient
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_1" >
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../../web/auth/" class="md-nav__link ">
-              
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Auth
-  
-
-    
-  </span>
-  
-  
-
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_4_3_1" id="__nav_4_3_1_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_3_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_3_1">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Auth
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_1_1" >
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../../web/auth/services/" class="md-nav__link ">
-              
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Services
-  
-
-    
-  </span>
-  
-  
-
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_4_3_1_1" id="__nav_4_3_1_1_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_3_1_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_3_1_1">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Services
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_1_1_1" >
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../../web/auth/services/api/" class="md-nav__link ">
-              
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    API
-  
-
-    
-  </span>
-  
-  
-
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_4_3_1_1_1" id="__nav_4_3_1_1_1_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_3_1_1_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_3_1_1_1">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    API
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../web/auth/services/api/models/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Models
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_1_1_2" >
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../../web/auth/services/devices/" class="md-nav__link ">
-              
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Devices
-  
-
-    
-  </span>
-  
-  
-
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_4_3_1_1_2" id="__nav_4_3_1_1_2_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_3_1_1_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_3_1_1_2">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Devices
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../web/auth/services/devices/models/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Models
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_1_1_3" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../web/auth/services/dns/" class="md-nav__link ">
+            <a href="../dns/" class="md-nav__link ">
               
   
   
@@ -1764,7 +1660,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../web/auth/services/dns/models/" class="md-nav__link">
+      <a href="../dns/models/" class="md-nav__link">
         
   
   
@@ -1797,22 +1693,24 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_1_1_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_1_1_4" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../web/auth/services/ports/" class="md-nav__link ">
+            <a href="./" class="md-nav__link md-nav__link--active">
               
   
   
@@ -1830,13 +1728,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_4_3_1_1_4" id="__nav_4_3_1_1_4_label" tabindex="0">
+              <label class="md-nav__link md-nav__link--active" for="__nav_4_3_1_1_4" id="__nav_4_3_1_1_4_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_3_1_1_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_4_3_1_1_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4_3_1_1_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1854,7 +1752,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../web/auth/services/ports/models/" class="md-nav__link">
+      <a href="models/" class="md-nav__link">
         
   
   
@@ -1902,7 +1800,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../web/auth/services/sessions/" class="md-nav__link ">
+            <a href="../sessions/" class="md-nav__link ">
               
   
   
@@ -1944,7 +1842,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../web/auth/services/sessions/models/" class="md-nav__link">
+      <a href="../sessions/models/" class="md-nav__link">
         
   
   
@@ -1980,7 +1878,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../web/auth/services/common/" class="md-nav__link">
+      <a href="../common/" class="md-nav__link">
         
   
   
@@ -2008,7 +1906,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../web/auth/services/models/" class="md-nav__link">
+      <a href="../models/" class="md-nav__link">
         
   
   
@@ -2044,7 +1942,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../web/auth/models/" class="md-nav__link">
+      <a href="../../models/" class="md-nav__link">
         
   
   
@@ -2092,7 +1990,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../web/user/" class="md-nav__link ">
+            <a href="../../../user/" class="md-nav__link ">
               
   
   
@@ -2134,7 +2032,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../web/user/models/" class="md-nav__link">
+      <a href="../../../user/models/" class="md-nav__link">
         
   
   
@@ -2170,7 +2068,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../web/network/" class="md-nav__link">
+      <a href="../../../network/" class="md-nav__link">
         
   
   
@@ -2206,7 +2104,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../exceptions/" class="md-nav__link">
+      <a href="../../../../exceptions/" class="md-nav__link">
         
   
   
@@ -2261,10 +2159,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#airvpn.api.network" class="md-nav__link">
+  <a href="#airvpn.web.auth.services.ports" class="md-nav__link">
     <span class="md-ellipsis">
       
-        network
+        ports
       
     </span>
   </a>
@@ -2272,22 +2170,132 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#airvpn.api.network.AirSession" class="md-nav__link">
+  <a href="#airvpn.web.auth.services.ports.PortManager" class="md-nav__link">
     <span class="md-ellipsis">
       
-        AirSession
+        PortManager
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="AirSession">
+    <nav class="md-nav" aria-label="PortManager">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#airvpn.api.network.AirSession.service_request" class="md-nav__link">
+  <a href="#airvpn.web.auth.services.ports.PortManager.check_propagation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        service_request
+        check_propagation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#airvpn.web.auth.services.ports.PortManager.close" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        close
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#airvpn.web.auth.services.ports.PortManager.edit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        edit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#airvpn.web.auth.services.ports.PortManager.edit_request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        edit_request
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#airvpn.web.auth.services.ports.PortManager.get_sessions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_sessions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#airvpn.web.auth.services.ports.PortManager.get_used_ports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_used_ports
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#airvpn.web.auth.services.ports.PortManager.open" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        open
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#airvpn.web.auth.services.ports.PortManager.request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        request
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#airvpn.web.auth.services.ports.PortManager.sequential_search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sequential_search
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#airvpn.web.auth.services.ports.PortManager.test_open" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        test_open
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#airvpn.web.auth.services.ports.PortManager.update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        update
       
     </span>
   </a>
@@ -2296,28 +2304,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#airvpn.api.network.AirStatus" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        AirStatus
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#airvpn.api.network.ServiceType" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ServiceType
-      
-    </span>
-  </a>
   
 </li>
       
@@ -2338,15 +2324,15 @@
 
 
 
-<h1 id="network">Network</h1>
-<p><code>airvpn.api.network</code></p>
+<h1 id="ports">Ports</h1>
+<p><code>airvpn.web.auth.services.ports</code></p>
 
 
 <div class="doc doc-object doc-module">
 
 
 
-<a id="airvpn.api.network"></a>
+<a id="airvpn.web.auth.services.ports"></a>
     <div class="doc doc-contents first">
 
 
@@ -2372,8 +2358,8 @@
 
 
 
-<h2 id="airvpn.api.network.AirSession" class="doc doc-heading">
-            <code>AirSession</code>
+<h2 id="airvpn.web.auth.services.ports.PortManager" class="doc doc-heading">
+            <code>PortManager</code>
 
 
 </h2>
@@ -2381,15 +2367,16 @@
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><span title="requests.Session">Session</span></code></p>
+              Bases: <code><a class="autorefs autorefs-internal" title="ClientService (airvpn.web.auth.services.common.ClientService)" href="../common/#airvpn.web.auth.services.common.ClientService">ClientService</a></code></p>
 
 
 
-        <p>A <code>requests.Session</code> subclass for the AirVPN API with built-in rate limiting.</p>
-<p>Automatically attaches the API key as an <code>API-KEY</code> header and enforces
-AirVPN's documented limit of 600 requests per 10 minutes to avoid getting
-IP banned. Requests should be made via <code>service_request()</code>, which handles
-endpoint construction, rate limiting, and response/error parsing.</p>
+        <p>Manages the authenticated user's forwarded ports on AirVPN.</p>
+<p>Wraps the AJAX endpoints behind <code>https://airvpn.org/ports/</code> to list,
+open, close, and edit forwarded ports, as well as inspect active
+sessions on a port. Any mutating action (<code>open</code>, <code>close</code>, <code>edit</code>)
+triggers a poll loop afterward, since AirVPN applies these changes
+asynchronously on the server side.</p>
 
 
 <p><span class="doc-section-title">Attributes:</span></p>
@@ -2403,105 +2390,62 @@ endpoint construction, rate limiting, and response/error parsing.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code><span title="airvpn.api.network.AirSession.BASE_URL">BASE_URL</span></code></td>
+            <td><code><span title="airvpn.web.auth.services.ports.PortManager.session">session</span></code></td>
             <td>
+                  <code><a class="autorefs autorefs-internal" title="WebSession (airvpn.web.auth.services.common.WebSession)" href="../#airvpn.web.auth.services.WebSession">WebSession</a></code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Base URL for all AirVPN API requests.</p>
+                <p>The authenticated web session used for all
+requests made by this manager.</p>
               </div>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><span title="airvpn.api.network.AirSession.REQUESTS_MAX">REQUESTS_MAX</span></code></td>
+            <td><code><span title="airvpn.web.auth.services.ports.PortManager.ecsrf">ecsrf</span></code></td>
             <td>
+                  <code><span title="str">str</span> | None</code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Maximum requests allowed per <code>REQUESTS_MAX_MINUTES</code> window,
-per AirVPN's API documentation.</p>
+                <p>CSRF token scraped from the ports page, used to
+authorize AJAX requests. Lazily fetched on first use.</p>
               </div>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><span title="airvpn.api.network.AirSession.REQUESTS_MAX_MINUTES">REQUESTS_MAX_MINUTES</span></code></td>
+            <td><code><span title="airvpn.web.auth.services.ports.PortManager.pool">pool</span></code></td>
             <td>
+                  <code><span title="str">str</span> | None</code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Length (in minutes) of AirVPN's fixed rate-limit window.</p>
+                <p>Identifier of the port pool the user belongs to,
+as reported by the manifest.</p>
               </div>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><span title="airvpn.api.network.AirSession.REQUESTS_PER_MIN">REQUESTS_PER_MIN</span></code></td>
+            <td><code><span title="airvpn.web.auth.services.ports.PortManager.ports">ports</span></code></td>
             <td>
+                  <code><span title="list">list</span>[<a class="autorefs autorefs-internal" title="Port (airvpn.web.auth.services.ports.models.Port)" href="models/#airvpn.web.auth.services.ports.models.Port">Port</a>]</code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p><code>REQUESTS_MAX</code> divided evenly across <code>REQUESTS_MAX_MINUTES</code>,
-used to scale the limit for a given <code>rate_window_minutes</code>.</p>
+                <p>All ports currently owned by the user.</p>
               </div>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><span title="airvpn.api.network.AirSession.rate_window_minutes">rate_window_minutes</span></code></td>
+            <td><code><span title="airvpn.web.auth.services.ports.PortManager.keys">keys</span></code></td>
             <td>
+                  <code><span title="list">list</span>[<span title="Key">Key</span>]</code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>The instance's configured window (in minutes) used to
-track and enforce the request rate limit. Clamped to <code>REQUESTS_MAX_MINUTES</code>.</p>
+                <p>Keys associated with the user's ports, as reported
+by the manifest.</p>
               </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-<p><span class="doc-section-title">Parameters:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Description</th>
-          <th>Default</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>api_key</code>
-            </td>
-            <td>
-                  <code><span title="str">str</span></code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>AirVPN API key, sent via the <code>API-KEY</code> header.</p>
-              </div>
-            </td>
-            <td>
-                <em>required</em>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>rate_window_minutes</code>
-            </td>
-            <td>
-                  <code><span title="int">int</span></code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>Size of the rolling window used for rate limiting.
-Defaults to 5. Values above <code>REQUESTS_MAX_MINUTES</code> (10) are clamped,
-with a warning.</p>
-              </div>
-            </td>
-            <td>
-                  <code>5</code>
             </td>
           </tr>
       </tbody>
@@ -2531,15 +2475,136 @@ with a warning.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="airvpn.api.network.AirSession.service_request" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">service_request</span><span class="p">(</span><span class="n">method</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="s1">&#39;post&#39;</span><span class="p">],</span> <span class="n">service</span><span class="p">:</span> <span class="n">ServiceType</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{},</span> <span class="nb">format</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="s1">&#39;xml&#39;</span><span class="p">,</span> <span class="s1">&#39;php&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+<h3 id="airvpn.web.auth.services.ports.PortManager.check_propagation" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">check_propagation</span><span class="p">(</span><span class="n">ddns_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">services</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;airvpn&#39;</span><span class="p">,</span> <span class="s1">&#39;dnsadvantage&#39;</span><span class="p">,</span> <span class="s1">&#39;cloudflare&#39;</span><span class="p">,</span> <span class="s1">&#39;google&#39;</span><span class="p">,</span> <span class="s1">&#39;opendns&#39;</span><span class="p">])</span></code>
 
 </h3>
 
 
     <div class="doc doc-contents ">
 
-        <p>Make a rate-limited request to an AirVPN API service.</p>
+        <p>Check which DNS services have propagated a dynamic DNS record.</p>
+<p>Queries each service in <code>services</code> for the current IPv4/IPv6
+resolution of <code>ddns_name</code>, and collects the names of services that
+have already propagated the record (i.e. return a non-empty address).</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>ddns_name</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The dynamic DNS hostname to check propagation for.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>services</code>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Names of DNS services to check. Defaults to
+<code>["airvpn", "dnsadvantage", "cloudflare", "google", "opendns"]</code>.</p>
+              </div>
+            </td>
+            <td>
+                  <code>[&#39;airvpn&#39;, &#39;dnsadvantage&#39;, &#39;cloudflare&#39;, &#39;google&#39;, &#39;opendns&#39;]</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>list[str]: Names of the services that have propagated the record.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="airvpn.web.auth.services.ports.PortManager.close" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">close</span><span class="p">(</span><span class="n">port</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="n">Port</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Close (delete) an existing forwarded port.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>port</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span> | <a class="autorefs autorefs-internal" title="Port (airvpn.web.auth.services.ports.models.Port)" href="models/#airvpn.web.auth.services.ports.models.Port">Port</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Port number or <code>Port</code> instance to close.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
 <p><span class="doc-section-title">Raises:</span></p>
@@ -2553,41 +2618,11 @@ with a warning.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
-                  <code><a class="autorefs autorefs-internal" title="InvalidService (airvpn.exceptions.InvalidService)" href="../../exceptions/#airvpn.exceptions.InvalidService">InvalidService</a></code>
+                  <code><a class="autorefs autorefs-internal" title="InvalidPort (airvpn.exceptions.InvalidPort)" href="../../../../exceptions/#airvpn.exceptions.InvalidPort">InvalidPort</a></code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>if <code>service</code> isn't a ServiceType member.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                  <code><a class="autorefs autorefs-internal" title="InvalidMethod (airvpn.exceptions.InvalidMethod)" href="../../exceptions/#airvpn.exceptions.InvalidMethod">InvalidMethod</a></code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>if <code>method</code> isn't "get" or "post".</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                  <code><a class="autorefs autorefs-internal" title="RateLimited (airvpn.exceptions.RateLimited)" href="../../exceptions/#airvpn.exceptions.RateLimited">RateLimited</a></code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>if the configured request rate limit is hit.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                  <code><a class="autorefs autorefs-internal" title="APIError (airvpn.exceptions.APIError)" href="../../exceptions/#airvpn.exceptions.APIError">APIError</a></code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>if the API responds with an error field.</p>
+                <p>If the given port does not exist.</p>
               </div>
             </td>
           </tr>
@@ -2599,216 +2634,249 @@ with a warning.</p>
 
 </div>
 
+<div class="doc doc-object doc-function">
 
 
-  </div>
+<h3 id="airvpn.web.auth.services.ports.PortManager.edit" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">edit</span><span class="p">(</span><span class="n">port</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="n">Port</span><span class="p">,</span> <span class="n">device</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">note</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">protocol</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="s1">&#39;udp&#39;</span><span class="p">,</span> <span class="s1">&#39;tcp&#39;</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">localport</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">ddns</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">layer</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="s1">&#39;v6&#39;</span><span class="p">,</span> <span class="s1">&#39;v4&#39;</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span></code>
 
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-class">
-
-
-
-<h2 id="airvpn.api.network.AirStatus" class="doc doc-heading">
-            <code>AirStatus</code>
-
-
-</h2>
+</h3>
 
 
     <div class="doc doc-contents ">
-            <p class="doc doc-class-bases">
-              Bases: <code><span title="enum.StrEnum">StrEnum</span></code></p>
+
+        <p>Edit one or more attributes of an existing forwarded port.</p>
+<p>Only fields that are not <code>None</code> are sent as edit requests. After
+submitting the requested edits, blocks until the server finishes
+applying them.</p>
 
 
-
-        <p>Overall status reported by the AirVPN API/service.</p>
-
-
-<p><span class="doc-section-title">Attributes:</span></p>
+<p><span class="doc-section-title">Parameters:</span></p>
     <table>
       <thead>
         <tr>
           <th>Name</th>
           <th>Type</th>
           <th>Description</th>
+          <th>Default</th>
         </tr>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code><span title="airvpn.api.network.AirStatus.OK">OK</span></code></td>
             <td>
+                <code>port</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span> | <a class="autorefs autorefs-internal" title="Port (airvpn.web.auth.services.ports.models.Port)" href="models/#airvpn.web.auth.services.ports.models.Port">Port</a></code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Service is operating normally.</p>
+                <p>Port number or <code>Port</code> instance to edit.</p>
               </div>
+            </td>
+            <td>
+                <em>required</em>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><span title="airvpn.api.network.AirStatus.WARNING">WARNING</span></code></td>
             <td>
+                <code>device</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span> | None</code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Service is operating but with a non-critical issue.</p>
+                <p>New device name to associate with the port.</p>
               </div>
+            </td>
+            <td>
+                  <code>None</code>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><span title="airvpn.api.network.AirStatus.ERROR">ERROR</span></code></td>
             <td>
+                <code>note</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span> | None</code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Service is experiencing a critical issue.</p>
+                <p>New note/description for the port.</p>
               </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>protocol</code>
+            </td>
+            <td>
+                  <code><span title="typing.Literal">Literal</span>[&#39;both&#39;, &#39;udp&#39;, &#39;tcp&#39;] | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>New protocol restriction (<code>"both"</code>, <code>"udp"</code>, or
+<code>"tcp"</code>).</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>localport</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span> | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>New local port to forward to.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>ddns</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span> | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>New dynamic DNS hostname for the port.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>layer</code>
+            </td>
+            <td>
+                  <code><span title="typing.Literal">Literal</span>[&#39;both&#39;, &#39;v6&#39;, &#39;v4&#39;] | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>New IP layer restriction (<code>"both"</code>, <code>"v6"</code>, or
+<code>"v4"</code>).</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
             </td>
           </tr>
       </tbody>
     </table>
 
 
-
-
-
-
-
-
-
-
-
-<div class="doc doc-children">
-
-
-
-
-
-
-
-
-
-
-
-
-  </div>
-
     </div>
 
 </div>
 
-<div class="doc doc-object doc-class">
+<div class="doc doc-object doc-function">
 
 
+<h3 id="airvpn.web.auth.services.ports.PortManager.edit_request" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">edit_request</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
 
-<h2 id="airvpn.api.network.ServiceType" class="doc doc-heading">
-            <code>ServiceType</code>
-
-
-</h2>
+</h3>
 
 
     <div class="doc doc-contents ">
-            <p class="doc doc-class-bases">
-              Bases: <code><span title="enum.StrEnum">StrEnum</span></code></p>
+
+        <p>Send a generic <code>edit_&lt;name&gt;</code> action to the endpoint.</p>
+<p>Convenience wrapper around <code>request</code> for the common pattern of
+editing a single field by name.</p>
 
 
-
-        <p>Identifies an AirVPN API service endpoint.</p>
-<p>Each member's value corresponds to the path segment used to build the
-request URL in <code>AirSession.service_request()</code> (e.g. <code>DEVICES</code> maps to
-<code>https://airvpn.org/api/devices/</code>).</p>
-
-
-<p><span class="doc-section-title">Attributes:</span></p>
+<p><span class="doc-section-title">Parameters:</span></p>
     <table>
       <thead>
         <tr>
           <th>Name</th>
           <th>Type</th>
           <th>Description</th>
+          <th>Default</th>
         </tr>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code><span title="airvpn.api.network.ServiceType.DEVICES">DEVICES</span></code></td>
+            <td>
+                <code>name</code>
+            </td>
             <td>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Manage or list the account's registered devices.</p>
+                <p>Name of the field to edit; sent as the <code>edit_{name}</code>
+action.</p>
               </div>
+            </td>
+            <td>
+                <em>required</em>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><span title="airvpn.api.network.ServiceType.DNS_LISTS">DNS_LISTS</span></code></td>
+            <td>
+                <code>value</code>
+            </td>
             <td>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Retrieve available DNS list options.</p>
+                <p>New value to set for the field.</p>
               </div>
+            </td>
+            <td>
+                <em>required</em>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><span title="airvpn.api.network.ServiceType.GENERATOR">GENERATOR</span></code></td>
+            <td>
+                <code>**kwargs</code>
+            </td>
             <td>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Generate VPN configuration files/keys.</p>
+                <p>Additional form fields to send along with the request
+(e.g. an <code>id</code> or <code>port</code> identifying the target record).</p>
               </div>
             </td>
+            <td>
+                  <code>{}</code>
+            </td>
           </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
           <tr class="doc-section-item">
-            <td><code><span title="airvpn.api.network.ServiceType.STATUS">STATUS</span></code></td>
             <td>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Retrieve current service/server status.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td><code><span title="airvpn.api.network.ServiceType.USERINFO">USERINFO</span></code></td>
-            <td>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>Retrieve information about the authenticated account.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td><code><span title="airvpn.api.network.ServiceType.WHATISMYIP">WHATISMYIP</span></code></td>
-            <td>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>Retrieve the caller's public IP address.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td><code><span title="airvpn.api.network.ServiceType.DISCONNECT">DISCONNECT</span></code></td>
-            <td>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>Disconnect an active VPN session/device.</p>
-              </div>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td><code><span title="airvpn.api.network.ServiceType.NOTIFICATION">NOTIFICATION</span></code></td>
-            <td>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>Retrieve or manage account notifications.</p>
+                <p>The parsed JSON response from the server.</p>
               </div>
             </td>
           </tr>
@@ -2816,25 +2884,535 @@ request URL in <code>AirSession.service_request()</code> (e.g. <code>DEVICES</co
     </table>
 
 
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="APIError (airvpn.exceptions.APIError)" href="../../../../exceptions/#airvpn.exceptions.APIError">APIError</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the response is a dict containing a non-<code>None</code>
+<code>"error"</code> field.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
 
 
+<h3 id="airvpn.web.auth.services.ports.PortManager.get_sessions" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_sessions</span><span class="p">(</span><span class="n">port</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="n">Port</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">PortSession</span><span class="p">]</span></code>
+
+</h3>
 
 
+    <div class="doc doc-contents ">
+
+        <p>Retrieve active sessions for a given port.</p>
 
 
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>port</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span> | <a class="autorefs autorefs-internal" title="Port (airvpn.web.auth.services.ports.models.Port)" href="models/#airvpn.web.auth.services.ports.models.Port">Port</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Port number or <code>Port</code> instance to query.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-<div class="doc doc-children">
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="list">list</span>[<a class="autorefs autorefs-internal" title="PortSession (airvpn.web.auth.services.ports.models.PortSession)" href="models/#airvpn.web.auth.services.ports.models.PortSession">PortSession</a>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>list[PortSession]: Active sessions currently using the port.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
 
 
+<h3 id="airvpn.web.auth.services.ports.PortManager.get_used_ports" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_used_ports</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span></code>
+
+</h3>
 
 
+    <div class="doc doc-contents ">
+
+        <p>Retrieve the list of currently used ports in the primary pool.</p>
+<p>Fetches usage data via the <code>"graph"</code> action and returns the ports
+from the first pool in the response.</p>
 
 
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="list">list</span>[<span title="int">int</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>list[int]: Port numbers currently in use in the primary pool, or
+an empty list if the response contains no pool data.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="airvpn.web.auth.services.ports.PortManager.open" class="doc doc-heading">
+            <code class="highlight language-python"><span class="nb">open</span><span class="p">(</span><span class="n">port</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Port</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Open (forward) a new port.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>port</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span> | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Port number to open. Must be <code>&gt;= 2048</code> and not already
+in use.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>Port</code></td>            <td>
+                  <code><a class="autorefs autorefs-internal" title="Port (airvpn.web.auth.services.ports.models.Port)" href="models/#airvpn.web.auth.services.ports.models.Port">Port</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The newly created <code>Port</code> instance.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="InvalidPort (airvpn.exceptions.InvalidPort)" href="../../../../exceptions/#airvpn.exceptions.InvalidPort">InvalidPort</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>port</code> is below 2048, or is already in use.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="airvpn.web.auth.services.ports.PortManager.request" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">request</span><span class="p">(</span><span class="n">action</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">is_act</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Send an AJAX action request to the endpoint.</p>
+<p>Automatically attaches the CSRF token (fetching it first if not
+already known) and requests an AJAX-rendered response.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>action</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Name of the action to perform.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>**kwargs</code>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Additional form fields to send along with the request.</p>
+              </div>
+            </td>
+            <td>
+                  <code>{}</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The parsed JSON response from the server.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="APIError (airvpn.exceptions.APIError)" href="../../../../exceptions/#airvpn.exceptions.APIError">APIError</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the response is a dict containing a non-<code>None</code>
+<code>"error"</code> field.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="airvpn.web.auth.services.ports.PortManager.sequential_search" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">sequential_search</span><span class="p">(</span><span class="n">amount</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Search for a run of consecutive free ports.</p>
+<p>Asks the server to find <code>amount</code> consecutive unused ports.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>amount</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Number of consecutive free ports to search for.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The starting port number of the free run, or <code>0</code> if no such</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>run of free ports was found.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="airvpn.web.auth.services.ports.PortManager.test_open" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">test_open</span><span class="p">(</span><span class="n">port</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="n">Port</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Test which of a port's active TCP sessions are reachable.</p>
+<p>Fetches the sessions for <code>port</code> and, for each non-UDP session,
+issues a connectivity test against the session's server IP and
+port.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>port</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span> | <a class="autorefs autorefs-internal" title="Port (airvpn.web.auth.services.ports.models.Port)" href="models/#airvpn.web.auth.services.ports.models.Port">Port</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Port number or <code>Port</code> instance to test.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="list">list</span>[<span title="str">str</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>list[Session]: The sessions that passed the connectivity test.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="airvpn.web.auth.services.ports.PortManager.update" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">update</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Refresh the manager's state from the server manifest.</p>
+<p>Fetches the current manifest and repopulates <code>pool</code>, <code>ports</code>,
+<code>keys</code>, and the internal port lookup map from the response.</p>
+
+
+    </div>
+
+</div>
 
 
 
@@ -2901,10 +3479,10 @@ request URL in <code>AirSession.service_request()</code> (e.g. <code>DEVICES</co
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../..", "features": ["content.code.copy"], "search": "../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

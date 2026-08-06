@@ -2,126 +2,178 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://airvpn.chonker.cc/</loc>
-         <lastmod>2026-07-29</lastmod>
+         <lastmod>2026-08-06</lastmod>
     </url>
     <url>
          <loc>https://airvpn.chonker.cc/changelog/</loc>
-         <lastmod>2026-07-29</lastmod>
+         <lastmod>2026-08-06</lastmod>
     </url>
     <url>
          <loc>https://airvpn.chonker.cc/summary/</loc>
-         <lastmod>2026-07-29</lastmod>
+         <lastmod>2026-08-06</lastmod>
     </url>
     <url>
          <loc>https://airvpn.chonker.cc/airvpn/</loc>
-         <lastmod>2026-07-29</lastmod>
+         <lastmod>2026-08-06</lastmod>
     </url>
     <url>
          <loc>https://airvpn.chonker.cc/airvpn/exceptions/</loc>
-         <lastmod>2026-07-29</lastmod>
+         <lastmod>2026-08-06</lastmod>
     </url>
     <url>
          <loc>https://airvpn.chonker.cc/airvpn/api/</loc>
-         <lastmod>2026-07-29</lastmod>
+         <lastmod>2026-08-06</lastmod>
     </url>
     <url>
          <loc>https://airvpn.chonker.cc/airvpn/api/disconnect/</loc>
-         <lastmod>2026-07-29</lastmod>
+         <lastmod>2026-08-06</lastmod>
     </url>
     <url>
          <loc>https://airvpn.chonker.cc/airvpn/api/network/</loc>
-         <lastmod>2026-07-29</lastmod>
+         <lastmod>2026-08-06</lastmod>
     </url>
     <url>
          <loc>https://airvpn.chonker.cc/airvpn/api/devices/</loc>
-         <lastmod>2026-07-29</lastmod>
+         <lastmod>2026-08-06</lastmod>
     </url>
     <url>
          <loc>https://airvpn.chonker.cc/airvpn/api/devices/models/</loc>
-         <lastmod>2026-07-29</lastmod>
+         <lastmod>2026-08-06</lastmod>
     </url>
     <url>
          <loc>https://airvpn.chonker.cc/airvpn/api/dns_lists/</loc>
-         <lastmod>2026-07-29</lastmod>
+         <lastmod>2026-08-06</lastmod>
     </url>
     <url>
          <loc>https://airvpn.chonker.cc/airvpn/api/dns_lists/models/</loc>
-         <lastmod>2026-07-29</lastmod>
+         <lastmod>2026-08-06</lastmod>
     </url>
     <url>
          <loc>https://airvpn.chonker.cc/airvpn/api/generator/</loc>
-         <lastmod>2026-07-29</lastmod>
+         <lastmod>2026-08-06</lastmod>
     </url>
     <url>
          <loc>https://airvpn.chonker.cc/airvpn/api/generator/models/</loc>
-         <lastmod>2026-07-29</lastmod>
+         <lastmod>2026-08-06</lastmod>
     </url>
     <url>
          <loc>https://airvpn.chonker.cc/airvpn/api/notification/</loc>
-         <lastmod>2026-07-29</lastmod>
+         <lastmod>2026-08-06</lastmod>
     </url>
     <url>
          <loc>https://airvpn.chonker.cc/airvpn/api/status/</loc>
-         <lastmod>2026-07-29</lastmod>
+         <lastmod>2026-08-06</lastmod>
     </url>
     <url>
          <loc>https://airvpn.chonker.cc/airvpn/api/status/models/</loc>
-         <lastmod>2026-07-29</lastmod>
+         <lastmod>2026-08-06</lastmod>
     </url>
     <url>
          <loc>https://airvpn.chonker.cc/airvpn/api/userinfo/</loc>
-         <lastmod>2026-07-29</lastmod>
+         <lastmod>2026-08-06</lastmod>
     </url>
     <url>
          <loc>https://airvpn.chonker.cc/airvpn/api/userinfo/models/</loc>
-         <lastmod>2026-07-29</lastmod>
+         <lastmod>2026-08-06</lastmod>
     </url>
     <url>
          <loc>https://airvpn.chonker.cc/airvpn/api/whatismyip/</loc>
-         <lastmod>2026-07-29</lastmod>
+         <lastmod>2026-08-06</lastmod>
     </url>
     <url>
          <loc>https://airvpn.chonker.cc/airvpn/api/whatismyip/models/</loc>
-         <lastmod>2026-07-29</lastmod>
+         <lastmod>2026-08-06</lastmod>
     </url>
     <url>
          <loc>https://airvpn.chonker.cc/airvpn/client/</loc>
-         <lastmod>2026-07-29</lastmod>
+         <lastmod>2026-08-06</lastmod>
     </url>
     <url>
          <loc>https://airvpn.chonker.cc/airvpn/client/models/</loc>
-         <lastmod>2026-07-29</lastmod>
+         <lastmod>2026-08-06</lastmod>
     </url>
     <url>
          <loc>https://airvpn.chonker.cc/airvpn/web/</loc>
-         <lastmod>2026-07-29</lastmod>
+         <lastmod>2026-08-06</lastmod>
     </url>
     <url>
          <loc>https://airvpn.chonker.cc/airvpn/web/network/</loc>
-         <lastmod>2026-07-29</lastmod>
+         <lastmod>2026-08-06</lastmod>
     </url>
     <url>
          <loc>https://airvpn.chonker.cc/airvpn/web/auth/</loc>
-         <lastmod>2026-07-29</lastmod>
+         <lastmod>2026-08-06</lastmod>
     </url>
     <url>
          <loc>https://airvpn.chonker.cc/airvpn/web/auth/models/</loc>
-         <lastmod>2026-07-29</lastmod>
+         <lastmod>2026-08-06</lastmod>
+    </url>
+    <url>
+         <loc>https://airvpn.chonker.cc/airvpn/web/auth/services/</loc>
+         <lastmod>2026-08-06</lastmod>
+    </url>
+    <url>
+         <loc>https://airvpn.chonker.cc/airvpn/web/auth/services/common/</loc>
+         <lastmod>2026-08-06</lastmod>
+    </url>
+    <url>
+         <loc>https://airvpn.chonker.cc/airvpn/web/auth/services/models/</loc>
+         <lastmod>2026-08-06</lastmod>
+    </url>
+    <url>
+         <loc>https://airvpn.chonker.cc/airvpn/web/auth/services/api/</loc>
+         <lastmod>2026-08-06</lastmod>
+    </url>
+    <url>
+         <loc>https://airvpn.chonker.cc/airvpn/web/auth/services/api/models/</loc>
+         <lastmod>2026-08-06</lastmod>
+    </url>
+    <url>
+         <loc>https://airvpn.chonker.cc/airvpn/web/auth/services/devices/</loc>
+         <lastmod>2026-08-06</lastmod>
+    </url>
+    <url>
+         <loc>https://airvpn.chonker.cc/airvpn/web/auth/services/devices/models/</loc>
+         <lastmod>2026-08-06</lastmod>
+    </url>
+    <url>
+         <loc>https://airvpn.chonker.cc/airvpn/web/auth/services/dns/</loc>
+         <lastmod>2026-08-06</lastmod>
+    </url>
+    <url>
+         <loc>https://airvpn.chonker.cc/airvpn/web/auth/services/dns/models/</loc>
+         <lastmod>2026-08-06</lastmod>
+    </url>
+    <url>
+         <loc>https://airvpn.chonker.cc/airvpn/web/auth/services/ports/</loc>
+         <lastmod>2026-08-06</lastmod>
+    </url>
+    <url>
+         <loc>https://airvpn.chonker.cc/airvpn/web/auth/services/ports/models/</loc>
+         <lastmod>2026-08-06</lastmod>
+    </url>
+    <url>
+         <loc>https://airvpn.chonker.cc/airvpn/web/auth/services/sessions/</loc>
+         <lastmod>2026-08-06</lastmod>
+    </url>
+    <url>
+         <loc>https://airvpn.chonker.cc/airvpn/web/auth/services/sessions/models/</loc>
+         <lastmod>2026-08-06</lastmod>
     </url>
     <url>
          <loc>https://airvpn.chonker.cc/airvpn/web/user/</loc>
-         <lastmod>2026-07-29</lastmod>
+         <lastmod>2026-08-06</lastmod>
     </url>
     <url>
          <loc>https://airvpn.chonker.cc/airvpn/web/user/models/</loc>
-         <lastmod>2026-07-29</lastmod>
+         <lastmod>2026-08-06</lastmod>
     </url>
     <url>
          <loc>https://airvpn.chonker.cc/guides/contributing/</loc>
-         <lastmod>2026-07-29</lastmod>
+         <lastmod>2026-08-06</lastmod>
     </url>
     <url>
          <loc>https://airvpn.chonker.cc/guides/tests/</loc>
-         <lastmod>2026-07-29</lastmod>
+         <lastmod>2026-08-06</lastmod>
     </url>
 </urlset>
