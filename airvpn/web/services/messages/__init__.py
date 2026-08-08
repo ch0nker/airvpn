@@ -181,6 +181,9 @@ class InboxManager:
             redirect_url = data.get("redirect")
             conversation_id = redirect_url.rstrip("/").split("/")[-1]
 
-            return Conversation(self.session, self.owner_id, subject, body, int(conversation_id))
+            conversation = Conversation(self.session, self.owner_id, subject, body, int(conversation_id))
+            self.conversations.append(conversation)
+
+            return conversation
         except JSONDecodeError:
             return None
