@@ -51,7 +51,7 @@ class AirVPN:
 
     Attributes:
         bootstrap (AirClient): Client for AirVPN's encrypted bootstrap API.
-        client: The authenticated web client session. Only set after a
+        client (AuthUser): The authenticated web client session. Only set after a
             `username`/`password` login — not set when constructed with
             `api_key` alone.
         api (AirAPI): Authenticated client for AirVPN's official REST API.
