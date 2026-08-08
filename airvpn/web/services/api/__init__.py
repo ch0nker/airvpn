@@ -1,4 +1,4 @@
-from airvpn.web.auth.services.common import ClientService, WebSession
+from airvpn.web.services.common import ClientService, WebSession
 from .models import *
 from airvpn.exceptions import InvalidAPIKey
 

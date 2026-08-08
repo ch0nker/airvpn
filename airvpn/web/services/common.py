@@ -44,6 +44,7 @@ class ClientService:
 
         Args:
             action: Name of the action to perform.
+            is_act: If the action param is act instead.
             **kwargs: Additional form fields to send along with the request.
 
         Returns:
