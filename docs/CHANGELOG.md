@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.2.8
+- Forgot to test with python 3.11, this fixes it.
+
 ## 0.2.7
 - Add inbox service to `AuthUser.inbox`
 
