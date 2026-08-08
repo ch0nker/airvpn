@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from airvpn.web.user import WebUser
 from airvpn.web.network import WebSession
 from airvpn.exceptions import ValidationError
