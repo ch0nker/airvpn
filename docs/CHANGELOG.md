@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.2.7
+- Add inbox service to `AuthUser.inbox`
+
 ## 0.2.6
 - Replace the `AirVPN` class with a global interface for easier interaction with the other interfaces.
 - Add session management through the `SessionManager` class which can be accessed via `AuthUser.sessions`.
