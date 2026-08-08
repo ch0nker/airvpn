@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from airvpn.web.auth.services import PortManager, APIManager, SessionManager, DeviceManager, DnsManager
+from airvpn.web.services import PortManager, APIManager, SessionManager, DeviceManager, DnsManager, InboxManager
 from airvpn.web.auth.models import ProfilePrivacy, Notification, Message
 from airvpn.web.network import WebSession
 from airvpn.exceptions import LoginError
@@ -73,6 +73,15 @@ class AuthUser(WebUser):
         self._sessions = None
         self._devices = None
         self._dns = None
+        self._inbox = None
+
+    @property
+    def inbox(self):
+        """InboxManager: Manger for the user's inbox"""
+        if self._inbox is None:
+            self._inbox = InboxManager(self.session, self.id)
+
+        return self._inbox
 
     @property
     def dns(self):
@@ -307,31 +316,6 @@ class AuthUser(WebUser):
             [Message(**message) for message in messages]
         )
 
-    def send_message(self, username: str, subject: str, body: str) -> bool:
-        """
-        Sends a message to another user on the AirVPN platform.
-
-        Args:
-            username (str): The username of the recipient.
-            subject (str): The subject of the message.
-            body (str): The body content of the message.
-
-        Returns:
-            bool: A boolean indicating whether the message was successfully sent.
-        """
-        response = self.session.request("post", "https://airvpn.org/messenger/compose/", headers={
-                "Content-Type": "application/x-www-form-urlencoded"
-            }, data = {
-                "csrfKey": self.session.csrf,
-                "form_submitted": 1,
-                "messenger_to_original": "",
-                "messenger_to": username,
-                "messenger_title": subject,
-                "messenger_content": body
-        })
-
-        return response.status_code == 200 or response.status_code == 301
-
     def login(self, username: str, password: str):
         """Log in to the AirVPN website and populate the base user fields.
 
@@ -379,13 +363,12 @@ class AuthUser(WebUser):
 
         self.premium = soup.find("a", {"class": "tooltip-bottom", "data-tooltip": "Your current plan"}) is not None
 
-        user_info = soup.find("li", id="cUserLink").find("a")
-        profile_url = user_info.get("href")
+        user_info = soup.find("li", id="cUserLink")
+        profile_url = user_info.find("a", {"class": "ipsUserPhoto"}).get("href")
+        name = user_info.find("a", id="elUserLink").text.strip()
         url_info = profile_url.split("profile/")[1].split("-")
 
         id = int(url_info.pop(0))
-        url_info[-1] = url_info[-1][:-1] # strip / from last element
-        name = " ".join(url_info)
         img = user_info.find("img").get("src")
 
         match = re.search(r"csrfKey:\s*\"([0-9a-z]+)\",\s*antiCache:\s*\"([0-9a-z]+)\"", response.text)

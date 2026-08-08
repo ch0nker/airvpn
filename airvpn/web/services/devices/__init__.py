@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from airvpn.web.auth.services.common import ClientService, WebSession
+from airvpn.web.services.common import ClientService, WebSession
 from .models import DeviceKey, DeviceKeyDict
 
 from airvpn.exceptions import ValidationError

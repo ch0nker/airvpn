@@ -1,6 +1,6 @@
-from airvpn.web.auth.services.common import ClientService, WebSession
+from airvpn.web.services.common import ClientService, WebSession
 from .models import Port, PortSession
-from airvpn.web.auth.services.devices import DeviceKey
+from airvpn.web.services.devices import DeviceKey
 
 from airvpn.exceptions import InvalidPort
 

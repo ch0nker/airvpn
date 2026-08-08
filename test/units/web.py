@@ -1,4 +1,4 @@
-from airvpn.web.auth.services.dns import RecordType
+from airvpn.web.services.dns import RecordType
 from airvpn import WebClient
 
 import os
@@ -24,16 +24,7 @@ def login():
 @test.unit
 def notifications():
     notifs, msgs = user.get_unread_notifications()
-
-    for notification in notifs:
-        print(notification.title, notification.content)
-
-    for msg in msgs:
-        print(msg.title, msg.message)
-
-@test.unit
-def message():
-    assert user.send_message(message_recipient, "Message Test", "This is a test."), "Failed to send message"
+    print(f"there are {len(notifs)} unread notifcations and {len(msgs)} unread messages.")
 
 @test.unit
 def follow():
