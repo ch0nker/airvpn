@@ -63,9 +63,9 @@ class WebUser:
         self._session = session
         self.name = kwargs.get("name")
         self.id = kwargs.get("id")
-        self.image = kwargs.get("image")
         self.profile_url = f"{WebSession.__BASE_URL__}/profile/{self.id}-{slugify_username(self.name)}/"
 
+        self._image = kwargs.get("image")
         self._content_count = kwargs.get("content_count")
         self._followers = kwargs.get("followers")
         self._community_reputation = kwargs.get("community_reputation")
@@ -113,7 +113,7 @@ class WebUser:
 
         self.name = name_elm.text.strip()
         self._rank = rank_elm.text.strip()
-        self.image = img_elm.get("href")
+        self._image = img_elm.get("href")
 
         profile_stats = soup.find("div", id="elProfileStats")
 
@@ -211,6 +211,12 @@ class WebUser:
             """Force update attributes."""
             self._cache_ts = 0
             self._cache_profile()
+
+    @property
+    def image(self):
+        """str: The user's profile picture."""
+        self._cache_profile()
+        return self._image
 
     @property
     def contacts(self):
