@@ -155,7 +155,7 @@ class InboxManager:
 
             self.conversations.append(Conversation(self.session, self.owner_id, title, body, int(id)))
 
-    def start_conversation(self, username: str, subject: str, body: str) -> Conversation:
+    def start_conversation(self, user: WebUser | str, subject: str, body: str) -> Conversation:
         """
         Create a conversation with a user.
 
@@ -173,7 +173,7 @@ class InboxManager:
                 "csrfKey": self.session.csrf,
                 "form_submitted": 1,
                 "messenger_to_original": "",
-                "messenger_to": username,
+                "messenger_to": user.name if isinstance(user, WebUser) else user,
                 "messenger_title": subject,
                 "messenger_content": body
         })
