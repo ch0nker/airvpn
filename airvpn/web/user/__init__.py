@@ -125,7 +125,6 @@ class WebUser:
 
         following_member = soup.find("a", {"data-action": "unfollow"})
         if following_member is None:
-            print("Failed to find following member.")
             return False
 
         response = self._session.session.get(following_member.get("href"))
