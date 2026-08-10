@@ -23,6 +23,7 @@ jobs:
           pip install keyrings.alt
       - name: Run tests
         env:
+          PYTHON_KEYRING_BACKEND: keyrings.alt.file.PlaintextKeyring
           API_KEY: ${{ secrets.AIRVPN_API_KEY }}
           LOGIN: ${{ secrets.AIRVPN_USERNAME }}
           PASSWORD: ${{ secrets.AIRVPN_PASSWORD }}
