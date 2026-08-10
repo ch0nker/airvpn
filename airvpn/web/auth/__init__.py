@@ -10,7 +10,8 @@ from datetime import datetime
 from bs4 import BeautifulSoup
 from typing import Optional
 
-import re
+import keyring
+import json
 
 class AuthUser(WebUser):
     """Represents the currently logged-in AirVPN user.
@@ -317,6 +318,36 @@ class AuthUser(WebUser):
             [Message(**message) for message in messages]
         )
 
+    def save_session(self, username):
+        session_data = self.session.session.cookies.get_dict("airvpn.org")
+
+        session_data.pop("af3", None)
+        session_data.pop("ips4_guestTime", None)
+        session_data.pop("__Host-referred_by", None)
+
+        keyring.set_password("airvpn_python", username, json.dumps(session_data))
+
+    def _get_session(self, username) -> dict | None:
+        data = keyring.get_password("airvpn_python", username)
+
+        if data is None:
+            return None
+
+        try:
+            return json.loads(data)
+        except json.JSONDecodeError:
+            return None
+
+    def load_session(self, username: str):
+        session_data = self._get_session(username)
+        if session_data is None:
+            return False
+
+        for name, value in session_data.items():
+            self.session.session.cookies.set(name, value, domain="airvpn.org")
+
+        return True
+
     def login(self, username: str, password: str):
         """Log in to the AirVPN website and populate the base user fields.
 
@@ -335,42 +366,55 @@ class AuthUser(WebUser):
                 login page (indicating invalid credentials or a failed
                 login attempt).
         """
+        loaded = self.load_session(username)
         response = self.session.request("get", WebSession.__BASE_URL__)
 
         soup = BeautifulSoup(response.text, "html.parser")
 
-        sign_in_form = soup.find("div", id="elUserSignIn_menu")
-        csrf_key_elm = sign_in_form.find("input", { "name": "csrfKey" })
-        ref_elm = sign_in_form.find("input", { "name": "ref" })
+        def _login():
+            sign_in_form = soup.find("div", id="elUserSignIn_menu")
+            csrf_key_elm = sign_in_form.find("input", { "name": "csrfKey" })
+            ref_elm = sign_in_form.find("input", { "name": "ref" })
 
-        csrf_key, ref = csrf_key_elm.get("value"), ref_elm.get("value")
+            csrf_key, ref = csrf_key_elm.get("value"), ref_elm.get("value")
 
-        login_url = f"{WebSession.__BASE_URL__}/login/"
+            login_url = f"{WebSession.__BASE_URL__}/login/"
 
-        response = self.session.request("post", login_url, headers={
-            "Content-Type": "application/x-www-form-urlencoded"
-        }, data={
-            "csrfKey": csrf_key,
-            "ref": ref,
-            "auth": username,
-            "password": password,
-            "remember_me": "1",
-            "_processLogin": [ "usernamepassword", "usernamepassword" ]
-        })
+            response = self.session.request("post", login_url, headers={
+                "Content-Type": "application/x-www-form-urlencoded"
+            }, data={
+                "csrfKey": csrf_key,
+                "ref": ref,
+                "auth": username,
+                "password": password,
+                "remember_me": "1",
+                "_processLogin": [ "usernamepassword", "usernamepassword" ]
+            })
 
-        if login_url == response.url:
-            raise LoginError("Failed to login.")
+            if login_url == response.url:
+                raise LoginError("Failed to login.")
 
-        soup = BeautifulSoup(response.text, "html.parser")
+            return BeautifulSoup(response.text, "html.parser")
 
-        self.premium = soup.find("a", {"class": "tooltip-bottom", "data-tooltip": "Your current plan"}) is not None
+        if not loaded:
+            soup = _login()
 
         user_info = soup.find("li", id="cUserLink")
+        if not user_info:
+            soup = _login()
+            user_info = soup.find("li", id="cUserLink")
+            if not user_info:
+                raise LoginError("Failed to login.")
+
         profile_url = user_info.find("a", {"class": "ipsUserPhoto"}).get("href")
         name = user_info.find("a", id="elUserLink").text.strip()
         url_info = profile_url.split("profile/")[1].split("-")
 
+        self.premium = soup.find("a", {"class": "tooltip-bottom", "data-tooltip": "Your current plan"}) is not None
+
         id = int(url_info.pop(0))
         img = user_info.find("img").get("src")
+
+        self.save_session(username)
 
         super().__init__(self.session, name=name, id=id, image=img)
