@@ -115,16 +115,17 @@ class WebUser:
             return False
 
         response = self._session.ajax("get", "follow", "notifications", 
-                                ajax_params={
-                                    "follow_area": "member",
-                                    "follow_id": self.id,
-                                    "follow_app": "core"
-                                })
+            ajax_params={
+                "follow_area": "member",
+                "follow_id": self.id,
+                "follow_app": "core"
+            })
 
         soup = BeautifulSoup(response.text, "html.parser")
 
         following_member = soup.find("a", {"data-action": "unfollow"})
         if following_member is None:
+            print("Failed to find following member.")
             return False
 
         response = self._session.session.get(following_member.get("href"))
