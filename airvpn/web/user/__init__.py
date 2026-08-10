@@ -89,14 +89,14 @@ class WebUser:
         if not self._session.logged_in:
             return False
 
-        response = self.session.ajax("post", "follow", "notifications", ajax_params = {
+        response = self._session.ajax("post", "follow", "notifications", ajax_params = {
             "follow_app": "core",
             "follow_area": "member",
             "follow_id": self.id
             },
             files=(
                 ("follow_submitted", (None, 1)),
-                ("csrfKey", (None, self.session.csrf)),
+                ("csrfKey", (None, self._session.csrf)),
                 ("immediate", (None, "follow_type_immediate")),
                 ("follow_public", (None, 0)),
                 ("follow_public_checkbox", (None, 1))
@@ -114,7 +114,7 @@ class WebUser:
         if not self._session.logged_in:
             return False
 
-        response = self.session.ajax("get", "follow", "notifications", 
+        response = self._session.ajax("get", "follow", "notifications", 
                                 ajax_params={
                                     "follow_area": "member",
                                     "follow_id": self.id,
@@ -127,7 +127,7 @@ class WebUser:
         if following_member is None:
             return False
 
-        response = self.session.session.get(following_member.get("href"))
+        response = self._session.session.get(following_member.get("href"))
         return response.status_code == 200 or response.status_code == 301
 
     def _cache_profile(self):
