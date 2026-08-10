@@ -21,7 +21,7 @@ user_obj = None
 def login():
     global user
     user = client.login(os.getenv("LOGIN"), os.getenv("PASSWORD"))
-    print(user.session.logged_in)
+    assert user, "Failed to login"
 
 @test.unit
 def find_member():
