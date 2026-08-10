@@ -80,6 +80,56 @@ class WebUser:
 
         self._cache_ts = 0
 
+    def follow(self) -> bool:
+        """Follow this member.
+
+        Returns:
+            bool: ``True`` if the request succeeded.
+        """
+        if not self._session.logged_in:
+            return False
+
+        response = self.session.ajax("post", "follow", "notifications", ajax_params = {
+            "follow_app": "core",
+            "follow_area": "member",
+            "follow_id": self.id
+            },
+            files=(
+                ("follow_submitted", (None, 1)),
+                ("csrfKey", (None, self.session.csrf)),
+                ("immediate", (None, "follow_type_immediate")),
+                ("follow_public", (None, 0)),
+                ("follow_public_checkbox", (None, 1))
+            ))
+
+        status_code = response.status_code
+        return status_code == 200 or status_code == 301
+
+    def unfollow(self) -> bool:
+        """Unfollow the user.
+
+        Returns:
+            bool: ``True`` if the request succeeded (HTTP 200 or 301), ``False`` otherwise.
+        """
+        if not self._session.logged_in:
+            return False
+
+        response = self.session.ajax("get", "follow", "notifications", 
+                                ajax_params={
+                                    "follow_area": "member",
+                                    "follow_id": self.id,
+                                    "follow_app": "core"
+                                })
+
+        soup = BeautifulSoup(response.text, "html.parser")
+
+        following_member = soup.find("a", {"data-action": "unfollow"})
+        if following_member is None:
+            return False
+
+        response = self.session.session.get(following_member.get("href"))
+        return response.status_code == 200 or response.status_code == 301
+
     def _cache_profile(self):
         """Fetch and parse the user's profile page, populating all lazily
         loaded fields.

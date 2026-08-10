@@ -125,31 +125,6 @@ class AuthUser(WebUser):
 
         return self._devices
 
-    def follow(self, id: int) -> bool:
-        """Follow another member by ID.
-
-        Args:
-            id: ID of the member to follow.
-
-        Returns:
-            bool: ``True`` if the request succeeded (HTTP 200 or 301), ``False`` otherwise.
-        """
-        response = self.session.ajax("post", "follow", "notifications", ajax_params = {
-            "follow_app": "core",
-            "follow_area": "member",
-            "follow_id": id
-            },
-            files=(
-                ("follow_submitted", (None, 1)),
-                ("csrfKey", (None, self.session.csrf)),
-                ("immediate", (None, "follow_type_immediate")),
-                ("follow_public", (None, 0)),
-                ("follow_public_checkbox", (None, 1))
-            ))
-
-        status_code = response.status_code
-        return status_code == 200 or status_code == 301
-
     def edit_profile(self,
                      birthday: datetime = None,
                      website: str = None,
@@ -269,31 +244,6 @@ class AuthUser(WebUser):
         self._gender = gender
         self._interests = interests
 
-        return response.status_code == 200 or response.status_code == 301
-        
-    def unfollow(self, id: int) -> bool:
-        """Unfollow a member using their ID.
-
-        Args:
-            id: ID of the member to unfollow
-
-        Returns:
-            bool: ``True`` if the request succeeded (HTTP 200 or 301), ``False`` otherwise.
-        """
-        response = self.session.ajax("get", "follow", "notifications", 
-                                ajax_params={
-                                    "follow_area": "member",
-                                    "follow_id": id,
-                                    "follow_app": "core"
-                                })
-
-        soup = BeautifulSoup(response.text, "html.parser")
-
-        following_member = soup.find("a", {"data-action": "unfollow"})
-        if following_member is None:
-            return False
-
-        response = self.session.session.get(following_member.get("href"))
         return response.status_code == 200 or response.status_code == 301
 
     def get_unread_notifications(self) -> tuple[list[Notification], list[Message]]:
