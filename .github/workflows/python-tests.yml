@@ -1,6 +1,11 @@
 name: Run Tests
 on:
   workflow_dispatch:
+    inputs:
+      test:
+        description: "Specific test to run (leave empty to run all)"
+        required: false
+        type: string
   schedule:
     - cron: "0 6 * * *"
 jobs:
@@ -27,4 +32,4 @@ jobs:
           API_KEY: ${{ secrets.AIRVPN_API_KEY }}
           LOGIN: ${{ secrets.AIRVPN_USERNAME }}
           PASSWORD: ${{ secrets.AIRVPN_PASSWORD }}
-        run: python test
+        run: python test ${{ github.event.inputs.test }}
