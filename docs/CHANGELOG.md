@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.9
+- Move `AuthUser.follow` and `AuthUser.unfollow` to `WebUser`.
+- Add reading forums via the `ForumManager` class which can be accessed from `AirVPN.web.forums`.
+- Add `AirVPN.web.find_member(username: str) -> list[WebUser]` for searching members.
+- Remove `AirVPN.client`, instead use `AirVPN.web.user`.
+
 ## 0.2.8
 - Forgot to test with python 3.11, this fixes it.
 
@@ -7,7 +13,7 @@
 - Add inbox service to `AuthUser.inbox`
 
 ## 0.2.6
-- Replace the `AirVPN` class with a global interface for easier interaction with the other interfaces.
+- Replace the `AirVPN` class with a wrapper for easier interaction with the other interfaces.
 - Add session management through the `SessionManager` class which can be accessed via `AuthUser.sessions`.
 - Add devices management through the `DeviceManager` class which can be accesed via `AuthUser.devices`.
 - Add dns management through the `DnsManager` class which can be accessed via `AuthUser.dns`

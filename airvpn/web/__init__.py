@@ -1,6 +1,14 @@
 """An interface for interacting with the website."""
 
-from airvpn.web.auth import AuthUser
+from __future__ import annotations
+
+from typing import Optional
+
+from .network import WebSession
+
+from .user import WebUser
+from .auth import AuthUser
+from .forum import ForumManager
 
 __title__ = "WebClient"
 
@@ -10,10 +18,34 @@ class WebClient:
     Attributes:
         user (AuthUser | None): The currently authenticated user, or ``None``
             if `login` has not yet been called.
+        session (WebSession): The underlying session used for all requests.
+        forum (ForumManager): Entry point for browsing the site's forums.
     """
 
     def __init__(self):
         self.user = None
+        self.session = WebSession()
+        self.forum = ForumManager(self.session)
+
+    def find_member(self, username: str) -> list[WebUser]:
+        """Search for members by username.
+
+        Args:
+            username: Full or partial username to search for.
+
+        Returns:
+            Matching users found by the search.
+        """
+        data = self.session.ajax("get", "findMember", "ajax", ajax_params={
+            "input": username
+        }).json()
+
+        return [WebUser(
+            self.session,
+            name=user.get("name"),
+            id=int(user.get("id")),
+            image=user.get("photo")
+        ) for user in data]
 
     def login(self, username: str, password: str) -> AuthUser:
         """Authenticate with the AirVPN website.
@@ -28,6 +60,6 @@ class WebClient:
         Raises:
             LoginError: If authentication fails.
         """
-        self.user = AuthUser(username, password)
+        self.user = AuthUser(username, password, self.session)
 
         return self.user

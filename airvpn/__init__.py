@@ -15,12 +15,14 @@ handling tasks not exposed through the official API.
 """
 
 __title__ = "AirVPN"
-__version__ = "0.2.8"
+__version__ = "0.2.9"
 __license__ = "MIT"
 
 __all__ = [
     "AirVPN"
 ]
+
+from typing import Optional
 
 from airvpn.api import AirAPI
 from airvpn.client import AirClient
@@ -51,16 +53,14 @@ class AirVPN:
 
     Attributes:
         bootstrap (AirClient): Client for AirVPN's encrypted bootstrap API.
-        client: The authenticated web client session. Only set after a
-            `username`/`password` login — not set when constructed with
-            `api_key` alone.
+        web (WebClient): Client for interacting with the website.
         api (AirAPI): Authenticated client for AirVPN's official REST API.
 
     Example:
         ```python
-         # Log in immediately (website + REST API)
+         # Log in immediately, with username and password (website + REST API)
          vpn = AirVPN("myusername", "mypassword")
-         vpn.client.api.keys
+         vpn.web.user.api.keys
          vpn.api.devices
 
          # REST API access only, no website login
@@ -70,21 +70,25 @@ class AirVPN:
          # Defer login
          vpn = AirVPN()
          vpn.login("myusername", "mypassword")
-         vpn.client.api.keys
+         vpn.web.user.api.keys
         ```
     """
 
-    def __init__(self, username: str = None, password: str = None, api_key: str = None):
+    def __init__(self, 
+                 username: Optional[str] = None, 
+                 password: Optional[str] = None,
+                 api_key: Optional[str] = None):
         self.bootstrap = AirClient()
-        self._web_client = WebClient()
+        self.web = WebClient()
 
         if username is not None and password is not None:
             self.login(username, password)
-           
-            if len(self.client.api.keys) == 0:
-                self.client.api.add()
 
-            api_key = self.client.api.keys[0].secret
+            api = self.web.user.api
+            if len(api.keys) == 0:
+                api.add()
+
+            api_key = api.keys[0].secret
 
         self.init_api(api_key)
 
@@ -96,7 +100,7 @@ class AirVPN:
             username (str): The AirVPN account username.
             password (str): The AirVPN account password.
         """
-        self.client = self._web_client.login(username, password)
+        self.web.login(username, password)
 
     def init_api(self, api_key: str):
         """

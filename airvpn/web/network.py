@@ -1,6 +1,7 @@
 from urllib.parse import urlparse, parse_qs, unquote_plus
 
 import requests
+import re
 
 __title__ = "Network"
 
@@ -26,6 +27,10 @@ class WebSession:
         self.csrf = None
         self.anti_cache = None
 
+    @property
+    def logged_in(self):
+        return self.session.cookies.get("ips4_loggedIn") == "1"
+
     def get_checksum(self, token: str) -> int:
         """Compute the checksum required to solve AirVPN's JavaScript-check
         redirect challenge.
@@ -48,6 +53,13 @@ class WebSession:
             checksum += 23 - 5
 
         return checksum
+
+    def scrape_csrf(self, response: requests.Response):
+        if self.csrf is None:
+            match = re.search(r"csrfKey:\s*\"([0-9a-z]+)\",\s*antiCache:\s*\"([0-9a-z]+)\"", response.text)
+
+            self.csrf = match.group(1)
+            self.anti_cache = match.group(2)
 
     def request(self, method: str, url: str, **kwargs) -> requests.Response:
         """Perform an HTTP request, transparently handling AirVPN's
@@ -73,6 +85,7 @@ class WebSession:
 
         response = self.session.request(method, url, **kwargs)
         if "Sorry, AirVPN website require JavaScript." not in response.text:
+            self.scrape_csrf(response)
             return response
 
         redirect_location = response.headers.get("location", response.url)
@@ -97,7 +110,9 @@ class WebSession:
 
         final_url = f"{WebSession.__BASE_URL__}{redirect_path}"
 
-        return self.session.request(method, final_url, **kwargs)
+        response = self.session.request(method, final_url, **kwargs)
+        self.scrape_csrf(response)
+        return response
 
     def ajax(self,
             method: str,

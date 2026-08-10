@@ -27,9 +27,9 @@ pip install -e airvpn
 The library exposes four interfaces, depending on how much control you need:
 
 - **`AirVPN`** — high-level wrapper; the best starting point for most use cases
-- **`AirClient`** — low-level client for the encrypted bootstrap API (servers, manifest, status)
-- **`AirAPI`** — client for AirVPN's authenticated REST API (devices, config generation, keys)
-- **`WebClient`** — client for AirVPN's website/session-based endpoints (account and profile actions)
+- **`AirClient`** — low-level client for the encrypted bootstrap API.
+- **`AirAPI`** — client for AirVPN's authenticated REST API.
+- **`WebClient`** — client for AirVPN's website/session-based endpoints.
 
 ## Quick Start
 

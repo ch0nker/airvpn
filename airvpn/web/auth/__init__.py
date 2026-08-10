@@ -8,8 +8,10 @@ from airvpn.web.user import WebUser
 
 from datetime import datetime
 from bs4 import BeautifulSoup
+from typing import Optional
 
-import re
+import keyring
+import json
 
 class AuthUser(WebUser):
     """Represents the currently logged-in AirVPN user.
@@ -64,8 +66,8 @@ class AuthUser(WebUser):
             property from `WebUser`; lazily fetched via profile
             scrape if not already known.
     """
-    def __init__(self, username: str, password: str):
-        self.session = WebSession()
+    def __init__(self, username: str, password: str, session: Optional[WebSession] = None):
+        self.session = session or WebSession()
         self.premium = False
         self.login(username, password)
         self._ports = None
@@ -122,31 +124,6 @@ class AuthUser(WebUser):
             self._devices = DeviceManager(self.session)
 
         return self._devices
-
-    def follow(self, id: int) -> bool:
-        """Follow another member by ID.
-
-        Args:
-            id: ID of the member to follow.
-
-        Returns:
-            bool: ``True`` if the request succeeded (HTTP 200 or 301), ``False`` otherwise.
-        """
-        response = self.session.ajax("post", "follow", "notifications", ajax_params = {
-            "follow_app": "core",
-            "follow_area": "member",
-            "follow_id": id
-            },
-            files=(
-                ("follow_submitted", (None, 1)),
-                ("csrfKey", (None, self.session.csrf)),
-                ("immediate", (None, "follow_type_immediate")),
-                ("follow_public", (None, 0)),
-                ("follow_public_checkbox", (None, 1))
-            ))
-
-        status_code = response.status_code
-        return status_code == 200 or status_code == 301
 
     def edit_profile(self,
                      birthday: datetime = None,
@@ -268,31 +245,6 @@ class AuthUser(WebUser):
         self._interests = interests
 
         return response.status_code == 200 or response.status_code == 301
-        
-    def unfollow(self, id: int) -> bool:
-        """Unfollow a member using their ID.
-
-        Args:
-            id: ID of the member to unfollow
-
-        Returns:
-            bool: ``True`` if the request succeeded (HTTP 200 or 301), ``False`` otherwise.
-        """
-        response = self.session.ajax("get", "follow", "notifications", 
-                                ajax_params={
-                                    "follow_area": "member",
-                                    "follow_id": id,
-                                    "follow_app": "core"
-                                })
-
-        soup = BeautifulSoup(response.text, "html.parser")
-
-        following_member = soup.find("a", {"data-action": "unfollow"})
-        if following_member is None:
-            return False
-
-        response = self.session.session.get(following_member.get("href"))
-        return response.status_code == 200 or response.status_code == 301
 
     def get_unread_notifications(self) -> tuple[list[Notification], list[Message]]:
         """
@@ -316,6 +268,36 @@ class AuthUser(WebUser):
             [Message(**message) for message in messages]
         )
 
+    def save_session(self, username):
+        session_data = self.session.session.cookies.get_dict("airvpn.org")
+
+        session_data.pop("af3", None)
+        session_data.pop("ips4_guestTime", None)
+        session_data.pop("__Host-referred_by", None)
+
+        keyring.set_password("airvpn_python", username, json.dumps(session_data))
+
+    def _get_session(self, username) -> dict | None:
+        data = keyring.get_password("airvpn_python", username)
+
+        if data is None:
+            return None
+
+        try:
+            return json.loads(data)
+        except json.JSONDecodeError:
+            return None
+
+    def load_session(self, username: str):
+        session_data = self._get_session(username)
+        if session_data is None:
+            return False
+
+        for name, value in session_data.items():
+            self.session.session.cookies.set(name, value, domain="airvpn.org")
+
+        return True
+
     def login(self, username: str, password: str):
         """Log in to the AirVPN website and populate the base user fields.
 
@@ -327,53 +309,62 @@ class AuthUser(WebUser):
         Args:
             username: Account username or email address.
             password: Account password.
+            key: The PHPSESSID from your cookies.
 
         Raises:
             LoginError: If the login request does not redirect away from the
                 login page (indicating invalid credentials or a failed
                 login attempt).
         """
+        loaded = self.load_session(username)
         response = self.session.request("get", WebSession.__BASE_URL__)
 
         soup = BeautifulSoup(response.text, "html.parser")
 
-        sign_in_form = soup.find("div", id="elUserSignIn_menu")
-        csrf_key_elm = sign_in_form.find("input", { "name": "csrfKey" })
-        ref_elm = sign_in_form.find("input", { "name": "ref" })
+        def _login():
+            sign_in_form = soup.find("div", id="elUserSignIn_menu")
+            csrf_key_elm = sign_in_form.find("input", { "name": "csrfKey" })
+            ref_elm = sign_in_form.find("input", { "name": "ref" })
 
-        csrf_key, ref = csrf_key_elm.get("value"), ref_elm.get("value")
+            csrf_key, ref = csrf_key_elm.get("value"), ref_elm.get("value")
 
-        login_url = f"{WebSession.__BASE_URL__}/login/"
+            login_url = f"{WebSession.__BASE_URL__}/login/"
 
-        response = self.session.request("post", login_url, headers={
-            "Content-Type": "application/x-www-form-urlencoded"
-        }, data={
-            "csrfKey": csrf_key,
-            "ref": ref,
-            "auth": username,
-            "password": password,
-            "remember_me": "1",
-            "_processLogin": [ "usernamepassword", "usernamepassword" ]
-        })
+            response = self.session.request("post", login_url, headers={
+                "Content-Type": "application/x-www-form-urlencoded"
+            }, data={
+                "csrfKey": csrf_key,
+                "ref": ref,
+                "auth": username,
+                "password": password,
+                "remember_me": "1",
+                "_processLogin": [ "usernamepassword", "usernamepassword" ]
+            })
 
-        if login_url == response.url:
-            raise LoginError("Failed to login.")
+            if login_url == response.url:
+                raise LoginError("Failed to login.")
 
-        soup = BeautifulSoup(response.text, "html.parser")
+            return BeautifulSoup(response.text, "html.parser")
 
-        self.premium = soup.find("a", {"class": "tooltip-bottom", "data-tooltip": "Your current plan"}) is not None
+        if not loaded:
+            soup = _login()
 
         user_info = soup.find("li", id="cUserLink")
+        if not user_info:
+            soup = _login()
+            user_info = soup.find("li", id="cUserLink")
+            if not user_info:
+                raise LoginError("Failed to login.")
+
         profile_url = user_info.find("a", {"class": "ipsUserPhoto"}).get("href")
         name = user_info.find("a", id="elUserLink").text.strip()
         url_info = profile_url.split("profile/")[1].split("-")
 
+        self.premium = soup.find("a", {"class": "tooltip-bottom", "data-tooltip": "Your current plan"}) is not None
+
         id = int(url_info.pop(0))
         img = user_info.find("img").get("src")
 
-        match = re.search(r"csrfKey:\s*\"([0-9a-z]+)\",\s*antiCache:\s*\"([0-9a-z]+)\"", response.text)
-
-        self.session.csrf = match.group(1)
-        self.session.anti_cache = match.group(2)
+        self.save_session(username)
 
         super().__init__(self.session, name=name, id=id, image=img)

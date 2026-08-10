@@ -15,27 +15,36 @@ port_obj = None
 answer_obj = None
 record_obj = None
 api_obj = None
+user_obj = None
 
 @test.unit
 def login():
     global user
     user = client.login(os.getenv("LOGIN"), os.getenv("PASSWORD"))
+    assert user, "Failed to login"
+
+@test.unit
+def find_member():
+    global user_obj
+    user_obj = client.find_member("chonk's test")[0]
+
+    assert user_obj, "Failed to find chonk's test"
 
 @test.unit
 def notifications():
     notifs, msgs = user.get_unread_notifications()
     print(f"there are {len(notifs)} unread notifcations and {len(msgs)} unread messages.")
 
-@test.unit
-def follow():
-    assert user.follow(follow_id), "Failed to follow"
-
-@test.unit
-def unfollow():
-    assert user.unfollow(follow_id), "Failed to unfollow"
-
 # git actions fails this??
 # but I can run it perfectly with all the versions??
+# @test.unit
+# def follow():
+#     assert user_obj.follow(), "Failed to follow"
+
+# @test.unit
+# def unfollow():
+#     assert user_obj.unfollow(), "Failed to unfollow"
+
 # @test.unit
 # def edit():
 #     assert user.edit_profile(website="https://airvpn.chonker.cc"), "Failed to edit profile"
@@ -137,3 +146,22 @@ def init_sessions():
 def list_sessions():
     print(f"There are currently {len(user.sessions.sessions)} active sessions.")
 
+@test.unit
+def list_categories():
+    for category in client.forum.categories:
+        print(category.title)
+
+@test.unit
+def list_forums():
+    assert len(client.forum.categories) > 0, "Failed to get categories"
+
+    for forum in client.forum.categories[0].forums:
+        print(forum.title, forum.description)
+
+@test.unit
+def list_posts():
+    assert len(client.forum.categories) > 0, "Failed to get categories"
+    forum = client.forum.categories[0].forums[0]
+
+    for post in forum.pages[0]:
+        print(post.user.name, post.title)
