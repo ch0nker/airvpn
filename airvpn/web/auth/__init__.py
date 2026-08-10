@@ -65,10 +65,10 @@ class AuthUser(WebUser):
             property from `WebUser`; lazily fetched via profile
             scrape if not already known.
     """
-    def __init__(self, username: Optional[str] = None, password: Optional[str] = None, key: Optional[str] = None, session: Optional[WebSession] = None):
+    def __init__(self, username: str, password: str, session: Optional[WebSession] = None):
         self.session = session or WebSession()
         self.premium = False
-        self.login(username, password, key)
+        self.login(username, password)
         self._ports = None
         self._api = None
         self._sessions = None
@@ -317,7 +317,7 @@ class AuthUser(WebUser):
             [Message(**message) for message in messages]
         )
 
-    def login(self, username: str, password: str, key: str = None):
+    def login(self, username: str, password: str):
         """Log in to the AirVPN website and populate the base user fields.
 
         Fetches the sign-in form to obtain the CSRF key and reference token,
@@ -335,37 +335,33 @@ class AuthUser(WebUser):
                 login page (indicating invalid credentials or a failed
                 login attempt).
         """
-        if key is not None:
-            self.session.session.cookies.set("PHPSESSID", key, domain="airvpn.org")
-
         response = self.session.request("get", WebSession.__BASE_URL__)
 
         soup = BeautifulSoup(response.text, "html.parser")
 
-        if key is None:
-            sign_in_form = soup.find("div", id="elUserSignIn_menu")
-            csrf_key_elm = sign_in_form.find("input", { "name": "csrfKey" })
-            ref_elm = sign_in_form.find("input", { "name": "ref" })
+        sign_in_form = soup.find("div", id="elUserSignIn_menu")
+        csrf_key_elm = sign_in_form.find("input", { "name": "csrfKey" })
+        ref_elm = sign_in_form.find("input", { "name": "ref" })
 
-            csrf_key, ref = csrf_key_elm.get("value"), ref_elm.get("value")
+        csrf_key, ref = csrf_key_elm.get("value"), ref_elm.get("value")
 
-            login_url = f"{WebSession.__BASE_URL__}/login/"
+        login_url = f"{WebSession.__BASE_URL__}/login/"
 
-            response = self.session.request("post", login_url, headers={
-                "Content-Type": "application/x-www-form-urlencoded"
-            }, data={
-                "csrfKey": csrf_key,
-                "ref": ref,
-                "auth": username,
-                "password": password,
-                "remember_me": "1",
-                "_processLogin": [ "usernamepassword", "usernamepassword" ]
-            })
+        response = self.session.request("post", login_url, headers={
+            "Content-Type": "application/x-www-form-urlencoded"
+        }, data={
+            "csrfKey": csrf_key,
+            "ref": ref,
+            "auth": username,
+            "password": password,
+            "remember_me": "1",
+            "_processLogin": [ "usernamepassword", "usernamepassword" ]
+        })
 
-            if login_url == response.url:
-                raise LoginError("Failed to login.")
+        if login_url == response.url:
+            raise LoginError("Failed to login.")
 
-            soup = BeautifulSoup(response.text, "html.parser")
+        soup = BeautifulSoup(response.text, "html.parser")
 
         self.premium = soup.find("a", {"class": "tooltip-bottom", "data-tooltip": "Your current plan"}) is not None
 

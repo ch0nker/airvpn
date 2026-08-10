@@ -63,11 +63,6 @@ class AirVPN:
          vpn.web.user.api.keys
          vpn.api.devices
 
-         # Log in immediately, with PHPSESSID (website + REST API)
-         vpn = AirVPN(key="PHPSESSID")
-         vpn.web.user.api.keys
-         vpn.api.devices
-
          # REST API access only, no website login
          vpn = AirVPN(api_key="mysecret")
          vpn.api.devices.get("my-device")
@@ -81,23 +76,23 @@ class AirVPN:
 
     def __init__(self, 
                  username: Optional[str] = None, 
-                 password: Optional[str] = None, 
-                 key: Optional[str] = None,
+                 password: Optional[str] = None,
                  api_key: Optional[str] = None):
         self.bootstrap = AirClient()
         self.web = WebClient()
 
-        if username is not None and password is not None or key is not None:
-            self.login(username, password, key)
-           
-            if len(self.client.api.keys) == 0:
-                self.web.user.api.add()
+        if username is not None and password is not None:
+            self.login(username, password)
 
-            api_key = self.web.user.api.keys[0].secret
+            api = self.web.user.api
+            if len(api.keys) == 0:
+                api.add()
+
+            api_key = api.keys[0].secret
 
         self.init_api(api_key)
 
-    def login(self, username: Optional[str] = None, password: Optional[str] = None, key: Optional[str] = None):
+    def login(self, username: str, password: str):
         """
         Authenticate with AirVPN and initialize the API client.
 
@@ -105,7 +100,7 @@ class AirVPN:
             username (str): The AirVPN account username.
             password (str): The AirVPN account password.
         """
-        self.web.login(username, password, key)
+        self.web.login(username, password)
 
     def init_api(self, api_key: str):
         """

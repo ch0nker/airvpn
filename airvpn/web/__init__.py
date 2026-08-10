@@ -47,7 +47,7 @@ class WebClient:
             image=user.get("photo")
         ) for user in data]
 
-    def login(self, username: Optional[str] = None, password: Optional[str] = None, key: Optional[str] = None) -> AuthUser:
+    def login(self, username: str, password: str) -> AuthUser:
         """Authenticate with the AirVPN website.
 
         Args:
@@ -60,6 +60,6 @@ class WebClient:
         Raises:
             LoginError: If authentication fails.
         """
-        self.user = AuthUser(username, password, key, self.session)
+        self.user = AuthUser(username, password, self.session)
 
         return self.user
