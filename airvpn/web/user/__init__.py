@@ -109,7 +109,7 @@ class WebUser:
         """Unfollow the user.
 
         Returns:
-            bool: ``True`` if the request succeeded (HTTP 200 or 301), ``False`` otherwise.
+            bool: ``True`` if the request succeeded.
         """
         if not self._session.logged_in:
             return False
