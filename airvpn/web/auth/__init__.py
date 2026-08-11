@@ -178,7 +178,7 @@ class AuthUser(WebUser):
         """
 
         edit_url = self.profile_url + "edit/"
-        response = self.session.session.get(edit_url)
+        response = self.session.request("get", edit_url)
 
         soup = BeautifulSoup(response.text, "html.parser")
         edit_form = soup.find("form", {"action": edit_url})
