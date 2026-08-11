@@ -77,12 +77,13 @@ class AirVPN:
     def __init__(self, 
                  username: Optional[str] = None, 
                  password: Optional[str] = None,
+                 remember_me: bool = False,
                  api_key: Optional[str] = None):
         self.bootstrap = AirClient()
         self.web = WebClient()
 
         if username is not None and password is not None:
-            self.login(username, password)
+            self.login(username, password, remember_me)
 
             api = self.web.user.api
             if len(api.keys) == 0:
@@ -92,7 +93,7 @@ class AirVPN:
 
         self.init_api(api_key)
 
-    def login(self, username: str, password: str):
+    def login(self, username: str, password: str, remeber_me: bool = False):
         """
         Authenticate with AirVPN and initialize the API client.
 
@@ -100,7 +101,7 @@ class AirVPN:
             username (str): The AirVPN account username.
             password (str): The AirVPN account password.
         """
-        self.web.login(username, password)
+        self.web.login(username, password, remeber_me)
 
     def init_api(self, api_key: str):
         """
