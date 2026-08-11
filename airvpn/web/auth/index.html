@@ -3780,7 +3780,7 @@ is selected.</p>
 
 
 <h3 id="airvpn.web.auth.AuthUser.login" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">login</span><span class="p">(</span><span class="n">username</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">password</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">login</span><span class="p">(</span><span class="n">username</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">password</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">remember_me</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span></code>
 
 </h3>
 
@@ -3846,6 +3846,21 @@ as well as the CSRF/anti-cache tokens used for subsequent requests.</p>
             <td>
               <div class="doc-md-description">
                 <p>The PHPSESSID from your cookies.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>rememeber_me</code>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Whether or not to store the session's credentials.</p>
               </div>
             </td>
             <td>
