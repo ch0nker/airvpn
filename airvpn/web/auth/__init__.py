@@ -310,7 +310,6 @@ class AuthUser(WebUser):
         Args:
             username: Account username or email address.
             password: Account password.
-            key: The PHPSESSID from your cookies.
             rememeber_me: Whether or not to store the session's credentials.
 
         Raises:
