@@ -1,5 +1,9 @@
 # Changelog
 
+# 0.2.11
+- Fix `WebUser.follow` not working.
+- Fix csrf token not being fetched each request.
+
 ## 0.2.10
 - Make keyring optional via `remember_me` arg
 
