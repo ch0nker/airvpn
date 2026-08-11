@@ -102,8 +102,11 @@ class WebUser:
                 ("follow_public_checkbox", (None, 1))
             ))
 
-        status_code = response.status_code
-        return status_code == 200 or status_code == 301
+        soup = BeautifulSoup(response.text, "html.parser")
+        return soup.find("a", {
+            "class": ["ipsButton", "ipsButton_positive"],
+            "data-role": "followButton"
+        }) is not None
 
     def unfollow(self) -> bool:
         """Unfollow the user.
@@ -111,6 +114,7 @@ class WebUser:
         Returns:
             bool: ``True`` if the request succeeded.
         """
+
         if not self._session.logged_in:
             return False
 

@@ -35,16 +35,16 @@ def notifications():
     notifs, msgs = user.get_unread_notifications()
     print(f"there are {len(notifs)} unread notifcations and {len(msgs)} unread messages.")
 
-# git actions fails this??
-# but I can run it perfectly with all the versions??
-# @test.unit
-# def follow():
-#     assert user_obj.follow(), "Failed to follow"
+@test.unit
+def follow():
+    assert user_obj.follow(), "Failed to follow"
 
-# @test.unit
-# def unfollow():
-#     assert user_obj.unfollow(), "Failed to unfollow"
+@test.unit
+def unfollow():
+    assert user_obj.unfollow(), "Failed to unfollow"
 
+# Genuinely no idea why this fails in CI but I can run it perfectly in windows and linux
+# it fails to get the about attribute somehow.
 # @test.unit
 # def edit():
 #     assert user.edit_profile(website="https://airvpn.chonker.cc"), "Failed to edit profile"

@@ -55,11 +55,13 @@ class WebSession:
         return checksum
 
     def scrape_csrf(self, response: requests.Response):
-        if self.csrf is None:
-            match = re.search(r"csrfKey:\s*\"([0-9a-z]+)\",\s*antiCache:\s*\"([0-9a-z]+)\"", response.text)
+        match = re.search(r"csrfKey:\s*\"([0-9a-z]+)\",\s*antiCache:\s*\"([0-9a-z]+)\"", response.text)
 
-            self.csrf = match.group(1)
-            self.anti_cache = match.group(2)
+        if not match:
+            return
+
+        self.csrf = match.group(1)
+        self.anti_cache = match.group(2)
 
     def request(self, method: str, url: str, **kwargs) -> requests.Response:
         """Perform an HTTP request, transparently handling AirVPN's
