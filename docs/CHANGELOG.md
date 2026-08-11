@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.2.10
+- Make keyring optional via `remember_me` arg
+
 ## 0.2.9
 - Move `AuthUser.follow` and `AuthUser.unfollow` to `WebUser`.
 - Add reading forums via the `ForumManager` class which can be accessed from `AirVPN.web.forums`.
