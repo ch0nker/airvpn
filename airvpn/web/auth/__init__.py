@@ -318,6 +318,7 @@ class AuthUser(WebUser):
                 login attempt).
         """
 
+        loaded = False
         if remember_me:
             loaded = self.load_session(username)
 
