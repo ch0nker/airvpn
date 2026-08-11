@@ -66,10 +66,10 @@ class AuthUser(WebUser):
             property from `WebUser`; lazily fetched via profile
             scrape if not already known.
     """
-    def __init__(self, username: str, password: str, session: Optional[WebSession] = None):
+    def __init__(self, username: str, password: str, session: Optional[WebSession] = None, remember_me: bool = False):
         self.session = session or WebSession()
         self.premium = False
-        self.login(username, password)
+        self.login(username, password, remember_me)
         self._ports = None
         self._api = None
         self._sessions = None
@@ -298,7 +298,8 @@ class AuthUser(WebUser):
 
         return True
 
-    def login(self, username: str, password: str):
+    def login(self, username: str, password: str,
+              remember_me: bool = False):
         """Log in to the AirVPN website and populate the base user fields.
 
         Fetches the sign-in form to obtain the CSRF key and reference token,
@@ -309,14 +310,17 @@ class AuthUser(WebUser):
         Args:
             username: Account username or email address.
             password: Account password.
-            key: The PHPSESSID from your cookies.
+            rememeber_me: Whether or not to store the session's credentials.
 
         Raises:
             LoginError: If the login request does not redirect away from the
                 login page (indicating invalid credentials or a failed
                 login attempt).
         """
-        loaded = self.load_session(username)
+
+        if remember_me:
+            loaded = self.load_session(username)
+
         response = self.session.request("get", WebSession.__BASE_URL__)
 
         soup = BeautifulSoup(response.text, "html.parser")
@@ -365,6 +369,7 @@ class AuthUser(WebUser):
         id = int(url_info.pop(0))
         img = user_info.find("img").get("src")
 
-        self.save_session(username)
+        if remember_me:
+            self.save_session(username)
 
         super().__init__(self.session, name=name, id=id, image=img)
