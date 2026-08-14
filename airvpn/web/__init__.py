@@ -47,12 +47,16 @@ class WebClient:
             image=user.get("photo")
         ) for user in data]
 
-    def login(self, username: str, password: str, remember_me: bool = False) -> AuthUser:
+    def login(self,
+              username: Optional[str] = None, password: Optional[str] = None,
+              remember_me: bool = False, session_key: Optional[str] = None) -> AuthUser:
         """Authenticate with the AirVPN website.
 
         Args:
-            username: Account username or email address.
-            password: Account password.
+            username(str): Account username or email address.
+            password(str): Account password.
+            remember_me(bool): Store the session credentials in keyring.
+            session_key(str): Session key from `AuthUser.get_sesion_key()`.
 
         Returns:
             The authenticated user, also stored on ``self.user``.
@@ -60,6 +64,6 @@ class WebClient:
         Raises:
             LoginError: If authentication fails.
         """
-        self.user = AuthUser(username, password, self.session, remember_me)
+        self.user = AuthUser(username, password, self.session, remember_me, session_key)
 
         return self.user
