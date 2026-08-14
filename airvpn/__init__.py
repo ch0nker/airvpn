@@ -15,7 +15,7 @@ handling tasks not exposed through the official API.
 """
 
 __title__ = "AirVPN"
-__version__ = "0.2.11"
+__version__ = "0.2.12"
 __license__ = "MIT"
 
 __all__ = [
