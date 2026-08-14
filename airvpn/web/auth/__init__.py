@@ -1,14 +1,18 @@
 from __future__ import annotations
 
-from airvpn.web.services import PortManager, APIManager, SessionManager, DeviceManager, DnsManager, InboxManager
-from airvpn.web.auth.models import ProfilePrivacy, Notification, Message
-from airvpn.web.network import WebSession
+from ..user import WebUser
+from ..services import PortManager, APIManager, SessionManager, DeviceManager, DnsManager, InboxManager
+from ..network import WebSession
+
+from .models import ProfilePrivacy, Notification, Message
 from airvpn.exceptions import LoginError
-from airvpn.web.user import WebUser
 
 from datetime import datetime
 from bs4 import BeautifulSoup
 from typing import Optional
+
+import base64
+import struct
 
 import keyring
 import json
@@ -28,48 +32,43 @@ class AuthUser(WebUser):
         sessions (SessionManager): Manager for the user's active sessions.
         dns (DnsManager): Manager for the user's dns settings.
         premium (bool): Flag for if the user has a current plan.
-        name (str): Display name of the user. Inherited from
-            `WebUser`.
-        id (int): Numeric user ID. Inherited from `WebUser`.
+        name (str): Your display name. Inherited from `WebUser`.
+        id (int): User's ID. Inherited from `WebUser`.
         image (str): URL of the user's profile image. Inherited from
             `WebUser`.
         profile_url (str): Full URL to the user's profile page. Inherited
             from `WebUser`.
         content_count (int | None): Number of content items (posts) the user
-            has made. Inherited property from `WebUser`; lazily
-            fetched via profile scrape if not already known.
+            has made. Inherited property from `WebUser`.
         followers (int | None): Number of followers the user has. Inherited
-            property from `WebUser`; lazily fetched via profile
-            scrape if not already known.
+            property from `WebUser`.
         community_reputation (int | None): The user's community reputation
-            score. Inherited property from `WebUser`; lazily fetched
-            via profile scrape if not already known.
+            score. Inherited property from `WebUser`.
         rank (str | None): Display name of the user's rank. Inherited
-            property from `WebUser`; lazily fetched via profile
-            scrape if not already known.
+            property from `WebUser`.
         joined (datetime | None): Date and time the user joined. Inherited
-            property from `WebUser`; lazily fetched via profile
-            scrape if not already known.
+            property from `WebUser`.
         last_visited (datetime | None): Date and time of the user's last
             visit. Inherited property from `WebUser`; lazily fetched
             via profile scrape if not already known.
         about (About | None): The user's "About" information. Inherited
-            property from `WebUser`; lazily fetched via profile
-            scrape if not already known.
+            property from `WebUser`.
         gender (str | None): The user's disclosed gender. Inherited property
-            from `WebUser`; lazily fetched via profile scrape if not
-            already known.
+            from `WebUser`.
         location (str | None): The user's disclosed location. Inherited
-            property from `WebUser`; lazily fetched via profile
-            scrape if not already known.
+            property from `WebUser`.
         interests (str | None): The user's disclosed interests. Inherited
-            property from `WebUser`; lazily fetched via profile
-            scrape if not already known.
+            property from `WebUser`.
     """
-    def __init__(self, username: str, password: str, session: Optional[WebSession] = None, remember_me: bool = False):
+    def __init__(self, 
+                 username: Optional[str] = None, 
+                 password: Optional[str] = None,
+                 session: Optional[WebSession] = None,
+                 remember_me: bool = False,
+                 session_key: Optional[str] = None):
         self.session = session or WebSession()
         self.premium = False
-        self.login(username, password, remember_me)
+        self.login(username, password, remember_me, session_key)
         self._ports = None
         self._api = None
         self._sessions = None
@@ -155,8 +154,8 @@ class AuthUser(WebUser):
             birthday: New birthday to set. Defaults to the user's current
                 `about.birthday`, or ``datetime(0, 0, 0)`` if unset.
             website: New personal website URL.
-            twitter: New Twitter/X handle or URL.
-            mastodon: New Mastodon handle or URL.
+            twitter: New Twitter/X handle.
+            mastodon: New Mastodon handle.
             aim: New AIM contact identifier.
             msn: New MSN contact identifier.
             icq: New ICQ contact identifier.
@@ -166,8 +165,7 @@ class AuthUser(WebUser):
             gender: New disclosed gender.
             location: New disclosed location.
             interests: New disclosed interests.
-            about_me: New "About Me" text. Defaults to the current value
-                scraped from the edit form's textarea if not provided.
+            about_me: New "About Me" text. Defaults to the current value.
             profile_privacy: New `ProfilePrivacy` setting controlling who
                 can view the profile. Defaults to the currently selected
                 option on the edit form, or `ProfilePrivacy.ALL` if none
@@ -268,12 +266,17 @@ class AuthUser(WebUser):
             [Message(**message) for message in messages]
         )
 
-    def save_session(self, username):
+    def _get_session_credentials(self):
         session_data = self.session.session.cookies.get_dict("airvpn.org")
 
         session_data.pop("af3", None)
         session_data.pop("ips4_guestTime", None)
         session_data.pop("__Host-referred_by", None)
+
+        return session_data
+
+    def _save_session(self, username):
+        session_data = self._get_session_credentials()
 
         keyring.set_password("airvpn_python", username, json.dumps(session_data))
 
@@ -288,29 +291,58 @@ class AuthUser(WebUser):
         except json.JSONDecodeError:
             return None
 
-    def load_session(self, username: str):
+    def _load_session(self, username: str):
         session_data = self._get_session(username)
         if session_data is None:
             return False
 
-        for name, value in session_data.items():
-            self.session.session.cookies.set(name, value, domain="airvpn.org")
+        self._load_session_credentials(session_data)
 
         return True
 
-    def login(self, username: str, password: str,
-              remember_me: bool = False):
-        """Log in to the AirVPN website and populate the base user fields.
+    def _load_session_credentials(self, data: dict):
+        for name, value in data.items():
+            self.session.session.cookies.set(name, value, domain="airvpn.org")
 
-        Fetches the sign-in form to obtain the CSRF key and reference token,
-        submits the login credentials, and on success parses the resulting
-        page to extract the authenticated user's ID, name, and profile image,
-        as well as the CSRF/anti-cache tokens used for subsequent requests.
+    def get_session_key(self):
+        bytes = b''
+        data = self._get_session_credentials()
+
+        pair_count = 0
+
+        for key, value in data.items():
+            bytes += struct.pack("<BB", len(key), len(value)) + key.encode() + value.encode()
+            pair_count += 1
+
+        return base64.encodebytes(struct.pack("<H", pair_count) + bytes).decode()
+
+    def _load_session_key(self, key: str):
+        bytes = base64.decodebytes(key.encode())
+
+        pair_count, = struct.unpack("<H", bytes[:2])
+
+        offset = 2
+        for _ in range(pair_count):
+            key_size, value_size = struct.unpack("<BB", bytes[offset:offset+2])
+            offset += 2
+
+            key = bytes[offset:offset+key_size].decode()
+            offset += key_size
+
+            value = bytes[offset:offset+value_size].decode()
+            offset += value_size
+
+            self.session.session.cookies.set(key, value, domain="airvpn.org")
+
+    def login(self, username: Optional[str] = None, password: Optional[str] = None,
+              remember_me: bool = False, session_key: Optional[str] = None):
+        """Login to the AirVPN website.
 
         Args:
-            username: Account username or email address.
-            password: Account password.
-            rememeber_me: Whether or not to store the session's credentials.
+            username(str, optional): Account username or email address.
+            password(str, optional): Account password.
+            rememeber_me(bool): Whether or not to store the session's credentials.
+            session_key(str, optional): The value from `AuthUser.get_session_key()`
 
         Raises:
             LoginError: If the login request does not redirect away from the
@@ -320,7 +352,11 @@ class AuthUser(WebUser):
 
         loaded = False
         if remember_me:
-            loaded = self.load_session(username)
+            loaded = self._load_session(username)
+
+        if session_key is not None:
+            self._load_session_key(session_key)
+            loaded = True
 
         response = self.session.request("get", WebSession.__BASE_URL__)
 
@@ -356,6 +392,9 @@ class AuthUser(WebUser):
 
         user_info = soup.find("li", id="cUserLink")
         if not user_info:
+            if username is None and password is None:
+                raise LoginError("Failed to login using credential cookies.")
+
             soup = _login()
             user_info = soup.find("li", id="cUserLink")
             if not user_info:

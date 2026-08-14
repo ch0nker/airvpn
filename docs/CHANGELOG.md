@@ -1,5 +1,8 @@
 # Changelog
 
+# 0.2.12
+- Add a base64 session key for quicker logins.
+
 # 0.2.11
 - Fix `WebUser.follow` not working.
 - Fix csrf token not being fetched each request.

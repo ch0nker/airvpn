@@ -15,7 +15,7 @@ handling tasks not exposed through the official API.
 """
 
 __title__ = "AirVPN"
-__version__ = "0.2.11"
+__version__ = "0.2.12"
 __license__ = "MIT"
 
 __all__ = [
@@ -50,6 +50,7 @@ class AirVPN:
             provided (and `username`/`password` are not), used to
             initialize `api` directly. This only grants REST API access —
             it does not log in to the website, so `client` will not be set.
+        session_key (str, optional): The session key gotten from `AuthUser.get_session_key()`.
 
     Attributes:
         bootstrap (AirClient): Client for AirVPN's encrypted bootstrap API.
@@ -78,12 +79,13 @@ class AirVPN:
                  username: Optional[str] = None, 
                  password: Optional[str] = None,
                  remember_me: bool = False,
-                 api_key: Optional[str] = None):
+                 api_key: Optional[str] = None,
+                 session_key: Optional[str] = None):
         self.bootstrap = AirClient()
         self.web = WebClient()
 
-        if username is not None and password is not None:
-            self.login(username, password, remember_me)
+        if username is not None and password is not None or session_key is not None:
+            self.login(username, password, remember_me, session_key)
 
             api = self.web.user.api
             if len(api.keys) == 0:
@@ -93,15 +95,21 @@ class AirVPN:
 
         self.init_api(api_key)
 
-    def login(self, username: str, password: str, remeber_me: bool = False):
-        """
-        Authenticate with AirVPN and initialize the API client.
+    def login(self,
+              username: Optional[str] = None, password: Optional[str] = None,
+              remember_me: bool = False, session_key: Optional[str] = None):
+        """Authenticate with the AirVPN website.
 
         Args:
-            username (str): The AirVPN account username.
-            password (str): The AirVPN account password.
+            username(str, optional): Account username or email address.
+            password(str, optional): Account password.
+            rememeber_me(bool): Whether or not to store the session's credentials.
+            session_key(str, optional): The value from `AuthUser.get_session_key()`
+
+        Raises:
+            LoginError: If authentication fails.
         """
-        self.web.login(username, password, remeber_me)
+        self.web.login(username, password, remember_me, session_key)
 
     def init_api(self, api_key: str):
         """
