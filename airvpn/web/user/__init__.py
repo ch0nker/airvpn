@@ -1,5 +1,5 @@
-from airvpn.web.user.models import WebUserDict, About, Rank, Contacts
-from airvpn.web.network import WebSession
+from .models import WebUserDict, About, Rank, Contacts
+from ..network import WebSession
 from datetime import datetime
 from bs4 import BeautifulSoup
 from typing import Unpack
@@ -14,47 +14,29 @@ def slugify_username(name: str):
     return slug
 
 class WebUser:
-    """Represents an AirVPN forum member's public profile.
-
-    Fields passed in via ``kwargs`` are used directly; any field not
-    supplied is lazily fetched (and cached) by scraping the user's profile
-    page the first time it is accessed via its corresponding property.
+    """Represents an AirVPN member's public profile.
 
     Attributes:
         name (str): Display name of the user.
-        id (int): Numeric user ID.
+        id (int): The user's ID.
         image (str): URL of the user's profile image.
         profile_url (str): Full URL to the user's profile page.
         content_count (int | None): Number of content items (posts) the user
-            has made. Lazily fetched via profile scrape if not supplied.
+            has made.
         contacts (Contacts | None): The user's contact information.
-        followers (int | None): Number of followers the user has. Lazily
-            fetched via profile scrape if not supplied.
+        followers (int | None): Number of followers the user has.
         community_reputation (int | None): The user's community reputation
-            score. Lazily fetched via profile scrape if not supplied.
+            score.
         rank (str | None): Display name of the user's rank, as shown in the
-            profile header. Lazily fetched via profile scrape if not
-            supplied.
-        joined (datetime | None): Date and time the user joined. Lazily
-            fetched via profile scrape if not supplied.
+            profile header.
+        joined (datetime | None): Date and time the user joined.
         last_visited (datetime | None): Date and time of the user's last
-            visit. Lazily fetched via profile scrape if not supplied.
+            visit.
         about (About | None): The user's "About" information, including
-            detailed rank data and birthday. Lazily fetched via profile
-            scrape if not supplied.
-        gender (str | None): The user's disclosed gender. Lazily fetched via
-            profile scrape if not supplied.
-        location (str | None): The user's disclosed location. Lazily fetched
-            via profile scrape if not supplied.
-        interests (str | None): The user's disclosed interests. Lazily
-            fetched via profile scrape if not supplied.
-
-    Note:
-        ``content_count``, ``followers``, ``community_reputation``, ``rank``,
-        ``joined``, ``last_visited``, ``about``, ``gender``, ``location``,
-        and ``interests`` are exposed as read-only properties backed by
-        private attributes (e.g. ``_content_count``); see each property's
-        own docstring below for details.
+            detailed rank data and birthday.
+        gender (str | None): The user's disclosed gender.
+        location (str | None): The user's disclosed location.
+        interests (str | None): The user's disclosed interests.
     """
 
     CACHE_MINUTES = 5 * 60
@@ -171,6 +153,7 @@ class WebUser:
 
         profile_stats = soup.find("div", id="elProfileStats")
 
+        # TODO: find another way to get values since different locales breaks this
         def get_value(name):
             match = profile_stats.find(string=name)
             if not match:
@@ -190,7 +173,7 @@ class WebUser:
 
             raise TypeError(
                 "Unknown ui_type. Please open an issue with this error. If it contains private information please redact it."
-                f"{ui_type}: {span}"
+                f"{name} ({ui_type}): {span}"
             )
             
         self._content_count = get_value("Content Count")
