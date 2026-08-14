@@ -2527,10 +2527,7 @@
 
 
 
-        <p>Represents an AirVPN forum member's public profile.</p>
-<p>Fields passed in via <code>kwargs</code> are used directly; any field not
-supplied is lazily fetched (and cached) by scraping the user's profile
-page the first time it is accessed via its corresponding property.</p>
+        <p>Represents an AirVPN member's public profile.</p>
 
 
 <p><span class="doc-section-title">Attributes:</span></p>
@@ -2561,7 +2558,7 @@ page the first time it is accessed via its corresponding property.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Numeric user ID.</p>
+                <p>The user's ID.</p>
               </div>
             </td>
           </tr>
@@ -2603,7 +2600,7 @@ page the first time it is accessed via its corresponding property.</p>
             <td>
               <div class="doc-md-description">
                 <p>Number of content items (posts) the user
-has made. Lazily fetched via profile scrape if not supplied.</p>
+has made.</p>
               </div>
             </td>
           </tr>
@@ -2633,8 +2630,7 @@ has made. Lazily fetched via profile scrape if not supplied.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Number of followers the user has. Lazily
-fetched via profile scrape if not supplied.</p>
+                <p>Number of followers the user has.</p>
               </div>
             </td>
           </tr>
@@ -2650,7 +2646,7 @@ fetched via profile scrape if not supplied.</p>
             <td>
               <div class="doc-md-description">
                 <p>The user's community reputation
-score. Lazily fetched via profile scrape if not supplied.</p>
+score.</p>
               </div>
             </td>
           </tr>
@@ -2666,8 +2662,7 @@ score. Lazily fetched via profile scrape if not supplied.</p>
             <td>
               <div class="doc-md-description">
                 <p>Display name of the user's rank, as shown in the
-profile header. Lazily fetched via profile scrape if not
-supplied.</p>
+profile header.</p>
               </div>
             </td>
           </tr>
@@ -2682,8 +2677,7 @@ supplied.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Date and time the user joined. Lazily
-fetched via profile scrape if not supplied.</p>
+                <p>Date and time the user joined.</p>
               </div>
             </td>
           </tr>
@@ -2699,7 +2693,7 @@ fetched via profile scrape if not supplied.</p>
             <td>
               <div class="doc-md-description">
                 <p>Date and time of the user's last
-visit. Lazily fetched via profile scrape if not supplied.</p>
+visit.</p>
               </div>
             </td>
           </tr>
@@ -2715,8 +2709,7 @@ visit. Lazily fetched via profile scrape if not supplied.</p>
             <td>
               <div class="doc-md-description">
                 <p>The user's "About" information, including
-detailed rank data and birthday. Lazily fetched via profile
-scrape if not supplied.</p>
+detailed rank data and birthday.</p>
               </div>
             </td>
           </tr>
@@ -2731,8 +2724,7 @@ scrape if not supplied.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>The user's disclosed gender. Lazily fetched via
-profile scrape if not supplied.</p>
+                <p>The user's disclosed gender.</p>
               </div>
             </td>
           </tr>
@@ -2747,8 +2739,7 @@ profile scrape if not supplied.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>The user's disclosed location. Lazily fetched
-via profile scrape if not supplied.</p>
+                <p>The user's disclosed location.</p>
               </div>
             </td>
           </tr>
@@ -2763,23 +2754,13 @@ via profile scrape if not supplied.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>The user's disclosed interests. Lazily
-fetched via profile scrape if not supplied.</p>
+                <p>The user's disclosed interests.</p>
               </div>
             </td>
           </tr>
       </tbody>
     </table>
 
-
-<details class="note" open>
-  <summary>Note</summary>
-  <p><code>content_count</code>, <code>followers</code>, <code>community_reputation</code>, <code>rank</code>,
-<code>joined</code>, <code>last_visited</code>, <code>about</code>, <code>gender</code>, <code>location</code>,
-and <code>interests</code> are exposed as read-only properties backed by
-private attributes (e.g. <code>_content_count</code>); see each property's
-own docstring below for details.</p>
-</details>
 
 
 

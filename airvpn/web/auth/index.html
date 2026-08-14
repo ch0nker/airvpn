@@ -2748,8 +2748,7 @@ requests made by this user.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Display name of the user. Inherited from
-<code>WebUser</code>.</p>
+                <p>Your display name. Inherited from <code>WebUser</code>.</p>
               </div>
             </td>
           </tr>
@@ -2760,7 +2759,7 @@ requests made by this user.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Numeric user ID. Inherited from <code>WebUser</code>.</p>
+                <p>User's ID. Inherited from <code>WebUser</code>.</p>
               </div>
             </td>
           </tr>
@@ -2804,8 +2803,7 @@ from <code>WebUser</code>.</p>
             <td>
               <div class="doc-md-description">
                 <p>Number of content items (posts) the user
-has made. Inherited property from <code>WebUser</code>; lazily
-fetched via profile scrape if not already known.</p>
+has made. Inherited property from <code>WebUser</code>.</p>
               </div>
             </td>
           </tr>
@@ -2821,8 +2819,7 @@ fetched via profile scrape if not already known.</p>
             <td>
               <div class="doc-md-description">
                 <p>Number of followers the user has. Inherited
-property from <code>WebUser</code>; lazily fetched via profile
-scrape if not already known.</p>
+property from <code>WebUser</code>.</p>
               </div>
             </td>
           </tr>
@@ -2838,8 +2835,7 @@ scrape if not already known.</p>
             <td>
               <div class="doc-md-description">
                 <p>The user's community reputation
-score. Inherited property from <code>WebUser</code>; lazily fetched
-via profile scrape if not already known.</p>
+score. Inherited property from <code>WebUser</code>.</p>
               </div>
             </td>
           </tr>
@@ -2855,8 +2851,7 @@ via profile scrape if not already known.</p>
             <td>
               <div class="doc-md-description">
                 <p>Display name of the user's rank. Inherited
-property from <code>WebUser</code>; lazily fetched via profile
-scrape if not already known.</p>
+property from <code>WebUser</code>.</p>
               </div>
             </td>
           </tr>
@@ -2872,8 +2867,7 @@ scrape if not already known.</p>
             <td>
               <div class="doc-md-description">
                 <p>Date and time the user joined. Inherited
-property from <code>WebUser</code>; lazily fetched via profile
-scrape if not already known.</p>
+property from <code>WebUser</code>.</p>
               </div>
             </td>
           </tr>
@@ -2906,8 +2900,7 @@ via profile scrape if not already known.</p>
             <td>
               <div class="doc-md-description">
                 <p>The user's "About" information. Inherited
-property from <code>WebUser</code>; lazily fetched via profile
-scrape if not already known.</p>
+property from <code>WebUser</code>.</p>
               </div>
             </td>
           </tr>
@@ -2923,8 +2916,7 @@ scrape if not already known.</p>
             <td>
               <div class="doc-md-description">
                 <p>The user's disclosed gender. Inherited property
-from <code>WebUser</code>; lazily fetched via profile scrape if not
-already known.</p>
+from <code>WebUser</code>.</p>
               </div>
             </td>
           </tr>
@@ -2940,8 +2932,7 @@ already known.</p>
             <td>
               <div class="doc-md-description">
                 <p>The user's disclosed location. Inherited
-property from <code>WebUser</code>; lazily fetched via profile
-scrape if not already known.</p>
+property from <code>WebUser</code>.</p>
               </div>
             </td>
           </tr>
@@ -2957,8 +2948,7 @@ scrape if not already known.</p>
             <td>
               <div class="doc-md-description">
                 <p>The user's disclosed interests. Inherited
-property from <code>WebUser</code>; lazily fetched via profile
-scrape if not already known.</p>
+property from <code>WebUser</code>.</p>
               </div>
             </td>
           </tr>
@@ -3458,7 +3448,7 @@ change need to be supplied.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>New Twitter/X handle or URL.</p>
+                <p>New Twitter/X handle.</p>
               </div>
             </td>
             <td>
@@ -3474,7 +3464,7 @@ change need to be supplied.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>New Mastodon handle or URL.</p>
+                <p>New Mastodon handle.</p>
               </div>
             </td>
             <td>
@@ -3634,8 +3624,7 @@ change need to be supplied.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>New "About Me" text. Defaults to the current value
-scraped from the edit form's textarea if not provided.</p>
+                <p>New "About Me" text. Defaults to the current value.</p>
               </div>
             </td>
             <td>
@@ -3780,18 +3769,14 @@ is selected.</p>
 
 
 <h3 id="airvpn.web.auth.AuthUser.login" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">login</span><span class="p">(</span><span class="n">username</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">password</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">remember_me</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">login</span><span class="p">(</span><span class="n">username</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">password</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">remember_me</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">session_key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span></code>
 
 </h3>
 
 
     <div class="doc doc-contents ">
 
-        <p>Log in to the AirVPN website and populate the base user fields.</p>
-<p>Fetches the sign-in form to obtain the CSRF key and reference token,
-submits the login credentials, and on success parses the resulting
-page to extract the authenticated user's ID, name, and profile image,
-as well as the CSRF/anti-cache tokens used for subsequent requests.</p>
+        <p>Login to the AirVPN website.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -3818,7 +3803,7 @@ as well as the CSRF/anti-cache tokens used for subsequent requests.</p>
               </div>
             </td>
             <td>
-                <em>required</em>
+                  <code>None</code>
             </td>
           </tr>
           <tr class="doc-section-item">
@@ -3834,7 +3819,7 @@ as well as the CSRF/anti-cache tokens used for subsequent requests.</p>
               </div>
             </td>
             <td>
-                <em>required</em>
+                  <code>None</code>
             </td>
           </tr>
           <tr class="doc-section-item">
@@ -3842,6 +3827,7 @@ as well as the CSRF/anti-cache tokens used for subsequent requests.</p>
                 <code>rememeber_me</code>
             </td>
             <td>
+                  <code><span title="bool">bool</span></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -3850,6 +3836,22 @@ as well as the CSRF/anti-cache tokens used for subsequent requests.</p>
             </td>
             <td>
                 <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>session_key</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The value from <code>AuthUser.get_session_key()</code></p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
             </td>
           </tr>
       </tbody>
