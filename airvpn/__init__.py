@@ -15,7 +15,7 @@ handling tasks not exposed through the official API.
 """
 
 __title__ = "AirVPN"
-__version__ = "0.2.12"
+__version__ = "0.2.13"
 __license__ = "MIT"
 
 __all__ = [
@@ -121,6 +121,8 @@ class AirVPN:
             api_key (str): The AirVPN API key secret.
         """
         self.api = AirAPI(api_key)
+
+
 
 """
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⠤⠴⠶⠶⢶⣶⣞⠛⠍⠉⠙⠛⠳⢦⡔⠒⠒⠢⠤⣄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀

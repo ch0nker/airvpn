@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/pypi/l/airvpn)](https://github.com/ch0nker/airvpn/blob/main/LICENSE)
 [![Tests](https://github.com/ch0nker/airvpn/actions/workflows/python-tests.yml/badge.svg)](https://github.com/ch0nker/airvpn/actions/workflows/python-tests.yml)
 
-A Python wrapper for AirVPN's [API](https://airvpn.org/apisettings/), covering the bootstrap, web, and REST layers of the service — authenticate, manage devices, generate configs, and check server status without touching cookies, sessions, or encryption yourself.
+A Python wrapper for AirVPN's API.
 
 > **Note:** Docstrings and documentation were AI-assisted. If you spot any errors, please open a PR or an issue.
 
@@ -26,7 +26,7 @@ pip install -e airvpn
 
 The library exposes four interfaces, depending on how much control you need:
 
-- **`AirVPN`** — high-level wrapper; the best starting point for most use cases
+- **`AirVPN`** — high-level wrapper; the best starting point for most use cases.
 - **`AirClient`** — low-level client for the encrypted bootstrap API.
 - **`AirAPI`** — client for AirVPN's authenticated REST API.
 - **`WebClient`** — client for AirVPN's website/session-based endpoints.
@@ -77,7 +77,7 @@ vpn = AirVPN(api_key=os.getenv("API_KEY"))
 device = vpn.api.devices.get("test", create=True)
 ```
 
-### AirClient
+### Bootstrap
 
 An `AirVPN` instance always has a `bootstrap` client available, no login required, for public data like server manifests:
 ```python

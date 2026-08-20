@@ -164,14 +164,9 @@ class DnsManager(ClientService):
             dns: A `Dns` instance, DNS list code, or a list of either,
                 to add to the current selection.
         """
-        if isinstance(dns, list[DnsList]):
-            items: list[str] = []
-            for item in dns:
-                items.append(item.code)
-            dns = items
-
-        if isinstance(dns, list[str]):
-            self.current.lists.extend(dns)
+        if isinstance(dns, list):
+            items = [item.code if isinstance(item, DnsList) else item for item in dns]
+            self.current.lists.extend(items)
             self.save()
             return
 
