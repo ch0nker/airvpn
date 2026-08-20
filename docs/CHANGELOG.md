@@ -1,5 +1,8 @@
 # Changelog
 
+# 0.2.13
+- Proper list type handling for `DnsManager.add_list`
+
 # 0.2.12
 - Add a base64 session key for quicker logins.
 
