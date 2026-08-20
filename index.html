@@ -365,10 +365,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#airclient" class="md-nav__link">
+  <a href="#bootstrap" class="md-nav__link">
     <span class="md-ellipsis">
       
-        AirClient
+        Bootstrap
       
     </span>
   </a>
@@ -2418,10 +2418,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#airclient" class="md-nav__link">
+  <a href="#bootstrap" class="md-nav__link">
     <span class="md-ellipsis">
       
-        AirClient
+        Bootstrap
       
     </span>
   </a>
@@ -2458,7 +2458,7 @@
 <a href="https://pypi.org/project/airvpn/"><img alt="PyPI version" src="https://img.shields.io/pypi/v/airvpn" /></a>
 <a href="https://github.com/ch0nker/airvpn/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/pypi/l/airvpn" /></a>
 <a href="https://github.com/ch0nker/airvpn/actions/workflows/python-tests.yml"><img alt="Tests" src="https://github.com/ch0nker/airvpn/actions/workflows/python-tests.yml/badge.svg" /></a></p>
-<p>A Python wrapper for AirVPN's <a href="https://airvpn.org/apisettings/">API</a>, covering the bootstrap, web, and REST layers of the service — authenticate, manage devices, generate configs, and check server status without touching cookies, sessions, or encryption yourself.</p>
+<p>A Python wrapper for AirVPN's API.</p>
 <blockquote>
 <p><strong>Note:</strong> Docstrings and documentation were AI-assisted. If you spot any errors, please open a PR or an issue.</p>
 </blockquote>
@@ -2473,7 +2473,7 @@
 <h2 id="interfaces">Interfaces</h2>
 <p>The library exposes four interfaces, depending on how much control you need:</p>
 <ul>
-<li><strong><code>AirVPN</code></strong> — high-level wrapper; the best starting point for most use cases</li>
+<li><strong><code>AirVPN</code></strong> — high-level wrapper; the best starting point for most use cases.</li>
 <li><strong><code>AirClient</code></strong> — low-level client for the encrypted bootstrap API.</li>
 <li><strong><code>AirAPI</code></strong> — client for AirVPN's authenticated REST API.</li>
 <li><strong><code>WebClient</code></strong> — client for AirVPN's website/session-based endpoints.</li>
@@ -2516,7 +2516,7 @@
 <a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
 <a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="n">device</span> <span class="o">=</span> <span class="n">vpn</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">devices</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="n">create</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </code></pre></div></p>
-<h3 id="airclient">AirClient</h3>
+<h3 id="bootstrap">Bootstrap</h3>
 <p>An <code>AirVPN</code> instance always has a <code>bootstrap</code> client available, no login required, for public data like server manifests:
 <div class="language-python highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">airvpn</span><span class="w"> </span><span class="kn">import</span> <span class="n">AirVPN</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
