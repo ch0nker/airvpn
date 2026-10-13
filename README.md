@@ -1,3 +1,6 @@
+> # DISCLAIMER:
+> I have switched VPN providers, so I will no longer work on this.
+
 # Python AirVPN
 
 [![Python versions](https://img.shields.io/pypi/pyversions/airvpn)](https://pypi.org/project/airvpn/)
