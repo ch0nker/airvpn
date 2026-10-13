@@ -6,7 +6,6 @@
 [![Python versions](https://img.shields.io/pypi/pyversions/airvpn)](https://pypi.org/project/airvpn/)
 [![PyPI version](https://img.shields.io/pypi/v/airvpn)](https://pypi.org/project/airvpn/)
 [![License](https://img.shields.io/pypi/l/airvpn)](https://github.com/ch0nker/airvpn/blob/main/LICENSE)
-[![Tests](https://github.com/ch0nker/airvpn/actions/workflows/python-tests.yml/badge.svg)](https://github.com/ch0nker/airvpn/actions/workflows/python-tests.yml)
 
 A Python wrapper for AirVPN's API.
 
