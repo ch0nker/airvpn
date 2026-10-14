@@ -1,5 +1,6 @@
 > # DISCLAIMER:
 > I have switched VPN providers, so I will no longer work on this.
+> If you want to do a project like this and want the PyPI package name "airvpn", let me know.
 
 # Python AirVPN
 
